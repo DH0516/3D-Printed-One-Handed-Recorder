@@ -21,9 +21,9 @@ layout: default
 ### 6.2 Mechanical & Keywork Issues
 
 - **Issue: Keys stick, bind, or are sluggish to return.**
-  
-  - **Cause 1: Pivot Friction.** The pivot hole in the key hinge may be too tight on the axle pin. Gently sand around the hole, or the key insert.
-  - **Cause 2: Insufficient Spring Tension.** Increase preload on the torsion spring or use a slightly shorter/tighter elastic band.
+
+  - **Cause 1: Pivot Friction.** The pivot hole in the key hinge may be too tight. Gently sand or ream the hole until the key turns freely.
+  - **Cause 2: Insufficient Spring Tension.** Increase the bending preload on the filament pin spring, or replace the snippet with a fresh one.
   - **Cause 3: Key Arm Clearance.** Check that key arms do not rub against adjacent pillar posts or the outer curvature of the body.
 
 - **Issue: Key pads fall off or shift out of alignment.**

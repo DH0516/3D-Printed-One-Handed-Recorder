@@ -17,10 +17,10 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 6. **[Troubleshooting](7-troubleshooting.md)** - Common print/assembly issues and acoustic solutions.
 7. **[Model Information](8-model-information.md)** - Supported physical recorder variants.
 8. **[Reference Tools & Resources](9-reference-tools-and-resources.md)** - Project references, resources, and compliance info.
-9. **[Build Guide: soprano-440-v1](10-soprano-440-v1.md)** - Detailed model-specific build guide for the Soprano (Descant) 440 Hz model.
+9. **[Build Guide: soprano-440-v1](10-soprano-440-v1.md)** - Model-specific details for the standard Soprano (Descant) 440 Hz build.
 
 ---
 
 ### Interactive Tools
 
-- **[Interactive Fingering Chart Viewer](fingering_viewer.html)** - Explore the fingerings, view dynamic staff notation, and export printable PDF charts. The chart is the standard baroque one: the keys change which finger works a hole, not which holes are open.
+- **[Interactive Fingering Chart Viewer](fingering_viewer.html)** - See [Reference Tools & Resources](9-reference-tools-and-resources.md) for details.
