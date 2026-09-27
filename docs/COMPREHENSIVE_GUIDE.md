@@ -1,6 +1,6 @@
-# SoloABec Soprano: Step-by-Step Maker Assembly Tutorial
+# One-Handed Recorder Soprano: Step-by-Step Maker Assembly Tutorial
 
-Welcome to the **SoloABec** maker assembly guide. SoloABec is an open-source, fully acoustic one-handed soprano recorder designed for single-hand playing across a full chromatic compass (C5 to C#7 at A=440 Hz, 26 fingerings in the chart).
+Welcome to the **One-Handed Recorder** maker assembly guide. It is an open-source, fully acoustic one-handed soprano recorder designed for single-hand playing across a full chromatic compass (C5 to C#7 at A=440 Hz, 26 fingerings in the chart).
 
 This tutorial walks you through everything needed to 3D print and assemble the instrument at home using ordinary desktop 3D printing and everyday household items.
 
@@ -125,7 +125,7 @@ flowchart TD
 
 ## 5. Playing and Digital Pedagogy
 
-SoloABec inverts the traditional woodwind layout: the player's single functional hand covers toneholes directly with their fingers, while the articulated keys open holes 2 to 4 (with the octave hole as hole 1). Lower toneholes (holes 4 to 8) are closed directly by fingers. Because different key configurations are planned for future variants, the design and software remain adaptable.
+The One-Handed Recorder inverts the traditional woodwind layout: the player's single functional hand covers toneholes directly with their fingers, while the articulated keys open holes 2 to 4 (with the octave hole as hole 1). Lower toneholes (holes 4 to 8) are closed directly by fingers. Because different key configurations are planned for future variants, the design and software remain adaptable.
 
 To make learning easy for teachers and students, the project includes an open-source **Interactive Fingering Viewer**:
 
@@ -142,6 +142,6 @@ During these early stages of project release, we welcome educators, makers, and 
 
 ### References and Disclaimers
 * **Acoustic Optimization:** Inria Openwind (open-source wind instrument design toolbox).
-* **Prior Art Reference:** ArtefactosLAB, University of Alicante. (2021). *Flow: A Socially Responsible 3D Printed One-Handed Recorder*. MDPI IJERPH. SoloABec was created independently with distinct acoustic geometry, mechanical architecture, and fabrication principles.
+* **Prior Art Reference:** ArtefactosLAB, University of Alicante. (2021). *Flow: A Socially Responsible 3D Printed One-Handed Recorder*. MDPI IJERPH. This recorder was created independently with distinct acoustic geometry, mechanical architecture, and fabrication principles.
 * **AI Assistance Disclaimer:** Generative AI tools were utilized to assist with documentation drafting, workflow organization, and software scripting during project development. All CAD models, acoustic designs, and physical prototypes were independently created, verified, and directed by the human author.
 * **Licensing:** Distributed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**. Free for personal, educational, and research use. Commercial production or sale is prohibited.

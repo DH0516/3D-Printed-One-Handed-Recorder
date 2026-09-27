@@ -1,4 +1,4 @@
-# SoloABec Soprano A1 (OHR-Soprano-v0.1)
+# One-Handed Recorder Soprano A1 (OHR-Soprano-v0.1)
 
 The standard model. One-handed soprano recorder in C at A = 440, right-handed
 by default (the design mirrors along the bore axis for left-handed play),

@@ -5,13 +5,13 @@ layout: default
 
 # 7. Model Information
 
-The SoloABec project supports multiple variants of the same one-handed soprano
+The project supports multiple variants of the same one-handed soprano
 recorder. All variants share one fingering chart (see the
 [fingering viewer](fingering_viewer.html) and the machine-readable model data
 in [`models/`](https://github.com/DH0516/3D-Printed-One-Handed-Recorder/tree/main/models)).
 
-- **A1, SoloABec Soprano (OHR-Soprano-v0.1)**: the standard model, described
-  by the [soprano build guide](10-soloabec-soprano-440-v1.md). Right-handed by
+- **A1, Soprano (OHR-Soprano-v0.1)**: the standard model, described
+  by the [soprano build guide](10-soprano-440-v1.md). Right-handed by
   default; the design is based on a resizing of a historical instrument by
   J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz)
   to modern pitch (A = 440 Hz). For left-handed play, the design must be

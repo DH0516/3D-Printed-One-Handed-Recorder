@@ -1,4 +1,4 @@
-# SoloABec Soprano A2
+# One-Handed Recorder Soprano A2
 
 A1 with the thumb key at the back. Key 1, the octave lever, relocates from the
 key cluster to the back of the body: hole 1 with its key, mount, and pin

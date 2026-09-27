@@ -1,6 +1,6 @@
-# SoloABec Project Dictionary and Glossary
+# One-Handed Recorder Project Dictionary and Glossary
 
-This document defines the authorized vocabulary for the SoloABec project. It enforces the rules from the repository glossary skill (`.agents/skills/glossary/SKILL.md`) to prevent vocabulary drift, eliminate jargon, and prevent made-up terms.
+This document defines the authorized vocabulary for the One-Handed Recorder project. It enforces the rules from the repository glossary skill (`.agents/skills/glossary/SKILL.md`) to prevent vocabulary drift, eliminate jargon, and prevent made-up terms.
 
 ---
 
@@ -22,7 +22,7 @@ When writing code, documentation, proposals, or communications, words must follo
 ### The Instrument and Major Sections
 * **the body** (*maker*): The middle tube of the recorder, carrying the toneholes, mounts, tone hole rims, octave hole, six pillars, and the pin slot.
 * **the foot joint** (*maker*): The lower bell end of the instrument, printed separately and fitted on the bore axis with paper tape, thread, O-ring, or cork.
-* **head joint** (*maker*): The mouthpiece and fipple section. SoloABec is engineered to mate with any standard commercial 440 Hz Yamaha soprano recorder head (no specific model numbers).
+* **head joint** (*maker*): The mouthpiece and fipple section. The recorder is engineered to mate with any standard commercial 440 Hz Yamaha soprano recorder head (no specific model numbers).
 * **key 1** (*maker*): The octave thumb key on the back of the body, rocking on a 1.75 mm filament cross pin in the pin slot. Resting position keeps the octave hole closed; thumb press opens it.
 * **keys 2 to 4** (*maker*): The three front articulated finger keys. Each key is named strictly for the tonehole it covers, never for the finger that presses it.
 
@@ -76,7 +76,7 @@ When writing code, documentation, proposals, or communications, words must follo
 | **Bushing rim** | Inaccurate CAD jargon. | Use "tone hole rim". |
 | **Sacrificial aid / cradle / jig** | Banned engineering concept (except authorized shaft stakes). | Describe the specific part itself without aid jargon. |
 | **STEP (in public release / docs)** | Internal development format only; never tell the public. | Refer strictly to plain downloadable STL files. |
-| **Dolmetsch** | Inaccurate; SoloABec mechanics and design are completely different. | Do not use to describe SoloABec mechanics. |
+| **Dolmetsch** | Inaccurate; this project's mechanics and design are completely different. | Do not use to describe this project's mechanics. |
 | **Touch crank** | Hallucinated jargon. | Use "touchpiece" for the button/key pressed, or "key arm" for the lever arm. |
 | **Paddle** | Agent shorthand for the removed touchpiece plate; from no source. | Use "touchpiece" for the face the player presses; keys 2 to 4 have no separate part. |
 | **Octave vent plug** | Hallucinated jargon. | Use "octave hole" or "thumb hole (Hole 1)". |

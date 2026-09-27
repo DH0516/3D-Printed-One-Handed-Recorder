@@ -40,7 +40,7 @@ layout: default
 To ensure respect for intellectual property while keeping our work completely open-source, the project operates under a set of design integrity and compliance guidelines:
 - **Independent Expressive Creation:** All CAD models (such as `body default/`), photographs, instructions, and text in this repository are created independently by the team.
 - **Factual Data Re-derivation:** The fingering layout and acoustic measurements are independently compiled and re-tabulated, rather than copying the graphic layout or arrangement of existing third-party fingering charts.
-- **Trademark Boundaries:** We market this project under our own brand name, **SoloABec**. Historical names (such as "Dolmetsch") are referenced purely descriptively and historically to identify the design inspiration, never as a product logo or trademark.
+- **Trademark Boundaries:** We market this project under its descriptive name, **3D-Printed-One-Handed-Recorder**. Historical names (such as "Dolmetsch") are referenced purely descriptively and historically to identify the design inspiration, never as a product logo or trademark.
 - **Academic Licensing & IP Attribution:** As described in Section 3.3, the project utilizes the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This permits free non-commercial recreation, customization, and study of the design files, provided that the original project and author/team are cited when shared or used.
 
 ### 3.6 Fipple Mechanics & Head Joint Exclusion
@@ -48,7 +48,7 @@ At this stage, this project does not include design files for printing the head 
 - **Design and Acoustic Complexity:** The fipple and jet mechanisms of the recorder are highly complex and are subjects of popular acoustics studies. In particular, the labium is a very complicated construct, requiring precise sizing of all four sides and the internals. A poorly designed or printed labium causes severe sound defects, commonly observed in low-quality recorders. To avoid providing a low-quality instrument, we recommend using a generic, easily available commercial head joint that plays well.
 - **Safety and Liability:** We are hesitant to instruct users to place home-printed objects directly into their mouths. Even if the materials used are certified as safe, the project team cannot assume responsibility or liability for any health concerns that may arise from using home-fabricated mouthpieces.
 
-The **soloabec-soprano-440-v1** model is designed to pair with any standard 440-442Hz plastic soprano recorder head (for example, a Yamaha plastic soprano head will work).
+The **soprano-440-v1** model is designed to pair with any standard 440-442Hz plastic soprano recorder head (for example, a Yamaha plastic soprano head will work).
 
 ## References
 1. **Photopolymer Biocompatibility & Toxicity:** Macdonald, N. P., et al. (2016). *Assessment of biocompatibility of 3D printed photopolymers*. PLoS ONE, 11(8), e0160741. This study documents the high cytotoxicity of standard 3D printed photopolymers on living cells and warns of leachable toxic compounds.

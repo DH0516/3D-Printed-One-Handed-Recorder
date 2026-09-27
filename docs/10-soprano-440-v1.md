@@ -1,13 +1,13 @@
 ---
-title: SoloABec Recorders: soloabec-soprano-440-v1 Build Guide
+title: One-Handed Recorders: soprano-440-v1 Build Guide
 layout: default
 ---
 
-# SoloABec Recorders - soloabec-soprano-440-v1
+# One-Handed Recorders - soprano-440-v1
 
-Welcome to the build documentation for the **soloabec-soprano-440-v1** model. This instrument design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For organology specialists, we can likely produce custom model designs based on different historical models upon request.
+Welcome to the build documentation for the **soprano-440-v1** model. This instrument design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For organology specialists, we can likely produce custom model designs based on different historical models upon request.
 
-The baseline files for **soloabec-soprano-440-v1** are designed for a right-handed player. To make a left-handed version of the instrument, flip all design files horizontally (mirroring along the bore axis) in your CAD or slicing software.
+The baseline files for **soprano-440-v1** are designed for a right-handed player. To make a left-handed version of the instrument, flip all design files horizontally (mirroring along the bore axis) in your CAD or slicing software.
 
 This guide covers everything you need to 3D print, assemble, and troubleshoot your own one-handed soprano recorder.
 

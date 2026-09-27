@@ -1,5 +1,5 @@
-# Jekyll configuration for the SoloABec documentation site.
+# Jekyll configuration for the One-Handed Recorder documentation site.
 # GitHub Pages builds this folder (Settings -> Pages -> Source: branch main, /docs).
-title: SoloABec
+title: 3D-Printed-One-Handed-Recorder
 description: 3D-printable, one-handed recorder, documentation & build guides
 theme: jekyll-theme-cayman

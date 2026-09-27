@@ -1,4 +1,4 @@
-# 3D-Printed-One-Handed-Recorder (SoloABec)
+# 3D-Printed-One-Handed-Recorder
 
 An open-source, fully acoustic **one-handed soprano recorder** for players who
 use a single hand (upper-limb differences such as hemiplegia, stroke, cerebral
