@@ -12,8 +12,11 @@ The baseline files for **soprano-440-v1** are designed for a right-handed player
 This guide covers everything you need to 3D print, assemble, and troubleshoot your own one-handed soprano recorder.
 
 ## Table of Contents
+
 1. [How to 3D Print](#how-to-3d-print)
+   
    - [What is Needed (Tools & Materials)](#what-is-needed-tools--materials)
+   
    - [Printer Settings](#what-settings-to-use)
 2. [How to Assemble](#how-to-assemble)
 3. [Troubleshooting](#troubleshooting)
@@ -25,6 +28,7 @@ This guide covers everything you need to 3D print, assemble, and troubleshoot yo
 ### What is Needed (Tools & Materials)
 
 **Materials:**
+
 - **Filament:** High-quality PLA or PETG (e.g., standard 1.75 mm). *Do not use toxic UV photopolymer resins or high-warp materials like ABS/ASA.*
 - **Commercial Soprano Head Joint:** Standard 440–442 Hz plastic soprano head joint (such as Yamaha YRS-24B or YRS-302B) with approx. 19.5–20.0 mm tenon socket diameter.
 - **Springs / Return Elasticity:** Stainless steel miniature torsion springs (0.3–0.4 mm wire diameter) or orthodontic elastic bands (1/8" or 3/16" medium/heavy pull) for key returns.
@@ -33,11 +37,13 @@ This guide covers everything you need to 3D print, assemble, and troubleshoot yo
 - **Adhesive & Joint Wrap:** Gel cyanoacrylate (super glue) for pads, and cotton/silk thread or PTFE plumber's tape for wrapping tenons.
 
 **Tools:**
+
 - **3D Printer:** Any consumer FDM 3D printer with at least 160 mm Z-height build volume (e.g., Bambu Lab A1 Mini, Prusa MK3/MK4/Mini, Ender 3).
 - **Finishing & Deburring:** 400, 800, and 1200 grit wet/dry sandpaper, needle files, and hobby deburring tool.
 - **Assembly Tools:** Needle-nose pliers, fine tweezers, flush cutters, and a small hand pin-vise or 1.0/1.2 mm drill bit.
 
 ### What Settings to Use
+
 Detailed slicer configuration for optimal acoustic airtightness and mechanical precision:
 
 - **Orientation:** Print body joints vertically on the build plate (tenon facing up or down based on socket bevel).
@@ -53,23 +59,35 @@ Detailed slicer configuration for optimal acoustic airtightness and mechanical p
 ## How to Assemble
 
 1. **Preparing the Body:**
+   
    - Check the printed bore for strings, fuzz, or blobs. Smooth internal bore with 800-grit sandpaper rolled around a dowel if necessary.
+   
    - Deburr tone hole edges using needle files so the pads will seat completely flat.
+   
    - Lightly sand the male tenon to remove seam bumps and check initial dry fit into the head joint and foot joint sockets.
 
 2. **Mounting the Keys:**
+   
    - Test each key arm in its pivot pillar. If tight, ream the hinge hole with a 1.0 mm or 1.2 mm drill bit.
+   
    - Slide pivot pins through the pillar posts and key hinges. Secure ends with a tiny dab of glue or mechanical friction.
+   
    - Hook the torsion springs or elastic bands between the key anchors and body hooks, confirming instant, snappy return upon release.
 
 3. **Applying Seals:**
+   
    - Cut pad discs matching key cup diameters (approx. 9–11 mm).
+   
    - Apply a small drop of gel super glue into the key cup and seat the pad firmly.
+   
    - Close the key and check for airtight closure across 360 degrees of the tone hole rim.
 
 4. **Final Fitting:**
+   
    - Wrap the tenon joints with thread or PTFE tape until they slide smoothly into the commercial head joint with a firm, airtight friction fit.
+   
    - Apply a small amount of cork grease or paraffin wax.
+   
    - Play a chromatic scale from Low C up to High D following the fingering chart.
 
 ---
@@ -80,5 +98,5 @@ Detailed slicer configuration for optimal acoustic airtightness and mechanical p
   - **Solution:** Check key pad seating with a light inside the bore. Re-level pads or file tone hole rims flat. Check tenon joint wrap tightness.
 - **Issue: Keys stick or feel sluggish.**
   - **Solution:** Ream key hinge holes slightly with a needle file; ensure pivot pin is straight; increase spring tension.
-- **Issue: Tenons bind or won't insert into the head joint.**
-  - **Solution:** Reduce thread wrapping passes or wet-sand the tenon diameter with 400-grit sandpaper. Always lubricate with cork grease.
+- **Issue: Tenons are too loose or tight.**
+  - **Solution:** Increase thread wrapping passes or slightly sand the tenon with 400-grit sandpaper (or other lower grit). Optionally lubricate with cork grease.
