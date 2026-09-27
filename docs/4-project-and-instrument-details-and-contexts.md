@@ -48,7 +48,7 @@ At this stage, this project does not include design files for printing the head 
 - **Design and Acoustic Complexity:** The fipple and jet mechanisms of the recorder are highly complex and are subjects of popular acoustics studies. In particular, the labium is a very complicated construct, requiring precise sizing of all four sides and the internals. A poorly designed or printed labium causes severe sound defects, commonly observed in low-quality recorders. To avoid providing a low-quality instrument, we recommend using a generic, easily available commercial head joint that plays well.
 - **Safety and Liability:** We are hesitant to instruct users to place home-printed objects directly into their mouths. Even if the materials used are certified as safe, the project team cannot assume responsibility or liability for any health concerns that may arise from using home-fabricated mouthpieces.
 
-The **soprano-440-v1** model is designed to pair with any standard 440-442Hz plastic soprano recorder head (for example, a Yamaha plastic soprano head will work).
+The **soprano-440-v1** model is designed to pair with any standard 440-442Hz plastic soprano recorder head.
 
 ## References
 1. **Photopolymer Biocompatibility & Toxicity:** Macdonald, N. P., et al. (2016). *Assessment of biocompatibility of 3D printed photopolymers*. PLoS ONE, 11(8), e0160741. This study documents the high cytotoxicity of standard 3D printed photopolymers on living cells and warns of leachable toxic compounds.

@@ -10,7 +10,7 @@ layout: default
 **Materials:**
 
 - **Filament:** Standard 1.75 mm PLA or PETG. Avoid warping materials like ABS and ASA, and never use photopolymer resin for any mouth-contact part; see [Project and Instrument Details and Contexts](4-project-and-instrument-details-and-contexts.md) for the resin safety analysis.
-- **Commercial Recorder Head Joint:** A standard 440-442 Hz plastic soprano recorder head joint (for example, from a Yamaha YRS-24B or YRS-302B) is required for the **soprano-440-v1** model, as the head joint is not printed in this project. (See [Fipple Mechanics & Head Joint Exclusion](4-project-and-instrument-details-and-contexts.md#36-fipple-mechanics--head-joint-exclusion) for details).
+- **Commercial Recorder Head Joint:** A standard 440-442 Hz plastic soprano recorder head joint is required for the **soprano-440-v1** model, as the head joint is not printed in this project. (See [Fipple Mechanics & Head Joint Exclusion](4-project-and-instrument-details-and-contexts.md#36-fipple-mechanics--head-joint-exclusion) for details).
 - **1.75 mm Filament Snippets:** A few short pieces of ordinary printer filament. One acts as the pivot pin for Key 1; the others are the bending pin springs that close Keys 2 to 4.
 - **Sealing Pads:** Discs of 1.0-1.5 mm closed-cell neoprene, natural cork, craft foam, or soft leather, cut to the key cup diameters.
 - **Adhesive:** A drop of gel cyanoacrylate (super glue) to seat the pads in the key cups.

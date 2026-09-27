@@ -4,8 +4,8 @@ An open-source, fully acoustic **one-handed soprano recorder** for players who
 use a single hand (upper-limb differences such as hemiplegia, stroke, cerebral
 palsy, or congenital limb difference). Home-buildable on a standard desktop
 FDM 3D printer with no screws and no bought parts: pivot pins and springs are
-cut from 1.75 mm printer filament, and the body mates with any Yamaha soprano
-recorder head joint. Chromatic compass C5 to C#7 (26 fingerings) at A = 440.
+cut from 1.75 mm printer filament, and the body mates with any standard plastic
+soprano recorder head joint. Chromatic compass C5 to C#7 (26 fingerings) at A = 440.
 
 ## Documentation
 
