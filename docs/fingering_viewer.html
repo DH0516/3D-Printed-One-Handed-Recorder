@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>One-Handed Recorder Fingerings</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f9;
+        --panel: #ffffff;
+        --panel-2: #eef3f6;
+        --text: #172026;
+        --muted: #60717c;
+        --line: #d9e1e6;
+        --accent: #146c78;
+        --accent-2: #9b2f36;
+        --closed: #11181c;
+        --open: #ffffff;
+        --half: #2f6f82;
+        --tube-light: #f5e4c3;
+        --tube-mid: #e1c09f;
+        --tube-dark: #c0946b;
+        --shadow: 0 14px 38px rgba(23, 32, 38, 0.12);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .app {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        padding: 18px;
+        background: #202b32;
+        color: #f8fafb;
+        border-right: 1px solid #10181d;
+      }
+
+      .brand {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1.1rem;
+        line-height: 1.2;
+        font-weight: 740;
+      }
+
+      .source {
+        margin: 6px 0 0;
+        color: #b9c6cc;
+        font-size: 0.78rem;
+        line-height: 1.35;
+      }
+
+      .icon-button {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 7px;
+        color: #f8fafb;
+        background: rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search {
+        width: 100%;
+        min-width: 0;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        padding: 0 12px;
+        outline: none;
+        margin-bottom: 12px;
+      }
+
+      .legend {
+        display: grid;
+        gap: 8px;
+        margin: 14px 0 16px;
+        color: #dbe5e9;
+        font-size: 0.8rem;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+      }
+
+      .legend .hole {
+        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
+      }
+
+      .note-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+        gap: 8px;
+        padding-bottom: 18px;
+      }
+
+      .note-button {
+        min-height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 7px;
+        padding: 7px 8px;
+        background: rgba(255, 255, 255, 0.07);
+        color: #f8fafb;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .note-button.active {
+        border-color: #6ed0db;
+        background: rgba(20, 108, 120, 0.55);
+      }
+
+      .note-main {
+        display: block;
+        font-weight: 750;
+        line-height: 1.1;
+      }
+
+      main {
+        padding: 22px;
+      }
+
+      .detail {
+        display: grid;
+        grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .detail-panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+        min-height: 500px;
+      }
+
+      .selected-note {
+        font-size: 2.65rem;
+        margin: 0 0 20px;
+      }
+
+      .diagram {
+        --hole-size: 30px;
+        --key-width: 44px;
+        position: relative;
+        display: grid;
+        gap: 17px;
+        justify-items: center;
+        padding: 20px;
+      }
+
+      .hole-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hole {
+        width: var(--hole-size);
+        height: var(--hole-size);
+        border-radius: 50%;
+        border: 2px solid #171f24;
+        background: var(--open);
+      }
+
+      .hole.closed {
+        background: var(--closed);
+      }
+
+      .hole.half {
+        background: linear-gradient(
+          90deg,
+          var(--half) 0 50%,
+          var(--open) 50% 100%
+        );
+      }
+
+      .hole.key {
+        width: var(--key-width);
+        height: 24px;
+        border-radius: 4px;
+      }
+
+      .hole-label {
+        width: 60px;
+        font-size: 0.85rem;
+        text-align: right;
+      }
+
+      .table-panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 12px;
+        cursor: pointer;
+      }
+
+      .card.active {
+        border-color: var(--accent);
+        box-shadow: 0 10px 24px rgba(20, 108, 120, 0.13);
+      }
+
+      /* Print Styles */
+      @media print {
+        body {
+          background: white;
+          color: black;
+        }
+        .sidebar,
+        .print-hide {
+          display: none !important;
+        }
+        .app {
+          display: block;
+        }
+        main {
+          padding: 0;
+        }
+        .detail-panel,
+        .table-panel {
+          border: none;
+          box-shadow: none;
+          padding: 0;
+          min-height: auto;
+        }
+        .cards {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+          page-break-inside: auto;
+        }
+        .card {
+          page-break-inside: avoid;
+          border: 1px solid #ccc;
+          padding: 8px;
+        }
+        .diagram {
+          transform: scale(0.8);
+          transform-origin: top center;
+          gap: 10px;
+        }
+        @page {
+          margin: 1.5cm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div>
+            <h1>One-Handed Recorder</h1>
+            <p class="source">fingering_soprano.csv</p>
+          </div>
+        </div>
+
+        <div
+          class="controls"
+          style="margin-bottom: 16px; display: grid; gap: 10px"
+        >
+          <input
+            type="file"
+            id="fileInput"
+            accept=".csv"
+            style="display: none"
+          />
+          <button
+            id="fileBtn"
+            class="print-hide"
+            style="
+              width: 100%;
+              padding: 10px;
+              border-radius: 6px;
+              background: #146c78;
+              color: white;
+              border: none;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            Open Local CSV
+          </button>
+          <button
+            onclick="window.print()"
+            class="print-hide"
+            style="
+              width: 100%;
+              padding: 10px;
+              border-radius: 6px;
+              background: #2f6f82;
+              color: white;
+              border: none;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            Print / Save PDF
+          </button>
+
+          <div
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"
+            class="print-hide"
+          >
+            <label style="font-size: 0.85rem; color: #b9c6cc; display: block"
+              >Note Naming
+              <select
+                id="notationToggle"
+                style="
+                  width: 100%;
+                  margin-top: 4px;
+                  padding: 6px;
+                  background: rgba(255, 255, 255, 0.1);
+                  color: white;
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  border-radius: 4px;
+                "
+              >
+                <option value="standard">Standard</option>
+                <option value="solfege">Solfège</option>
+              </select>
+            </label>
+            <label style="font-size: 0.85rem; color: #b9c6cc; display: block"
+              >List Display
+              <select
+                id="displayToggle"
+                style="
+                  width: 100%;
+                  margin-top: 4px;
+                  padding: 6px;
+                  background: rgba(255, 255, 255, 0.1);
+                  color: white;
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  border-radius: 4px;
+                "
+              >
+                <option value="text">Text Names</option>
+                <option value="staff">Staff Notation</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <input
+          class="search print-hide"
+          id="searchInput"
+          type="search"
+          placeholder="Filter notes..."
+          autocomplete="off"
+        />
+        <div class="legend">
+          <div class="legend-item">
+            <span class="hole closed"></span><span>Closed</span>
+          </div>
+          <div class="legend-item">
+            <span class="hole half"></span><span>Half/Partial Open</span>
+          </div>
+          <div class="legend-item">
+            <span class="hole"></span><span>Open</span>
+          </div>
+        </div>
+        <nav class="note-list" id="noteList"></nav>
+      </aside>
+      <main>
+        <section class="detail" id="detail">
+          <article class="detail-panel">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+              "
+            >
+              <h2
+                class="selected-note"
+                id="selectedNote"
+                style="margin-bottom: 0"
+              >
+                C
+              </h2>
+              <div
+                id="staffContainer"
+                style="width: 120px; height: 100px"
+              ></div>
+            </div>
+            <div class="diagram" id="diagram"></div>
+          </article>
+          <article class="table-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hole/Key</th>
+                  <th>State</th>
+                </tr>
+              </thead>
+              <tbody id="stateRows"></tbody>
+            </table>
+          </article>
+        </section>
+        <section>
+          <h2>
+            All Fingerings
+            <span
+              class="print-hide"
+              style="
+                font-size: 0.9rem;
+                font-weight: normal;
+                color: var(--muted);
+              "
+              >(Print to export full chart)</span
+            >
+          </h2>
+          <div class="cards" id="cards"></div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      let state = {
+        holes: [],
+        notes: [],
+        selectedId: null,
+        query: "",
+        notation: "standard",
+        display: "text",
+      };
+
+      const solfegeMap = {
+        C: "Do",
+        "C#": "Di",
+        Db: "Ra",
+        D: "Re",
+        "D#": "Ri",
+        Eb: "Me",
+        E: "Mi",
+        F: "Fa",
+        "F#": "Fi",
+        Gb: "Se",
+        G: "Sol",
+        "G#": "Si",
+        Ab: "Le",
+        A: "La",
+        "A#": "Li",
+        Bb: "Te",
+        B: "Ti",
+      };
+
+      function getNoteDisplayName(mainName) {
+        if (state.notation === "standard") return mainName;
+
+        const match = mainName.match(
+          /^(Low|Mid|High)?\s*([A-G][#b]?)\s*(.*)$/i,
+        );
+        if (match) {
+          const prefix = match[1] ? match[1] + " " : "";
+          const note = match[2].toUpperCase();
+          const suffix = match[3] ? " " + match[3] : "";
+
+          let normalizedNote = note;
+          if (note.length > 1) {
+            normalizedNote = note[0] + note[1].toLowerCase();
+          }
+
+          const solfege = solfegeMap[normalizedNote] || note;
+          return `${prefix}${solfege}${suffix}`;
+        }
+        return mainName;
+      }
+
+      function createStaffSVG(noteName, sizeMode = "large") {
+        const match = noteName.match(/^(Low|Mid|High)?\s*([A-G])([#b]?)/i);
+        if (!match)
+          return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
+
+        const register = (match[1] || "").toLowerCase();
+        const noteLetter = match[2].toUpperCase();
+        const accidental = match[3];
+
+        let octaveOffset = 4;
+        if (register === "low") octaveOffset = 4;
+        else if (register === "mid") octaveOffset = 5;
+        else if (register === "high") octaveOffset = 6;
+
+        const stepMap = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
+        const stepsFromC4 = (octaveOffset - 4) * 7 + stepMap[noteLetter];
+
+        const c4Y = 80;
+        const stepHeight = 5;
+        const noteY = c4Y - stepsFromC4 * stepHeight;
+
+        let svgWidth, svgHeight;
+        if (sizeMode === "mini") {
+          svgWidth = "100%";
+          svgHeight = "32px";
+        } else if (sizeMode === "card") {
+          svgWidth = "100%";
+          svgHeight = "50px";
+        } else {
+          svgWidth = "120px";
+          svgHeight = "100px";
+        }
+
+        let svg = `<svg width="${svgWidth}" height="${svgHeight}" viewBox="0 10 120 90" style="display:block; margin:auto; overflow:visible;">
+        <path d="M 10 30 L 110 30 M 10 40 L 110 40 M 10 50 L 110 50 M 10 60 L 110 60 M 10 70 L 110 70" stroke="currentColor" stroke-width="1"/>
+        <text x="15" y="65" font-size="40" font-family="serif" fill="currentColor">𝄞</text>
+      `;
+
+        if (noteY >= 80) {
+          for (let y = 80; y <= noteY; y += 10)
+            svg += `<line x1="55" y1="${y}" x2="85" y2="${y}" stroke="currentColor" stroke-width="1.5"/>`;
+        } else if (noteY <= 20) {
+          for (let y = 20; y >= noteY; y -= 10)
+            svg += `<line x1="55" y1="${y}" x2="85" y2="${y}" stroke="currentColor" stroke-width="1.5"/>`;
+        }
+
+        svg += `<ellipse cx="70" cy="${noteY}" rx="6" ry="4.5" fill="currentColor" transform="rotate(-15 70 ${noteY})"/>`;
+
+        if (accidental) {
+          svg += `<text x="45" y="${noteY + 5}" font-size="16" font-family="sans-serif" fill="currentColor">${accidental}</text>`;
+        }
+
+        if (noteY > 50) {
+          svg += `<line x1="75.5" y1="${noteY}" x2="75.5" y2="${noteY - 30}" stroke="currentColor" stroke-width="1.5"/>`;
+        } else {
+          svg += `<line x1="64.5" y1="${noteY}" x2="64.5" y2="${noteY + 30}" stroke="currentColor" stroke-width="1.5"/>`;
+        }
+
+        svg += `</svg>`;
+        return svg;
+      }
+
+      function getNoteDisplayHTML(noteName, context = "list") {
+        if (state.display === "staff") {
+          if (context === "list") return createStaffSVG(noteName, "mini");
+          if (context === "card") return createStaffSVG(noteName, "card");
+        }
+        return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
+      }
+
+      async function loadCsv() {
+        try {
+          const response = await fetch("fingering_soprano.csv?v=" + Date.now());
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const text = await response.text();
+          const rows = text
+            .trim()
+            .split(/\r?\n/)
+            .map((r) => r.split(","));
+          const headers = rows[0].slice(1);
+
+          state.holes = rows
+            .slice(1)
+            .map((r, i) => ({
+              name: (r[0] || "").trim(),
+              index: i,
+              cells: r.slice(1).map((c) => (c || "").trim()),
+            }));
+          state.notes = headers.map((h, i) => ({
+            id: i,
+            main: (h || "").trim(),
+            values: state.holes.map((hole) => hole.cells[i]),
+          }));
+
+          if (state.notes.length === 0) {
+            throw new Error(
+              "No notes parsed. First 50 chars of file: " + text.slice(0, 50),
+            );
+          }
+
+          state.selectedId = 0;
+          render();
+        } catch (e) {
+          console.error("Failed to load CSV", e);
+          document.getElementById("selectedNote").textContent =
+            "Error: " + e.message;
+          document.getElementById("diagram").innerHTML =
+            "<p>If opening locally without a server, fetch will fail. Try using a local web server, or edit the HTML to include a file picker.</p>";
+        }
+      }
+
+      function render() {
+        const q = state.query.toLowerCase();
+        const visible = state.notes.filter(
+          (n) =>
+            getNoteDisplayName(n.main).toLowerCase().includes(q) ||
+            n.main.toLowerCase().includes(q),
+        );
+
+        const list = document.getElementById("noteList");
+        list.innerHTML = visible
+          .map(
+            (n) =>
+              `<button class="note-button ${n.id === state.selectedId ? "active" : ""}" onclick="selectNote(${n.id})" style="display:flex; align-items:center; justify-content:center;">${getNoteDisplayHTML(n.main, "list")}</button>`,
+          )
+          .join("");
+
+        const cards = document.getElementById("cards");
+        cards.innerHTML = visible
+          .map(
+            (n) =>
+              `<div class="card ${n.id === state.selectedId ? "active" : ""}" onclick="selectNote(${n.id})" style="text-align:center; display:flex; flex-direction:column; justify-content:center;"><strong>${getNoteDisplayHTML(n.main, "card")}</strong></div>`,
+          )
+          .join("");
+
+        const note = state.notes.find((n) => n.id === state.selectedId);
+        if (note) {
+          document.getElementById("selectedNote").textContent =
+            getNoteDisplayName(note.main);
+          document.getElementById("staffContainer").innerHTML = createStaffSVG(
+            note.main,
+            "large",
+          );
+
+          document.getElementById("diagram").innerHTML = (() => {
+            let stations = [];
+            let used = new Set();
+            state.holes.forEach((h, i) => {
+              if (used.has(i)) return;
+              const match = h.name.match(/^(.*?)([LR])$/i);
+              if (match) {
+                const base = match[1].trim();
+                const isL = match[2].toLowerCase() === "l";
+                const partnerIdx = state.holes.findIndex(
+                  (other, j) =>
+                    j !== i &&
+                    !used.has(j) &&
+                    other.name.trim().toLowerCase() ===
+                      (base + (isL ? "r" : "l")).toLowerCase(),
+                );
+                if (partnerIdx !== -1) {
+                  const hL = isL ? h : state.holes[partnerIdx];
+                  const hR = isL ? state.holes[partnerIdx] : h;
+                  stations.push({ type: "pair", name: base, holes: [hL, hR] });
+                  used.add(i);
+                  used.add(partnerIdx);
+                  return;
+                }
+              }
+              stations.push({ type: "single", name: h.name, holes: [h] });
+              used.add(i);
+            });
+
+            return stations
+              .map((station) => {
+                if (station.type === "single") {
+                  const h = station.holes[0];
+                  const val = (note.values[h.index] || "").trim().toUpperCase();
+                  const stateClass =
+                    val === "C" ? "closed" : val === "H" ? "half" : "open";
+                  const isKey = h.name.toLowerCase().includes("key");
+                  return `<div class="hole-wrap"><div class="hole-label">${h.name}</div><div class="hole ${stateClass} ${isKey ? "key" : ""}"></div></div>`;
+                } else {
+                  const h1 = station.holes[0];
+                  const h2 = station.holes[1];
+                  const val1 = (note.values[h1.index] || "")
+                    .trim()
+                    .toUpperCase();
+                  const val2 = (note.values[h2.index] || "")
+                    .trim()
+                    .toUpperCase();
+                  const sc1 =
+                    val1 === "C" ? "closed" : val1 === "H" ? "half" : "open";
+                  const sc2 =
+                    val2 === "C" ? "closed" : val2 === "H" ? "half" : "open";
+                  return `<div class="hole-wrap"><div class="hole-label">${station.name}</div>
+                          <div style="display:flex; gap:6px;">
+                              <div class="hole ${sc1}" style="width:20px; height:20px;"></div>
+                              <div class="hole ${sc2}" style="width:20px; height:20px;"></div>
+                          </div>
+                          </div>`;
+                }
+              })
+              .join("");
+          })();
+
+          document.getElementById("stateRows").innerHTML = state.holes
+            .map((h, i) => {
+              const val = (note.values[i] || "").trim().toUpperCase();
+              const stateName =
+                val === "C" ? "Closed" : val === "H" ? "Half" : "Open";
+              return `<tr><td>${h.name}</td><td>${stateName}</td></tr>`;
+            })
+            .join("");
+        }
+      }
+
+      function selectNote(id) {
+        state.selectedId = id;
+        render();
+      }
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        state.query = e.target.value;
+        render();
+      });
+
+      document
+        .getElementById("notationToggle")
+        .addEventListener("change", (e) => {
+          state.notation = e.target.value;
+          render();
+        });
+
+      document
+        .getElementById("displayToggle")
+        .addEventListener("change", (e) => {
+          state.display = e.target.value;
+          render();
+        });
+
+      document.getElementById("fileBtn").addEventListener("click", () => {
+        document.getElementById("fileInput").click();
+      });
+
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          try {
+            const text = await file.text();
+            const rows = text
+              .trim()
+              .split(/\r?\n/)
+              .map((r) => r.split(","));
+            const headers = rows[0].slice(1);
+
+            state.holes = rows
+              .slice(1)
+              .map((r, i) => ({
+                name: (r[0] || "").trim(),
+                index: i,
+                cells: r.slice(1).map((c) => (c || "").trim()),
+              }));
+            state.notes = headers.map((h, i) => ({
+              id: i,
+              main: (h || "").trim(),
+              values: state.holes.map((hole) => hole.cells[i]),
+            }));
+
+            if (state.notes.length === 0)
+              throw new Error("No notes found in file.");
+
+            state.selectedId = 0;
+            document.querySelector(".source").textContent = file.name;
+            render();
+          } catch (err) {
+            document.getElementById("selectedNote").textContent =
+              "Error: " + err.message;
+          }
+        });
+
+      loadCsv();
+    </script>
+  </body>
+</html>
