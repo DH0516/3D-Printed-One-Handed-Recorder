@@ -43,7 +43,8 @@
       }
 
       button,
-      input {
+      input,
+      select {
         font: inherit;
       }
 
@@ -97,6 +98,21 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+      }
+
+      .sidebar select {
+        width: 100%;
+        padding: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+      }
+
+      .sidebar label {
+        font-size: 0.85rem;
+        color: #b9c6cc;
+        display: block;
       }
 
       .search {
@@ -323,7 +339,7 @@
         <div class="brand">
           <div>
             <h1>One-Handed Recorder</h1>
-            <p class="source">fingering_soprano.csv</p>
+            <p class="source" id="modelLabel">loading model data...</p>
           </div>
         </div>
 
@@ -331,10 +347,11 @@
           class="controls"
           style="margin-bottom: 16px; display: grid; gap: 10px"
         >
+          <label>Model <select id="modelSelect" class="print-hide"></select></label>
           <input
             type="file"
             id="fileInput"
-            accept=".csv"
+            accept=".json"
             style="display: none"
           />
           <button
@@ -351,7 +368,7 @@
               cursor: pointer;
             "
           >
-            Open Local CSV
+            Open Local model.json
           </button>
           <button
             onclick="window.print()"
@@ -374,37 +391,21 @@
             style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"
             class="print-hide"
           >
-            <label style="font-size: 0.85rem; color: #b9c6cc; display: block"
+            <label
               >Note Naming
               <select
                 id="notationToggle"
-                style="
-                  width: 100%;
-                  margin-top: 4px;
-                  padding: 6px;
-                  background: rgba(255, 255, 255, 0.1);
-                  color: white;
-                  border: 1px solid rgba(255, 255, 255, 0.2);
-                  border-radius: 4px;
-                "
+                style="margin-top: 4px;"
               >
                 <option value="standard">Standard</option>
                 <option value="solfege">Solfège</option>
               </select>
             </label>
-            <label style="font-size: 0.85rem; color: #b9c6cc; display: block"
+            <label
               >List Display
               <select
                 id="displayToggle"
-                style="
-                  width: 100%;
-                  margin-top: 4px;
-                  padding: 6px;
-                  background: rgba(255, 255, 255, 0.1);
-                  color: white;
-                  border: 1px solid rgba(255, 255, 255, 0.2);
-                  border-radius: 4px;
-                "
+                style="margin-top: 4px;"
               >
                 <option value="text">Text Names</option>
                 <option value="staff">Staff Notation</option>
@@ -488,6 +489,14 @@
     </div>
 
     <script>
+      // One entry per recorder model. The viewer renders whatever holes and
+      // fingerings the model.json provides, so models with different key or
+      // hole configurations need no viewer changes, only an entry here.
+      const MODELS = [
+        { id: "A1", label: "Soprano A1 (standard)" },
+        { id: "A2", label: "Soprano A2 (octave key at back)" },
+      ];
+
       let state = {
         holes: [],
         notes: [],
@@ -520,41 +529,51 @@
       function getNoteDisplayName(mainName) {
         if (state.notation === "standard") return mainName;
 
-        const match = mainName.match(
-          /^(Low|Mid|High)?\s*([A-G][#b]?)\s*(.*)$/i,
-        );
+        const match = mainName.match(/^([A-G][#b]?)(.*)$/);
         if (match) {
-          const prefix = match[1] ? match[1] + " " : "";
-          const note = match[2].toUpperCase();
-          const suffix = match[3] ? " " + match[3] : "";
-
+          const note = match[1];
+          const suffix = match[2] ? " " + match[2] : "";
           let normalizedNote = note;
           if (note.length > 1) {
             normalizedNote = note[0] + note[1].toLowerCase();
           }
-
           const solfege = solfegeMap[normalizedNote] || note;
-          return `${prefix}${solfege}${suffix}`;
+          return `${solfege}${suffix}`;
         }
         return mainName;
       }
 
+      // Scientific note names: letter, optional accidental, octave digit
+      // ("C5", "G#6"). The octave drives the staff position.
+      function parseNote(noteName) {
+        const sci = noteName.match(/^([A-G])([#b]?)(\d)$/i);
+        if (sci) {
+          return {
+            letter: sci[1].toUpperCase(),
+            accidental: sci[2],
+            octave: parseInt(sci[3], 10),
+          };
+        }
+        const words = noteName.match(/^(Low|Mid|High)?\s*([A-G])([#b]?)$/i);
+        if (words) {
+          const register = (words[1] || "low").toLowerCase();
+          const octave = register === "low" ? 5 : register === "mid" ? 6 : 7;
+          return {
+            letter: words[2].toUpperCase(),
+            accidental: words[3],
+            octave,
+          };
+        }
+        return null;
+      }
+
       function createStaffSVG(noteName, sizeMode = "large") {
-        const match = noteName.match(/^(Low|Mid|High)?\s*([A-G])([#b]?)/i);
-        if (!match)
+        const n = parseNote(noteName);
+        if (!n)
           return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
 
-        const register = (match[1] || "").toLowerCase();
-        const noteLetter = match[2].toUpperCase();
-        const accidental = match[3];
-
-        let octaveOffset = 4;
-        if (register === "low") octaveOffset = 4;
-        else if (register === "mid") octaveOffset = 5;
-        else if (register === "high") octaveOffset = 6;
-
         const stepMap = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
-        const stepsFromC4 = (octaveOffset - 4) * 7 + stepMap[noteLetter];
+        const stepsFromC4 = (n.octave - 4) * 7 + stepMap[n.letter];
 
         const c4Y = 80;
         const stepHeight = 5;
@@ -587,8 +606,8 @@
 
         svg += `<ellipse cx="70" cy="${noteY}" rx="6" ry="4.5" fill="currentColor" transform="rotate(-15 70 ${noteY})"/>`;
 
-        if (accidental) {
-          svg += `<text x="45" y="${noteY + 5}" font-size="16" font-family="sans-serif" fill="currentColor">${accidental}</text>`;
+        if (n.accidental) {
+          svg += `<text x="45" y="${noteY + 5}" font-size="16" font-family="sans-serif" fill="currentColor">${n.accidental}</text>`;
         }
 
         if (noteY > 50) {
@@ -609,44 +628,39 @@
         return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
       }
 
-      async function loadCsv() {
+      function applyModel(json, sourceLabel) {
+        if (json.schema !== "ohr-model/1") {
+          throw new Error("not an ohr-model/1 model.json");
+        }
+        state.holes = json.holes.map((h, i) => ({
+          id: h.id,
+          name: h.key || "Hole " + h.id,
+          isKey: h.type === "key",
+          index: i,
+        }));
+        state.notes = json.fingerings.map((f, i) => ({
+          id: i,
+          main: f.note,
+          values: state.holes.map((h) => (f.holes[h.id] || "").trim()),
+        }));
+        if (state.notes.length === 0) throw new Error("no fingerings in model");
+        state.selectedId = 0;
+        document.getElementById("modelLabel").textContent = sourceLabel;
+        render();
+      }
+
+      async function loadModel(id) {
         try {
-          const response = await fetch("fingering_soprano.csv?v=" + Date.now());
+          const response = await fetch(`../models/${id}/model.json`);
           if (!response.ok) throw new Error("HTTP " + response.status);
-          const text = await response.text();
-          const rows = text
-            .trim()
-            .split(/\r?\n/)
-            .map((r) => r.split(","));
-          const headers = rows[0].slice(1);
-
-          state.holes = rows
-            .slice(1)
-            .map((r, i) => ({
-              name: (r[0] || "").trim(),
-              index: i,
-              cells: r.slice(1).map((c) => (c || "").trim()),
-            }));
-          state.notes = headers.map((h, i) => ({
-            id: i,
-            main: (h || "").trim(),
-            values: state.holes.map((hole) => hole.cells[i]),
-          }));
-
-          if (state.notes.length === 0) {
-            throw new Error(
-              "No notes parsed. First 50 chars of file: " + text.slice(0, 50),
-            );
-          }
-
-          state.selectedId = 0;
-          render();
+          const json = await response.json();
+          applyModel(json, json.name + " (models/" + id + "/model.json)");
         } catch (e) {
-          console.error("Failed to load CSV", e);
+          console.error("Failed to load model", e);
           document.getElementById("selectedNote").textContent =
             "Error: " + e.message;
           document.getElementById("diagram").innerHTML =
-            "<p>If opening locally without a server, fetch will fail. Try using a local web server, or edit the HTML to include a file picker.</p>";
+            "<p>Could not fetch model.json. When opened directly from disk (file://), browsers block fetch; host the folder (for example `python3 -m http.server`) or use the Open Local model.json button.</p>";
         }
       }
 
@@ -684,25 +698,27 @@
           );
 
           document.getElementById("diagram").innerHTML = (() => {
+            // Double holes (ids like 7L/7R) render as one two-circle station.
             let stations = [];
             let used = new Set();
             state.holes.forEach((h, i) => {
               if (used.has(i)) return;
-              const match = h.name.match(/^(.*?)([LR])$/i);
+              const match = h.id.match(/^(.+?)([LR])$/);
               if (match) {
-                const base = match[1].trim();
-                const isL = match[2].toLowerCase() === "l";
+                const base = match[1];
+                const isL = match[2] === "L";
                 const partnerIdx = state.holes.findIndex(
                   (other, j) =>
-                    j !== i &&
-                    !used.has(j) &&
-                    other.name.trim().toLowerCase() ===
-                      (base + (isL ? "r" : "l")).toLowerCase(),
+                    j !== i && !used.has(j) && other.id === base + (isL ? "R" : "L"),
                 );
                 if (partnerIdx !== -1) {
                   const hL = isL ? h : state.holes[partnerIdx];
                   const hR = isL ? state.holes[partnerIdx] : h;
-                  stations.push({ type: "pair", name: base, holes: [hL, hR] });
+                  stations.push({
+                    type: "pair",
+                    name: "Hole " + base,
+                    holes: [hL, hR],
+                  });
                   used.add(i);
                   used.add(partnerIdx);
                   return;
@@ -714,30 +730,21 @@
 
             return stations
               .map((station) => {
+                const cls = (v) =>
+                  v === "C" ? "closed" : v === "H" ? "half" : "open";
                 if (station.type === "single") {
                   const h = station.holes[0];
-                  const val = (note.values[h.index] || "").trim().toUpperCase();
-                  const stateClass =
-                    val === "C" ? "closed" : val === "H" ? "half" : "open";
-                  const isKey = h.name.toLowerCase().includes("key");
-                  return `<div class="hole-wrap"><div class="hole-label">${h.name}</div><div class="hole ${stateClass} ${isKey ? "key" : ""}"></div></div>`;
+                  const val = (note.values[h.index] || "").toUpperCase();
+                  return `<div class="hole-wrap"><div class="hole-label">${station.name}</div><div class="hole ${cls(val)} ${h.isKey ? "key" : ""}"></div></div>`;
                 } else {
                   const h1 = station.holes[0];
                   const h2 = station.holes[1];
-                  const val1 = (note.values[h1.index] || "")
-                    .trim()
-                    .toUpperCase();
-                  const val2 = (note.values[h2.index] || "")
-                    .trim()
-                    .toUpperCase();
-                  const sc1 =
-                    val1 === "C" ? "closed" : val1 === "H" ? "half" : "open";
-                  const sc2 =
-                    val2 === "C" ? "closed" : val2 === "H" ? "half" : "open";
+                  const val1 = (note.values[h1.index] || "").toUpperCase();
+                  const val2 = (note.values[h2.index] || "").toUpperCase();
                   return `<div class="hole-wrap"><div class="hole-label">${station.name}</div>
                           <div style="display:flex; gap:6px;">
-                              <div class="hole ${sc1}" style="width:20px; height:20px;"></div>
-                              <div class="hole ${sc2}" style="width:20px; height:20px;"></div>
+                              <div class="hole ${cls(val1)}" style="width:20px; height:20px;"></div>
+                              <div class="hole ${cls(val2)}" style="width:20px; height:20px;"></div>
                           </div>
                           </div>`;
                 }
@@ -746,8 +753,8 @@
           })();
 
           document.getElementById("stateRows").innerHTML = state.holes
-            .map((h, i) => {
-              const val = (note.values[i] || "").trim().toUpperCase();
+            .map((h) => {
+              const val = (note.values[h.index] || "").toUpperCase();
               const stateName =
                 val === "C" ? "Closed" : val === "H" ? "Half" : "Open";
               return `<tr><td>${h.name}</td><td>${stateName}</td></tr>`;
@@ -760,6 +767,7 @@
         state.selectedId = id;
         render();
       }
+
       document.getElementById("searchInput").addEventListener("input", (e) => {
         state.query = e.target.value;
         render();
@@ -779,6 +787,14 @@
           render();
         });
 
+      const modelSelect = document.getElementById("modelSelect");
+      modelSelect.innerHTML = MODELS.map(
+        (m) => `<option value="${m.id}">${m.label}</option>`,
+      ).join("");
+      modelSelect.addEventListener("change", (e) => {
+        loadModel(e.target.value);
+      });
+
       document.getElementById("fileBtn").addEventListener("click", () => {
         document.getElementById("fileInput").click();
       });
@@ -789,39 +805,15 @@
           const file = e.target.files[0];
           if (!file) return;
           try {
-            const text = await file.text();
-            const rows = text
-              .trim()
-              .split(/\r?\n/)
-              .map((r) => r.split(","));
-            const headers = rows[0].slice(1);
-
-            state.holes = rows
-              .slice(1)
-              .map((r, i) => ({
-                name: (r[0] || "").trim(),
-                index: i,
-                cells: r.slice(1).map((c) => (c || "").trim()),
-              }));
-            state.notes = headers.map((h, i) => ({
-              id: i,
-              main: (h || "").trim(),
-              values: state.holes.map((hole) => hole.cells[i]),
-            }));
-
-            if (state.notes.length === 0)
-              throw new Error("No notes found in file.");
-
-            state.selectedId = 0;
-            document.querySelector(".source").textContent = file.name;
-            render();
+            const json = JSON.parse(await file.text());
+            applyModel(json, file.name + " (local file)");
           } catch (err) {
             document.getElementById("selectedNote").textContent =
               "Error: " + err.message;
           }
         });
 
-      loadCsv();
+      loadModel(MODELS[0].id);
     </script>
   </body>
 </html>
