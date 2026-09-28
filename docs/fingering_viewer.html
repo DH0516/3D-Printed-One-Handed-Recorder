@@ -368,7 +368,7 @@
               cursor: pointer;
             "
           >
-            Open Local model.json
+            Open Local Model File
           </button>
           <button
             onclick="window.print()"
@@ -490,7 +490,7 @@
 
     <script>
       // One entry per recorder model. The viewer renders whatever holes and
-      // fingerings the model.json provides, so models with different key or
+      // fingerings the model data provides, so models with different key or
       // hole configurations need no viewer changes, only an entry here.
       const MODELS = [
         { id: "A1", label: "Soprano A1 (standard)" },
@@ -630,7 +630,7 @@
 
       function applyModel(json, sourceLabel) {
         if (json.schema !== "ohr-model/1") {
-          throw new Error("not an ohr-model/1 model.json");
+          throw new Error("unrecognized model data");
         }
         state.holes = json.holes.map((h, i) => ({
           id: h.id,
@@ -654,14 +654,87 @@
           const response = await fetch(`../models/${id}/model.json`);
           if (!response.ok) throw new Error("HTTP " + response.status);
           const json = await response.json();
-          applyModel(json, json.name + " (models/" + id + "/model.json)");
+          applyModel(json, json.name);
         } catch (e) {
           console.error("Failed to load model", e);
           document.getElementById("selectedNote").textContent =
             "Error: " + e.message;
           document.getElementById("diagram").innerHTML =
-            "<p>Could not fetch model.json. When opened directly from disk (file://), browsers block fetch; host the folder (for example `python3 -m http.server`) or use the Open Local model.json button.</p>";
+            "<p>Could not load the model data. When the page is opened directly from disk, browsers block loading data files; host the site, or use the Open Local button to pick a model data file.</p>";
         }
+      }
+
+      // Simplified instrument diagram: a recorder silhouette with the key
+      // touchpieces (Keys 1 to 4) above the finger holes (5 to 8), spaced
+      // evenly in model order. No real dimensions are used.
+      function buildInstrumentSVG(note) {
+        const cx = 110;
+        const stations = [];
+        let used = new Set();
+        state.holes.forEach((h, i) => {
+          if (used.has(i)) return;
+          const match = h.id.match(/^(.+?)([LR])$/);
+          if (match) {
+            const base = match[1];
+            const partner = state.holes.findIndex(
+              (other, j) =>
+                j !== i && !used.has(j) && other.id === base + (match[2] === "L" ? "R" : "L"),
+            );
+            if (partner !== -1) {
+              stations.push({
+                label: "Hole " + base,
+                type: "pair",
+                holes: [h, state.holes[partner]],
+              });
+              used.add(i);
+              used.add(partner);
+              return;
+            }
+          }
+          stations.push({ label: h.name, type: h.isKey ? "key" : "hole", holes: [h] });
+          used.add(i);
+        });
+
+        const y0 = 150;
+        const y1 = 520;
+        const gap = stations.length > 1 ? (y1 - y0) / (stations.length - 1) : 0;
+        const fillFor = (v) =>
+          v === "C" ? "#11181c" : v === "H" ? "url(#halfGrad)" : "#ffffff";
+
+        let marks = "";
+        stations.forEach((st, i) => {
+          const y = y0 + i * gap;
+          const v1 = (note.values[st.holes[0].index] || "").toUpperCase();
+          if (st.type === "key") {
+            marks += `<rect x="${cx - 18}" y="${y - 6}" width="36" height="12" rx="5" fill="${fillFor(v1)}" stroke="#171f24" stroke-width="2"/>`;
+          } else if (st.type === "pair") {
+            const v2 = (note.values[st.holes[1].index] || "").toUpperCase();
+            marks += `<circle cx="${cx - 8}" cy="${y}" r="6.5" fill="${fillFor(v1)}" stroke="#171f24" stroke-width="2"/>`;
+            marks += `<circle cx="${cx + 8}" cy="${y}" r="6.5" fill="${fillFor(v2)}" stroke="#171f24" stroke-width="2"/>`;
+          } else {
+            marks += `<circle cx="${cx}" cy="${y}" r="8" fill="${fillFor(v1)}" stroke="#171f24" stroke-width="2"/>`;
+          }
+          marks += `<text x="${cx - 30}" y="${y + 4}" text-anchor="end" font-size="13" fill="#172026">${st.label}</text>`;
+        });
+
+        return `<svg width="100%" viewBox="0 0 220 640" style="max-width:260px; display:block; margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="halfGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="50%" stop-color="#2f6f82"/>
+              <stop offset="50%" stop-color="#ffffff"/>
+            </linearGradient>
+          </defs>
+          <!-- head joint -->
+          <rect x="${cx - 13}" y="18" width="26" height="86" rx="10" fill="#f5e4c3" stroke="#8a6f4d" stroke-width="2"/>
+          <rect x="${cx - 6}" y="42" width="12" height="22" rx="3" fill="#ffffff" stroke="#8a6f4d" stroke-width="1.5"/>
+          <!-- body and foot -->
+          <path d="M ${cx - 12} 104 L ${cx - 12} 528 L ${cx - 13} 540 L ${cx - 21} 596 L ${cx + 21} 596 L ${cx + 13} 540 L ${cx + 12} 528 L ${cx + 12} 104 Z" fill="#f5e4c3" stroke="#8a6f4d" stroke-width="2"/>
+          <line x1="${cx - 12}" y1="104" x2="${cx + 12}" y2="104" stroke="#8a6f4d" stroke-width="1.5"/>
+          <line x1="${cx - 12.5}" y1="534" x2="${cx + 12.5}" y2="534" stroke="#8a6f4d" stroke-width="1.5"/>
+          <!-- bell opening -->
+          <ellipse cx="${cx}" cy="596" rx="21" ry="6" fill="#ffffff" stroke="#8a6f4d" stroke-width="2"/>
+          ${marks}
+        </svg>`;
       }
 
       function render() {
@@ -697,60 +770,7 @@
             "large",
           );
 
-          document.getElementById("diagram").innerHTML = (() => {
-            // Double holes (ids like 7L/7R) render as one two-circle station.
-            let stations = [];
-            let used = new Set();
-            state.holes.forEach((h, i) => {
-              if (used.has(i)) return;
-              const match = h.id.match(/^(.+?)([LR])$/);
-              if (match) {
-                const base = match[1];
-                const isL = match[2] === "L";
-                const partnerIdx = state.holes.findIndex(
-                  (other, j) =>
-                    j !== i && !used.has(j) && other.id === base + (isL ? "R" : "L"),
-                );
-                if (partnerIdx !== -1) {
-                  const hL = isL ? h : state.holes[partnerIdx];
-                  const hR = isL ? state.holes[partnerIdx] : h;
-                  stations.push({
-                    type: "pair",
-                    name: "Hole " + base,
-                    holes: [hL, hR],
-                  });
-                  used.add(i);
-                  used.add(partnerIdx);
-                  return;
-                }
-              }
-              stations.push({ type: "single", name: h.name, holes: [h] });
-              used.add(i);
-            });
-
-            return stations
-              .map((station) => {
-                const cls = (v) =>
-                  v === "C" ? "closed" : v === "H" ? "half" : "open";
-                if (station.type === "single") {
-                  const h = station.holes[0];
-                  const val = (note.values[h.index] || "").toUpperCase();
-                  return `<div class="hole-wrap"><div class="hole-label">${station.name}</div><div class="hole ${cls(val)} ${h.isKey ? "key" : ""}"></div></div>`;
-                } else {
-                  const h1 = station.holes[0];
-                  const h2 = station.holes[1];
-                  const val1 = (note.values[h1.index] || "").toUpperCase();
-                  const val2 = (note.values[h2.index] || "").toUpperCase();
-                  return `<div class="hole-wrap"><div class="hole-label">${station.name}</div>
-                          <div style="display:flex; gap:6px;">
-                              <div class="hole ${cls(val1)}" style="width:20px; height:20px;"></div>
-                              <div class="hole ${cls(val2)}" style="width:20px; height:20px;"></div>
-                          </div>
-                          </div>`;
-                }
-              })
-              .join("");
-          })();
+          document.getElementById("diagram").innerHTML = buildInstrumentSVG(note);
 
           document.getElementById("stateRows").innerHTML = state.holes
             .map((h) => {

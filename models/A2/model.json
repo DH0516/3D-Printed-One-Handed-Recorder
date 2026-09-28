@@ -2,7 +2,7 @@
   "schema": "ohr-model/1",
   "id": "A2",
   "name": "One-Handed Recorder Soprano A2",
-  "description": "Identical to A1 except Key 1, the octave lever, moves to the back of the body as a thumb key: hole 1 with its key, mount, and pin holder rotate -213.6 deg about the bore axis, so hole 1 is drilled at bearing -103.6 instead of 110.0. Keys 2 to 4 and all finger holes are unchanged.",
+  "description": "Identical to A1 except Key 1, the octave key, moves to the back of the body as a thumb key. Keys 2 to 4 and all finger holes are unchanged.",
   "pitch": {
     "reference": "A=440",
     "lowest": "C5",
