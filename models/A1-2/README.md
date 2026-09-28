@@ -5,7 +5,6 @@ The soprano model in two physical variants:
 - **A1**, the standard variant: Key 1 sits in the key cluster with Keys 2 to 4.
 - **A2**: Key 1, the octave key, is moved to the back of the body as a thumb key.
 
-Both variants share the same keys, finger holes, and fingering chart; only the position of Key 1 differs. Right-handed by default (the design mirrors along the bore axis for left-handed play), mating with any standard plastic soprano recorder head joint. Four printed keys close toneholes 1 to 4; holes 5 to 8 are finger holes.
+Variant details live in the documentation: [Model Information](https://dh0516.github.io/3D-Printed-One-Handed-Recorder/docs/8-model-information.html) and the [Model A1 page](https://dh0516.github.io/3D-Printed-One-Handed-Recorder/docs/model-A1.html) with its print files.
 
 - `model.json`: tonehole map and the shared fingering chart (10 holes, 26 fingerings, C5 to C#7).
-- Print files: published at first release, as per-part files in several pin-bore sizes to fit different printers.
