@@ -18,16 +18,16 @@ Model A1 is the standard variant of the one-handed soprano recorder: Key 1 (the 
 
 ## Print Files
 
-Binary STL, meshed at 0.01 mm chordal deviation, in print orientation. Printing guidelines are in [How to 3D Print](5-how-to-3d-print.md).
+Binary STL, meshed at 0.005 mm chordal deviation and 0.1 rad angular tolerance, in print orientation. Printing guidelines are in [How to 3D Print](5-how-to-3d-print.md).
 
 | Part | File | Print height | File size |
 |---|---|---|---|
-| Body | [Body.stl](../models/A1/parts/Body.stl) | 171.9 mm | 1.6 MB |
-| Foot joint | [Foot.stl](../models/A1/parts/Foot.stl) | 63.6 mm | 2.2 MB |
-| Key 1 (octave key) | [Key_1.stl](../models/A1/parts/Key_1.stl) | 10.9 mm | 0.7 MB |
-| Key 2 | [Key_2.stl](../models/A1/parts/Key_2.stl) | 25.6 mm | 0.4 MB |
-| Key 3 | [Key_3.stl](../models/A1/parts/Key_3.stl) | 17.7 mm | 0.5 MB |
-| Key 4 | [Key_4.stl](../models/A1/parts/Key_4.stl) | 26.6 mm | 0.9 MB |
+| Body | [Body.stl](../models/A1/parts/Body.stl) | 171.9 mm | 6.5 MB |
+| Foot joint | [Foot.stl](../models/A1/parts/Foot.stl) | 63.6 mm | 7.9 MB |
+| Key 1 (octave key) | [Key_1.stl](../models/A1/parts/Key_1.stl) | 10.9 mm | 4.1 MB |
+| Key 2 | [Key_2.stl](../models/A1/parts/Key_2.stl) | 25.6 mm | 2.0 MB |
+| Key 3 | [Key_3.stl](../models/A1/parts/Key_3.stl) | 17.7 mm | 2.3 MB |
+| Key 4 | [Key_4.stl](../models/A1/parts/Key_4.stl) | 26.6 mm | 6.1 MB |
 
 Keys 2 to 4 print as one piece each in this set. The fingering chart shared by both model variants is in the [fingering viewer](fingering_viewer.html).
 
