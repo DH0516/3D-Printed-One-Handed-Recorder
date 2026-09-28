@@ -25,6 +25,8 @@ TEMPLATE = """<!doctype html>
 :root {{ color-scheme: light; }}
 .toc {{ display: grid; gap: 6px; margin: 1rem 0 2rem; }}
 section {{ border-top: 1px solid #d8d2c2; padding-top: 1rem; }}
+.pager {{ display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; border-top: 1px solid #d8d2c2; padding-top: 1rem; }}
+.pager span {{ flex: 1; }}
 * {{ box-sizing: border-box; }}
 body {{ margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }}
 header {{ background: #16302b; color: #f2f6f4; padding: 14px 20px; }}
@@ -57,7 +59,8 @@ img {{ max-width: 100%; }}
 """
 
 
-def render_file(md_path):
+def load_chapter(md_path):
+    """Return (title, markdown body) with frontmatter stripped."""
     text = md_path.read_text()
     title = md_path.stem
     m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
@@ -67,10 +70,22 @@ def render_file(md_path):
         t = re.search(r"^title:\s*(.+)$", fm, re.M)
         if t:
             title = t.group(1).strip()
+    return title, text
+
+
+def render_file(md_path, prev=None, nxt=None):
+    title, text = load_chapter(md_path)
     body = markdown.markdown(text, extensions=["tables", "fenced_code"])
     body = re.sub(r'href="([^"#]+)\.md"', r'href="\1.html"', body)
+    pager = ""
+    if prev or nxt:
+        left = ('<a href="%s">&larr; %s</a>'
+                % (prev[0].with_suffix(".html").name, prev[1])) if prev else "<span></span>"
+        right = ('<a href="%s">%s &rarr;</a>'
+                 % (nxt[0].with_suffix(".html").name, nxt[1])) if nxt else "<span></span>"
+        pager = '<nav class="pager">%s%s</nav>' % (left, right)
     out = md_path.with_suffix(".html")
-    out.write_text(TEMPLATE.format(title=title, body=body))
+    out.write_text(TEMPLATE.format(title=title, body=body + pager))
     return out
 
 
@@ -78,7 +93,7 @@ def render_single():
     """Render every chapter into one self-contained DOCUMENTATION.html
     with internal anchors, so it works opened from anywhere, including
     a file manager's transient copy."""
-    chapters = [p for p in sorted(HERE.glob("*.md"))
+    chapters = [p for p in sorted(HERE.glob("*.md"), key=page_key)
                 if p.name != "1-index.md"]
     nav, sections = [], []
     ids = {p.name: "chap-%d" % (i + 1) for i, p in enumerate(chapters)}
@@ -112,9 +127,18 @@ def render_single():
     return out
 
 
+def page_key(md_path):
+    m = re.match(r"(\d+)-", md_path.name)
+    return int(m.group(1)) if m else 999
+
+
 def main():
-    for md_path in sorted(HERE.glob("*.md")):
-        print("rendered", render_file(md_path).name)
+    pages = sorted(HERE.glob("*.md"), key=page_key)
+    for i, md_path in enumerate(pages):
+        prev = (pages[i - 1], load_chapter(pages[i - 1])[0]) if i > 0 else None
+        nxt = (pages[i + 1], load_chapter(pages[i + 1])[0]) \
+            if i + 1 < len(pages) else None
+        print("rendered", render_file(md_path, prev, nxt).name)
     print("rendered", render_single().name)
 
 

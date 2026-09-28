@@ -8,6 +8,8 @@
 :root { color-scheme: light; }
 .toc { display: grid; gap: 6px; margin: 1rem 0 2rem; }
 section { border-top: 1px solid #d8d2c2; padding-top: 1rem; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; border-top: 1px solid #d8d2c2; padding-top: 1rem; }
+.pager span { flex: 1; }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }
 header { background: #16302b; color: #f2f6f4; padding: 14px 20px; }
@@ -33,25 +35,12 @@ img { max-width: 100%; }
 <a href="fingering_viewer.html">Fingering viewer</a>
 </nav></header>
 <main>
-<h1>3D-Printed-One-Handed-Recorder</h1><p>All chapters in one page; the links below stay inside this file.</p><nav class="toc"><a href="#chap-1">1. One-Handed Recorders: soprano-440-v1 Build Guide</a><a href="#chap-2">2. Overview</a><a href="#chap-3">3. Background & Inspiration</a><a href="#chap-4">4. Project and Instrument Details and Contexts</a><a href="#chap-5">5. How to 3D Print</a><a href="#chap-6">6. How to Assemble</a><a href="#chap-7">7. Troubleshooting</a><a href="#chap-8">8. Model Information</a><a href="#chap-9">9. Reference Tools & Resources</a></nav><section id="chap-1">
-<h1>One-Handed Recorders - soprano-440-v1</h1>
-<p><strong>soprano-440-v1</strong> is the build of model <strong>A1</strong> (OHR-Soprano-v0.1), the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).</p>
-<p>The baseline files are designed for a right-handed player. To make a left-handed version, mirror all design files horizontally (along the bore axis) in your CAD or slicing software. Left-hand and right-hand models use mirrored variants of the same fingering chart.</p>
-<p>Printing, assembly, and troubleshooting are shared by all variants:</p>
-<ul>
-<li><a href="#chap-5">How to 3D Print</a>: tools, materials, and slicer settings.</li>
-<li><a href="#chap-6">How to Assemble</a>: step-by-step assembly.</li>
-<li><a href="#chap-7">Troubleshooting</a>: common print, assembly, and acoustic issues.</li>
-<li><a href="#chap-8">Model Information</a>: all variants, including A2 with the octave key at the back.</li>
-</ul>
-<p><em>Note for organology specialists:</em> We can likely produce custom model designs based on different historical models upon request.</p>
-</section>
-<section id="chap-2">
+<h1>3D-Printed-One-Handed-Recorder</h1><p>All chapters in one page; the links below stay inside this file.</p><nav class="toc"><a href="#chap-1">1. Overview</a><a href="#chap-2">2. Background & Inspiration</a><a href="#chap-3">3. Project and Instrument Details and Contexts</a><a href="#chap-4">4. How to 3D Print</a><a href="#chap-5">5. How to Assemble</a><a href="#chap-6">6. Troubleshooting</a><a href="#chap-7">7. Model Information</a><a href="#chap-8">8. Reference Tools & Resources</a><a href="#chap-9">9. One-Handed Recorders: soprano-440-v1 Build Guide</a></nav><section id="chap-1">
 <h1>1. Overview</h1>
 <p>The 3D Printed (FDM) One-Handed Recorder is an open-source project aimed at creating an accessible, fully functional musical instrument. It is inspired by the Dolmetsch one-handed recorder series, which was developed to accommodate musicians with accessibility issues in coordination of their arms, fingers, or hand. It is not a completely hands-free solution, but it provides a starting base for a fully acoustic instrument that can be adapted to fit a player's hands while maintaining playing quality. This is a purely acoustic instrument that does not involve electrical components.</p>
 <p>This project focuses on creating a reproducible, open-source design optimized for consumer-grade FDM 3D printing. We utilize standard FDM printing and readily accessible off-the-shelf parts to reproduce the specialized key system required for one-handed play. While the core concepts and design ideas remain the intellectual property of the author/team (distributed under an open-source non-commercial license such as the Creative Commons Attribution-NonCommercial CC BY-NC, which requires that this project is cited when used), users have the freedom to print, modify, and customize the designs for their personal physical needs. Selling the design files or physical instruments for commercial profit is strictly prohibited.</p>
 </section>
-<section id="chap-3">
+<section id="chap-2">
 <h1>2. Background &amp; Inspiration</h1>
 <p>Although recorders are unfortunately often misconceptualized as "simple" instruments, they are acoustically sophisticated wind instruments. This misconception largely stems from the mid-20th century, when child music educators (including Zoltán Kodály and others) introduced the recorder into elementary school classrooms as an accessible starter instrument, after being forgotten for a long time after the late Baroque period. In reality, the fipple (jet oscillator) relies on complex nonlinear fluid dynamics to split air and produce sound, requiring high design precision. This historical and modern background highlights the engineering challenges and inspirations behind the development of one-handed woodwinds.</p>
 <h3>2.1 Tracking back on the Fipple: An Early One-Handed Woodwind</h3>
@@ -113,7 +102,7 @@ img { max-width: 100%; }
 <li><strong>Dolmetsch Keywork Patents:</strong> C. Dolmetsch. GB852164 &amp; GB852165 (granted 1959), GB852135 (granted 1958), GB666602 (1950s). Historical patent documents retrieved from Espacenet.</li>
 </ol>
 </section>
-<section id="chap-4">
+<section id="chap-3">
 <h1>3. Project and Instrument Details and Contexts</h1>
 <h3>3.1 Target Audience</h3>
 <ul>
@@ -170,12 +159,12 @@ img { max-width: 100%; }
 <li><strong>Useful Articles Doctrine:</strong> U.S. Copyright Act, 17 U.S.C. §§101, 102(b). Details the exclusion of functional aspects and procedures of useful physical articles from copyright protection.</li>
 </ol>
 </section>
-<section id="chap-5">
+<section id="chap-4">
 <h1>4. How to 3D Print</h1>
 <h3>4.1 What is Needed (Tools &amp; Materials)</h3>
 <p><strong>Materials:</strong></p>
 <ul>
-<li><strong>Filament:</strong> Standard 1.75 mm PLA or PETG. Avoid warping materials like ABS and ASA, and never use photopolymer resin for any mouth-contact part; see <a href="#chap-4">Project and Instrument Details and Contexts</a> for the resin safety analysis.</li>
+<li><strong>Filament:</strong> Standard 1.75 mm PLA or PETG. Avoid warping materials like ABS and ASA, and never use photopolymer resin for any mouth-contact part; see <a href="#chap-3">Project and Instrument Details and Contexts</a> for the resin safety analysis.</li>
 <li><strong>Commercial Recorder Head Joint:</strong> A standard 440-442 Hz plastic soprano recorder head joint is required for the <strong>soprano-440-v1</strong> model, as the head joint is not printed in this project. (See <a href="4-project-and-instrument-details-and-contexts.md#36-fipple-mechanics--head-joint-exclusion">Fipple Mechanics &amp; Head Joint Exclusion</a> for details).</li>
 <li><strong>1.75 mm Filament Snippets:</strong> A few short pieces of ordinary printer filament. One acts as the pivot pin for Key 1; the others are the bending pin springs that close Keys 2 to 4.</li>
 <li><strong>Sealing Pads:</strong> Discs of 1.0-1.5 mm closed-cell neoprene, natural cork, craft foam, or soft leather, cut to the key cup diameters.</li>
@@ -215,7 +204,7 @@ Most generic or general slicing settings should be okay for a standard print. Th
 <li><strong>Related Acoustic Research:</strong> Ha, D. and Scavone, G. (2026). "Acoustic Impedance and Viscothermal Losses in FDM-Printed Cylindrical Waveguides: Influence of Surface Conditions and Infill Structures." <em>Proceedings of Meetings on Acoustics</em>, International Symposium on Musical Acoustics (ISMA 2026), Helsinki, Finland, 15-17 June 2026. DOI: TBD.</li>
 </ol>
 </section>
-<section id="chap-6">
+<section id="chap-5">
 <h1>5. How to Assemble</h1>
 <p>The design requires <strong>zero screws</strong> and <strong>no bought metal springs</strong>. Key brackets snap directly into integrated pillar slots on the body, and standard 1.75 mm printer filament serves both as the pivot pin for Key 1 and as the pin springs for Keys 2 to 4. Follow the steps in order.</p>
 <h3>Step 1: Clean and Inspect Printed Parts</h3>
@@ -277,7 +266,7 @@ Most generic or general slicing settings should be okay for a standard print. Th
 <li><strong>Modifying &amp; Sharing:</strong> You are welcome to download the design files and edit them to fit your specific needs. If you make modifications and wish to share them with the community for this instrument, send your designs to the author to be posted on the project site.</li>
 </ul>
 </section>
-<section id="chap-7">
+<section id="chap-6">
 <h1>6. Troubleshooting</h1>
 <h3>6.1 Sound &amp; Acoustic Issues</h3>
 <ul>
@@ -334,26 +323,39 @@ Most generic or general slicing settings should be okay for a standard print. Th
 </li>
 </ul>
 </section>
-<section id="chap-8">
+<section id="chap-7">
 <h1>7. Model Information</h1>
 <p>The project supports multiple variants of the same one-handed soprano recorder. All variants share one fingering chart (see the <a href="fingering_viewer.html">fingering viewer</a> and the machine-readable model data in <a href="https://github.com/DH0516/3D-Printed-One-Handed-Recorder/tree/main/models"><code>models/</code></a>).</p>
 <ul>
-<li><strong>A1, Soprano (OHR-Soprano-v0.1)</strong>: the standard model, described by the <a href="#chap-1">soprano build guide</a>. The thumb key operates similar to the "A" key, to be pushed with the joint of the index finger, sideways. This particular design involves avoiding the usage of the thumb completely. Right-handed by default; the design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For left-handed play, the design must be flipped horizontally (mirrored along the bore axis). * <em>Note for organology specialists:</em> We can likely produce custom model
+<li><strong>A1, Soprano (OHR-Soprano-v0.1)</strong>: the standard model, described by the <a href="#chap-9">soprano build guide</a>. The thumb key operates similar to the "A" key, to be pushed with the joint of the index finger, sideways. This particular design involves avoiding the usage of the thumb completely. Right-handed by default; the design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For left-handed play, the design must be flipped horizontally (mirrored along the bore axis). * <em>Note for organology specialists:</em> We can likely produce custom model
     designs based on different historical models upon request.</li>
 <li><strong>A2</strong>: A1 with key 1, the octave key, moved to the back of the body as a thumb key.</li>
 </ul>
 </section>
-<section id="chap-9">
+<section id="chap-8">
 <h1>8. Reference Tools &amp; Resources</h1>
 <ul>
 <li><strong><a href="fingering_viewer.html">Interactive Fingering Chart Viewer</a>:</strong> A dedicated web application to view and practice the fingerings, laid out for the one-handed mechanism. The chart itself is the standard baroque chart, since the keys change which finger works a hole rather than which holes are open.</li>
 <li><strong>Features:</strong> Three note-naming modes (Simple, Solfège, Standard); Simple and Solfège number the instrument's own octaves (<code>C1</code> to <code>C#3</code>, <code>Do 1</code> to <code>Di 3</code>), Standard keeps scientific names (<code>C5</code> to <code>C#7</code>). Staff notes are drawn one octave lower to match the instrument's register. Plus search filtering and print/PDF of the current view.</li>
 <li><strong>Standalone Use:</strong> Fully static; it reads the model list and each <code>model.json</code> from the <code>models/</code> directory, so serve the folder on any static host (GitHub Pages included) and open it from there.</li>
-<li><strong><a href="#chap-1">Soprano 440 Build Guide (Chapter 10)</a>:</strong> Model-specific details for the standard soprano build; printing, assembly, and troubleshooting are in chapters 4 to 6.</li>
+<li><strong><a href="#chap-9">Soprano 440 Build Guide (Chapter 10)</a>:</strong> Model-specific details for the standard soprano build; printing, assembly, and troubleshooting are in chapters 4 to 6.</li>
 <li><strong>Acoustic Modeling:</strong> Inria Openwind, the open-source wind instrument design toolbox used to calculate and optimize the bore and toneholes.</li>
-<li><strong>Design Compliance and History:</strong> Historical background on one-handed woodwinds (including expired patents) can be found in <a href="#chap-3">Background &amp; Inspiration</a>. Open-source licensing and IP compliance details are listed in <a href="#chap-4">Project and Instrument Details and Contexts</a>.</li>
+<li><strong>Design Compliance and History:</strong> Historical background on one-handed woodwinds (including expired patents) can be found in <a href="#chap-2">Background &amp; Inspiration</a>. Open-source licensing and IP compliance details are listed in <a href="#chap-3">Project and Instrument Details and Contexts</a>.</li>
 <li><strong>Community Support:</strong> In these early stages of release, we welcome educators, makers, and families reaching out to us for assembly advice, troubleshooting, and collaborative feedback.</li>
 </ul>
+</section>
+<section id="chap-9">
+<h1>One-Handed Recorders - soprano-440-v1</h1>
+<p><strong>soprano-440-v1</strong> is the build of model <strong>A1</strong> (OHR-Soprano-v0.1), the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).</p>
+<p>The baseline files are designed for a right-handed player. To make a left-handed version, mirror all design files horizontally (along the bore axis) in your CAD or slicing software. Left-hand and right-hand models use mirrored variants of the same fingering chart.</p>
+<p>Printing, assembly, and troubleshooting are shared by all variants:</p>
+<ul>
+<li><a href="#chap-4">How to 3D Print</a>: tools, materials, and slicer settings.</li>
+<li><a href="#chap-5">How to Assemble</a>: step-by-step assembly.</li>
+<li><a href="#chap-6">Troubleshooting</a>: common print, assembly, and acoustic issues.</li>
+<li><a href="#chap-7">Model Information</a>: all variants, including A2 with the octave key at the back.</li>
+</ul>
+<p><em>Note for organology specialists:</em> We can likely produce custom model designs based on different historical models upon request.</p>
 </section>
 </main>
 </body>
