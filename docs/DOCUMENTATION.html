@@ -10,6 +10,7 @@
 section { border-top: 1px solid #d8d2c2; padding-top: 1rem; }
 .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; border-top: 1px solid #d8d2c2; padding-top: 1rem; }
 .pager span { flex: 1; }
+footer.dates { margin-top: 3rem; color: #68747d; font-size: 0.85rem; }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }
 header { background: #16302b; color: #f2f6f4; padding: 14px 20px; }
@@ -106,27 +107,27 @@ img { max-width: 100%; }
 <h1>3. Project and Instrument Details and Contexts</h1>
 <h3>3.1 Target Audience</h3>
 <ul>
-<li>Individuals with accessibility needs of upper-limbs with some limitations (one hand, or two hands with partial limitations).</li>
-<li>Organizations working with such accessibility-need individuals wanting to provide a starting point of a solution.</li>
+<li>Individuals with accessibility needs of the upper limbs with some limitations (one hand, or two hands with partial limitations).</li>
+<li>Organizations working with such individuals, wanting to provide a starting point for a solution.</li>
 <li>Performers looking for a double-soprano-recorder solution.</li>
 <li>Researchers and educators interested in assistive musical technology.</li>
 </ul>
 <h3>3.2 Instrument Details</h3>
 <ul>
-<li><strong>Type:</strong> Currently scoped for only Descant (Soprano) variant. Descant is typically recommended for children, while treble (alto) may be equally considered in professional or ensemble settings.</li>
+<li><strong>Type:</strong> Currently only Descant (Soprano) variant. Others will become available if enough users request them.</li>
 <li><strong>Key System:</strong> Four keys replace the missing hand's fingers and thumb.</li>
-<li><strong>Fingering:</strong> Requires specialized fingering chart, which is an inversion of the holes to keys where keys are replacing the holes. Left-hand and right-hand models use mirrored variants of the fingering system.</li>
+<li><strong>Fingering:</strong> Requires a specialized fingering chart, which is an inversion of the holes to keys, where keys replace the holes. Left-hand and right-hand models use mirrored variants of the fingering system.</li>
 <li><strong>Handedness:</strong> The primary instrument design (v1) is right-handed. A left-handed instrument can be made by mirroring everything horizontally along the axis of the bore.</li>
 </ul>
 <h3>3.3 Development Realities</h3>
 <ul>
-<li><strong>Prototyping vs. Mass Production:</strong> For this project, the advantage of 3D printing is rapid prototyping and customizability rather than high-speed mass production.</li>
+<li><strong>Prototyping vs. Mass Production:</strong> For this project, the advantage of 3D printing is rapid prototyping and customizability rather than mass production. General mass production forces standardization which challenges the basic fact that every human is different (not just your handspan).</li>
 <li><strong>Development Process:</strong> Creating a functional acoustic instrument with 3D printing involves significant calibration, testing, and fine-tuning of acoustic tolerances.</li>
 <li><strong>Iterative Adjustment:</strong> Print calibration and trial-and-error are expected parts of the process, and designs may need adjustments to fit individual printer tolerances.</li>
-<li><strong>The Key Challenge:</strong> Mechanical keys have been a major focus in our initial research. Because keys require airtight padding and precise pivots, we invited a professional instrument repairer for direct consultation.</li>
+<li><strong>The Key Challenge:</strong> Mechanical keys have been a major focus in our initial research. Because keys require airtight padding and precise pivots, we collaborated with a professional instrument repairer for direct consultations.</li>
 <li><strong>Iterative Redesign:</strong> We went through numerous redesign cycles to achieve reliable key seals and responsive movement.</li>
 <li><strong>Our Goal:</strong> Our goal is to empower users and local makers to fabricate and iterate on these designs themselves using accessible consumer tools.</li>
-<li><strong>Core Purpose is "Accessibility":</strong> The project is designed to serve upper-limb accessibility, utilizing consumer-grade FDM printers and common, safe FDM thermoplastics (including PLA, PETG, and other safe filaments).</li>
+<li><strong>Core Purpose is "Accessibility":</strong> The project is designed to serve upper-limb accessibility, utilizing consumer-grade FDM printers and common, safe FDM thermoplastics.</li>
 <li><strong>Access and Upgrade Barriers:</strong> While mass-produced plastic soprano recorders are widely available and affordable, upgrading to wooden instruments or obtaining customized parts is costly and difficult. The inherent sophistication of the recorder makes it challenging to customize, particularly due to the complexity of the fipple, but also extending to key layouts and custom sizing.</li>
 <li><strong>No Proprietary Hardware:</strong> Any non-printed hardware additions (e.g., rubber bands, springs, pads, pins) must be readily purchasable by the general public at standard hardware stores or online retailers. No proprietary or custom-engineered hardware is required. If a specific part is not available, we will suggest alternative items, and users are welcome to contact us for suggestions.</li>
 <li><strong>Freedom to Print &amp; Modify:</strong> Users are encouraged to print, replicate, test, and modify the files to fit their personal anatomical requirements.</li>
@@ -135,21 +136,24 @@ img { max-width: 100%; }
 <h3>3.4 Materials Selection &amp; UV Resin Safety Hazards</h3>
 <ul>
 <li><strong>We know many materials out there:</strong> When designing a 3D-printable instrument, there are numerous options available, ranging from liquid photopolymers to various meltable thermoplastics.</li>
-<li><strong>Toxicity of Consumer-Grade UV Resin:</strong> Standard consumer-grade photopolymer UV resins used in stereolithography (SLA/DLP) printers present severe health and safety risks, making them unsuitable for mouth-contact instruments like recorders. In their liquid state, these resins contain reactive monomers, oligomers, and photoinitiators that are known skin and respiratory irritants. Direct contact can cause severe allergic contact dermatitis and chemical sensitization over time (Macdonald et al., 2016; Alifui-Segbaya et al., 2017). Furthermore, standard UV resins are not approved for oral contact, as uncured monomer residues can leach into saliva.</li>
+<li><strong>Toxicity of Consumer-Grade UV Resin:</strong> Standard consumer-grade photopolymer UV resins used in stereolithography (SLA/DLP) printers present severe health and safety risks, making them unsuitable for mouth-contact instruments like recorders. In their liquid state, these resins contain reactive monomers, oligomers, and photoinitiators that are known skin and respiratory irritants. Direct contact can cause severe allergic contact dermatitis and chemical sensitization over time (Macdonald et al., 2016; Alifui-Segbaya et al., 2017).</li>
 <li><strong>Incomplete Curing in Opaque Resins:</strong> If non-translucent (opaque) UV resin is used, it is highly likely that the inside of the printed parts was not cured properly because UV light cannot reach there. Opaque pigments (like Titanium Dioxide or Carbon Black) absorb and scatter UV light, reducing the cure depth (Tomec et al., 2022). This leaves toxic, uncured liquid resin trapped within the internal structures of the instrument, posing severe contact health hazards.</li>
-<li><strong>FDM with PLA Selection:</strong> Due to these safety concerns, we had to choose FDM (Fused Deposition Modeling) with PLA (Polylactic Acid) in the end as our main baseline (though other FDM materials like PETG should work fine too). Unless using certified biocompatible medical/dental-grade resins subjected to strict medical curing procedures, SLA resins must be avoided for mouth-contact instruments.</li>
+<li><strong>FDM with PLA Selection:</strong> Due to these safety concerns, we <em>had to</em> choose FDM (Fused Deposition Modeling) with PLA (Polylactic Acid) in the end as our main baseline (though other FDM materials like PETG should work fine too). Unless using certified biocompatible medical/dental-grade resins subjected to strict medical curing procedures, SLA resins must be avoided for mouth-contact instruments.</li>
 </ul>
 <h3>3.5 Design Integrity &amp; Intellectual Property Compliance</h3>
-<p>To ensure respect for intellectual property while keeping our work completely open-source, the project operates under a set of design integrity and compliance guidelines:
-- <strong>Independent Expressive Creation:</strong> All CAD models (such as <code>body default/</code>), photographs, instructions, and text in this repository are created independently by the team.
-- <strong>Factual Data Re-derivation:</strong> The fingering layout and acoustic measurements are independently compiled and re-tabulated, rather than copying the graphic layout or arrangement of existing third-party fingering charts.
-- <strong>Trademark Boundaries:</strong> We market this project under its descriptive name, <strong>3D-Printed-One-Handed-Recorder</strong>. Historical names (such as "Dolmetsch") are referenced purely descriptively and historically to identify the design inspiration, never as a product logo or trademark.
-- <strong>Academic Licensing &amp; IP Attribution:</strong> As described in Section 3.3, the project utilizes the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This permits free non-commercial recreation, customization, and study of the design files, provided that the original project and author/team are cited when shared or used.</p>
+<p>To ensure respect for intellectual property while keeping our work completely open-source, the project operates under a set of design integrity and compliance guidelines:</p>
+<ul>
+<li><strong>Independent Expressive Creation:</strong> All CAD models, photographs, instructions, and text in this repository are created independently by the team.</li>
+<li><strong>Factual Data Re-derivation:</strong> The fingering layout and acoustic measurements are independently compiled and re-tabulated.</li>
+<li><strong>Trademark Boundaries:</strong> We market this project under its descriptive name, <strong>3D-Printed-One-Handed-Recorder</strong>. Historical names (such as "Dolmetsch") are referenced purely descriptively and historically to identify the design inspiration, never as a product logo or trademark.</li>
+<li><strong>Academic Licensing &amp; IP Attribution:</strong> As described in Section 3.3, the project utilizes the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This permits free non-commercial recreation, customization, and study of the design files, provided that the original project and author/team are cited when shared or used.</li>
+</ul>
 <h3>3.6 Fipple Mechanics &amp; Head Joint Exclusion</h3>
-<p>At this stage, this project does not include design files for printing the head joint (mouthpiece) of the recorder. This decision is based on two primary considerations:
-- <strong>Design and Acoustic Complexity:</strong> The fipple and jet mechanisms of the recorder are highly complex and are subjects of popular acoustics studies. In particular, the labium is a very complicated construct, requiring precise sizing of all four sides and the internals. A poorly designed or printed labium causes severe sound defects, commonly observed in low-quality recorders. To avoid providing a low-quality instrument, we recommend using a generic, easily available commercial head joint that plays well.
-- <strong>Safety and Liability:</strong> We are hesitant to instruct users to place home-printed objects directly into their mouths. Even if the materials used are certified as safe, the project team cannot assume responsibility or liability for any health concerns that may arise from using home-fabricated mouthpieces.</p>
-<p>The <strong>soprano-440-v1</strong> model is designed to pair with any standard 440-442Hz plastic soprano recorder head.</p>
+<p>At this stage, this project does not include design files for printing the head joint (mouthpiece) of the recorder. This decision is based on two primary considerations:</p>
+<ul>
+<li><strong>Design and Acoustic Complexity:</strong> The fipple and jet mechanisms of the recorder are highly complex and are subjects of popular acoustics studies. In particular, the labium is a very complicated construct, requiring precise sizing of all four sides and the internals. A poorly designed or printed labium causes severe sound defects, commonly observed in low-quality recorders. To avoid providing a low-quality instrument, we recommend using a generic, easily available commercial head joint that plays well.</li>
+<li><strong>Safety and Liability:</strong> We are hesitant to instruct users to place home-printed objects directly into their mouths. Even if the materials used are certified as safe, the project team cannot assume responsibility or liability for any health concerns that may arise from using home-fabricated mouthpieces.</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li><strong>Photopolymer Biocompatibility &amp; Toxicity:</strong> Macdonald, N. P., et al. (2016). <em>Assessment of biocompatibility of 3D printed photopolymers</em>. PLoS ONE, 11(8), e0160741. This study documents the high cytotoxicity of standard 3D printed photopolymers on living cells and warns of leachable toxic compounds.</li>
@@ -421,6 +425,7 @@ Most generic or general slicing settings should be okay for a standard print. Th
 </table>
 <p>Keys 2 to 4 print as one piece each in this set. The fingering chart shared by both model variants is in the <a href="fingering_viewer.html">fingering viewer</a>.</p>
 </section>
+<footer class="dates">Published 2026-09-27 &middot; Last updated 2026-09-27</footer>
 </main>
 </body>
 </html>

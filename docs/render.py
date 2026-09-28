@@ -27,6 +27,7 @@ TEMPLATE = """<!doctype html>
 section {{ border-top: 1px solid #d8d2c2; padding-top: 1rem; }}
 .pager {{ display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; border-top: 1px solid #d8d2c2; padding-top: 1rem; }}
 .pager span {{ flex: 1; }}
+footer.dates {{ margin-top: 3rem; color: #68747d; font-size: 0.85rem; }}
 * {{ box-sizing: border-box; }}
 body {{ margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }}
 header {{ background: #16302b; color: #f2f6f4; padding: 14px 20px; }}
@@ -53,6 +54,7 @@ img {{ max-width: 100%; }}
 </nav></header>
 <main>
 {body}
+<footer class="dates">Published 2026-09-27 &middot; Last updated 2026-09-27</footer>
 </main>
 </body>
 </html>
