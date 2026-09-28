@@ -233,14 +233,14 @@ Most generic or general slicing settings should be okay for a standard print. Th
 <h3>Step 4: Install the Filament Pin Springs (Keys 2 to 4)</h3>
 <ul>
 <li>Insert a straight snippet of 1.75 mm filament through the pillar posts and pin holes of each key so that it acts as a pin spring.</li>
-<li>Rotate the filament pin in the direction that applies its appropriate sealing force.</li>
+<li>Rotate the filament pin in the direction that applies its appropriate spring force against the shaft's hook.</li>
 <li>Snap off the filament at the notch so the pin spring stays in one rotational position.</li>
 <li>Press each touchpiece with your finger: the pad should lift smoothly, and when you release, the pin spring should snap the pad shut instantly over the tone hole rim.</li>
 </ul>
 <h3>Step 5: Mount Key 1 (Octave Lever)</h3>
 <ul>
-<li>Position Key 1 into its pin slot on the body.</li>
-<li>Cut a straight snippet of 1.75 mm filament to the width of the pin slot and slide it through the pin slot holes and Key 1, creating a clean pivot pin. Trim any excess flush with the pin slot walls.</li>
+<li>Position Key 1 into its pin slot on the body. The sheet spring is already 3D printed with it.</li>
+<li>Cut a straight snippet of 1.75 mm filament to the width of the pin slot and slide it through the pin slot holes and Key 1, creating a clean pivot pin. Trim any excess spring.</li>
 <li>Key 1's return spring is the flexible printed sheet spring, printed as part of the key itself; it keeps the octave hole closed at rest until the touchpiece is pressed.</li>
 </ul>
 <h3>Step 6: Fit the Joints</h3>
@@ -400,6 +400,89 @@ Most generic or general slicing settings should be okay for a standard print. Th
 </tbody>
 </table>
 <p>Keys 2 to 4 print as one piece each in this set. The fingering chart shared by both model variants is in the <a href="fingering_viewer.html">fingering viewer</a>.</p>
+<h2>3D Preview</h2>
+<p>Assembled body, foot, and keys (the commercial head joint is not part of the model). Drag to rotate, scroll to zoom, right-drag or two-finger drag to pan. Loads about 5 MB of mesh data on first click.</p>
+<div>
+<button id="previewBtn" type="button" style="padding:10px 16px;border-radius:8px;border:1px solid #0e6f66;background:#0e6f66;color:#fff;font-weight:600;cursor:pointer;">3D preview viewer</button>
+<span id="previewStatus" style="margin-left:10px;color:#68747d;"></span>
+</div>
+<div id="previewBox" style="display:none;margin-top:12px;border:1px solid #d8d2c2;border-radius:10px;height:440px;overflow:hidden;"></div>
+
+<script type="importmap">
+{"imports": {"three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+const btn = document.getElementById('previewBtn');
+btn.addEventListener('click', async () => {
+  const status = document.getElementById('previewStatus');
+  const box = document.getElementById('previewBox');
+  btn.disabled = true;
+  try {
+    status.textContent = 'loading...';
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const [bin, index] = await Promise.all([
+      fetch('preview/viewdata.bin').then(r => { if (!r.ok) throw new Error('mesh data HTTP ' + r.status); return r.arrayBuffer(); }),
+      fetch('preview/viewdata-index.json').then(r => r.json()),
+    ]);
+    status.textContent = 'building scene...';
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf4f1e8);
+    const group = new THREE.Group();
+    group.rotation.x = -Math.PI / 2;  // data is Z-up
+    let off = 0;
+    let minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9,minz=1e9,maxz=-1e9;
+    for (const p of index.parts) {
+      const n = p.tris * 9;
+      const f = new Float32Array(bin, off * 4, n);
+      for (let i = 0; i < n; i += 3) {
+        if (f[i] < minx) minx = f[i]; if (f[i] > maxx) maxx = f[i];
+        if (f[i+1] < miny) miny = f[i+1]; if (f[i+1] > maxy) maxy = f[i+1];
+        if (f[i+2] < minz) minz = f[i+2]; if (f[i+2] > maxz) maxz = f[i+2];
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(f, 3));
+      geo.computeVertexNormals();
+      group.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+        color: new THREE.Color(p.color), roughness: 0.55, metalness: 0.1,
+      })));
+      off += n;
+    }
+    scene.add(group);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8578, 1.0));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+    sun.position.set(80, 120, 160);
+    scene.add(sun);
+    const cx = (minx+maxx)/2, cy = (miny+maxy)/2, cz = (minz+maxz)/2;
+    const radius = Math.max(maxx-minx, maxy-miny, maxz-minz);
+    const camera = new THREE.PerspectiveCamera(40, 1, 1, 4000);
+    camera.position.set(cx + radius*0.9, cz + radius*0.9, -(cy + radius*1.1));
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    box.style.display = 'block';
+    box.appendChild(renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(cx, cz, -cy);
+    controls.enableDamping = true;
+    controls.update();
+    const fit = () => {
+      const w = box.clientWidth, h = box.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+    fit();
+    new ResizeObserver(fit).observe(box);
+    const loop = () => { controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); };
+    loop();
+    status.textContent = '';
+    btn.textContent = '3D preview loaded';
+  } catch (e) {
+    status.textContent = 'failed: ' + e.message;
+    btn.disabled = false;
+  }
+});
+</script>
 </section>
 <footer class="dates"><a href="https://creativecommons.org/licenses/by-nc/4.0/"><img src="cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a> Published 2026-09-27 &middot; Last updated 2026-09-27</footer>
 </main>

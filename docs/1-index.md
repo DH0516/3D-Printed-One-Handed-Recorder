@@ -20,7 +20,7 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 
 ### Models Available for Download
 
-- **[Model A1](model-A1.md)** - Specifications and print files (STL) for the standard variant, the former build guide.
+- **[Model A1](model-A1.md)** (Soprano, A = 440, no thumb key)
 
 ---
 

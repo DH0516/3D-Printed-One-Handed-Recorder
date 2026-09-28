@@ -28,14 +28,14 @@ No screws and no bought springs: the keys snap into the pillar slots on the body
 ### Step 4: Install the Filament Pin Springs (Keys 2 to 4)
 
 - Insert a straight snippet of 1.75 mm filament through the pillar posts and pin holes of each key so that it acts as a pin spring.
-- Rotate the filament pin in the direction that applies its appropriate sealing force.
+- Rotate the filament pin in the direction that applies its appropriate spring force against the shaft's hook.
 - Snap off the filament at the notch so the pin spring stays in one rotational position.
 - Press each touchpiece with your finger: the pad should lift smoothly, and when you release, the pin spring should snap the pad shut instantly over the tone hole rim.
 
 ### Step 5: Mount Key 1 (Octave Lever)
 
-- Position Key 1 into its pin slot on the body.
-- Cut a straight snippet of 1.75 mm filament to the width of the pin slot and slide it through the pin slot holes and Key 1, creating a clean pivot pin. Trim any excess flush with the pin slot walls.
+- Position Key 1 into its pin slot on the body. The sheet spring is already 3D printed with it.
+- Cut a straight snippet of 1.75 mm filament to the width of the pin slot and slide it through the pin slot holes and Key 1, creating a clean pivot pin. Trim any excess spring.
 - Key 1's return spring is the flexible printed sheet spring, printed as part of the key itself; it keeps the octave hole closed at rest until the touchpiece is pressed.
 
 ### Step 6: Fit the Joints

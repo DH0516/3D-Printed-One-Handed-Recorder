@@ -30,3 +30,89 @@ Binary STL, meshed at 0.01 mm chordal deviation, in print orientation. Printing 
 | Key 4 | [Key_4.stl](../models/A1/parts/Key_4.stl) | 26.6 mm | 0.9 MB |
 
 Keys 2 to 4 print as one piece each in this set. The fingering chart shared by both model variants is in the [fingering viewer](fingering_viewer.html).
+
+## 3D Preview
+
+Assembled body, foot, and keys (the commercial head joint is not part of the model). Drag to rotate, scroll to zoom, right-drag or two-finger drag to pan. Loads about 5 MB of mesh data on first click.
+
+<div>
+<button id="previewBtn" type="button" style="padding:10px 16px;border-radius:8px;border:1px solid #0e6f66;background:#0e6f66;color:#fff;font-weight:600;cursor:pointer;">3D preview viewer</button>
+<span id="previewStatus" style="margin-left:10px;color:#68747d;"></span>
+</div>
+<div id="previewBox" style="display:none;margin-top:12px;border:1px solid #d8d2c2;border-radius:10px;height:440px;overflow:hidden;"></div>
+
+<script type="importmap">
+{"imports": {"three": "https://unpkg.com/three@0.160.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+const btn = document.getElementById('previewBtn');
+btn.addEventListener('click', async () => {
+  const status = document.getElementById('previewStatus');
+  const box = document.getElementById('previewBox');
+  btn.disabled = true;
+  try {
+    status.textContent = 'loading...';
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const [bin, index] = await Promise.all([
+      fetch('preview/viewdata.bin').then(r => { if (!r.ok) throw new Error('mesh data HTTP ' + r.status); return r.arrayBuffer(); }),
+      fetch('preview/viewdata-index.json').then(r => r.json()),
+    ]);
+    status.textContent = 'building scene...';
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf4f1e8);
+    const group = new THREE.Group();
+    group.rotation.x = -Math.PI / 2;  // data is Z-up
+    let off = 0;
+    let minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9,minz=1e9,maxz=-1e9;
+    for (const p of index.parts) {
+      const n = p.tris * 9;
+      const f = new Float32Array(bin, off * 4, n);
+      for (let i = 0; i < n; i += 3) {
+        if (f[i] < minx) minx = f[i]; if (f[i] > maxx) maxx = f[i];
+        if (f[i+1] < miny) miny = f[i+1]; if (f[i+1] > maxy) maxy = f[i+1];
+        if (f[i+2] < minz) minz = f[i+2]; if (f[i+2] > maxz) maxz = f[i+2];
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(f, 3));
+      geo.computeVertexNormals();
+      group.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
+        color: new THREE.Color(p.color), roughness: 0.55, metalness: 0.1,
+      })));
+      off += n;
+    }
+    scene.add(group);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8578, 1.0));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.6);
+    sun.position.set(80, 120, 160);
+    scene.add(sun);
+    const cx = (minx+maxx)/2, cy = (miny+maxy)/2, cz = (minz+maxz)/2;
+    const radius = Math.max(maxx-minx, maxy-miny, maxz-minz);
+    const camera = new THREE.PerspectiveCamera(40, 1, 1, 4000);
+    camera.position.set(cx + radius*0.9, cz + radius*0.9, -(cy + radius*1.1));
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    box.style.display = 'block';
+    box.appendChild(renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(cx, cz, -cy);
+    controls.enableDamping = true;
+    controls.update();
+    const fit = () => {
+      const w = box.clientWidth, h = box.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+    fit();
+    new ResizeObserver(fit).observe(box);
+    const loop = () => { controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); };
+    loop();
+    status.textContent = '';
+    btn.textContent = '3D preview loaded';
+  } catch (e) {
+    status.textContent = 'failed: ' + e.message;
+    btn.disabled = false;
+  }
+});
+</script>
