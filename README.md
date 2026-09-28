@@ -22,6 +22,8 @@ The [`docs/`](docs/1-index.html) folder is the documentation site, served by Git
 
 ## License
 
+<a href="LICENSE"><img src="docs/cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a>
+
 Released under the Creative Commons Attribution-NonCommercial 4.0 International License ([CC BY-NC 4.0](LICENSE)). Free for personal, academic, and non-commercial educational use. Resale, commercial manufacture, or commercial reproduction requires prior written permission from Daniel Ha.
 
 Generative AI tools assisted with documentation drafting and software scripting; all CAD models, acoustic designs, and physical prototypes were created, verified, and directed by the human authors.
