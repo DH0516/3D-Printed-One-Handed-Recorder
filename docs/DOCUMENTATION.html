@@ -37,7 +37,7 @@ img { max-width: 100%; }
 <a href="fingering_viewer.html">Fingering viewer</a>
 </nav></header>
 <main>
-<h1>3D-Printed-One-Handed-Recorder</h1><p>All chapters in one page; the links below stay inside this file.</p><p>Questions, inquiries, or update requests: <a href="mailto:irem25qc@gmail.com">irem25qc@gmail.com</a></p><nav class="toc"><a href="#chap-1">1. Overview</a><a href="#chap-2">2. Background & Inspiration</a><a href="#chap-3">3. Project and Instrument Details and Contexts</a><a href="#chap-4">4. How to 3D Print</a><a href="#chap-5">5. How to Assemble</a><a href="#chap-6">6. Troubleshooting</a><a href="#chap-7">7. Model Information</a><a href="#chap-8">8. Reference Tools & Resources</a><a href="#chap-9">9. Model A1</a></nav><section id="chap-1">
+<h1>3D-Printed-One-Handed-Recorder</h1><p>All chapters in one page; the links below stay inside this file.</p><p>Questions, inquiries, or update requests: <a href="mailto:irem25qc@gmail.com">irem25qc@gmail.com</a></p><nav class="toc"><a href="#chap-1">1. Overview</a><a href="#chap-2">2. Background & Inspiration</a><a href="#chap-3">3. Project and Instrument Details and Contexts</a><a href="#chap-4">4. How to 3D Print</a><a href="#chap-5">5. How to Assemble</a><a href="#chap-6">6. Troubleshooting</a><a href="#chap-7">7. Model Information</a><a href="#chap-8">8. Reference Tools & Resources</a><a href="#chap-9">9. Model A1</a><a href="#chap-10">10. Model A2</a></nav><section id="chap-1">
 <h1>1. Overview</h1>
 <p>The 3D Printed (FDM) One-Handed Recorder is an open-source project aimed at creating an accessible, fully functional musical instrument. It is inspired by the Dolmetsch one-handed recorder series, which was developed to accommodate musicians with accessibility issues in coordination of their arms, fingers, or hand. It is not a completely hands-free solution, but it provides a starting base for a fully acoustic instrument that can be adapted to fit a player's hands while maintaining playing quality. This is a purely acoustic instrument that does not involve electrical components.</p>
 <p>This project focuses on creating a reproducible, open-source design optimized for consumer-grade FDM 3D printing. We utilize standard FDM printing and readily accessible off-the-shelf parts to reproduce the specialized key system required for one-handed play. While the core concepts and design ideas remain the intellectual property of the author/team (distributed under an open-source non-commercial license such as the Creative Commons Attribution-NonCommercial CC BY-NC, which requires that this project is cited when used), users have the freedom to print, modify, and customize the designs for their personal physical needs. Selling the design files or physical instruments for commercial profit is strictly prohibited.</p>
@@ -401,6 +401,7 @@ Most generic or general slicing settings should be okay for a standard print. Th
 </table>
 <p>Keys 2 to 4 print as one piece each in this set. The fingering chart shared by both model variants is in the <a href="fingering_viewer.html">fingering viewer</a>.</p>
 <h2>3D Preview</h2>
+<p><em>Be aware that the 3D previewer is purely experimental and cannot accurately render the instrument</em></p>
 <p>Assembled body, foot, and keys (the commercial head joint is not part of the model). Drag to rotate, scroll to zoom, right-drag or two-finger drag to pan. Loads about 3 MB of mesh data on first click.</p>
 <div>
 <button id="previewBtn" type="button" style="padding:10px 16px;border-radius:8px;border:1px solid #0e6f66;background:#0e6f66;color:#fff;font-weight:600;cursor:pointer;">3D preview viewer</button>
@@ -487,6 +488,46 @@ btn.addEventListener('click', async () => {
   }
 });
 </script>
+</section>
+<section id="chap-10">
+<h1>Model A2</h1>
+<p>Model A2 is the variant with the octave key at the back: Key 1 moves from the front key cluster to the back of the body and is operated by the thumb. Keys 2 to 4 and all finger holes are identical to Model A1, and both variants share the same fingering chart. Right-handed by default; mirror all parts along the bore axis for a left-handed instrument.</p>
+<h2>Specifications</h2>
+<ul>
+<li>Type: Soprano (Descant) recorder in C</li>
+<li>Pitch reference: A = 440</li>
+<li>Keys: 4 printed keys (Key 1 thumb-operated octave key at the back, Keys 2 to 4 tone keys)</li>
+<li>Pin diameter: 2.00 mm bores (pinned with 1.75 mm printer filament, which also forms the key springs)</li>
+<li>Head joint: any standard plastic soprano recorder head joint (not printed)</li>
+<li>Assembly: snap joints, no screws; see <a href="#chap-5">How to Assemble</a></li>
+</ul>
+<h2>Print Files</h2>
+<p>Binary STL, meshed at 0.005 mm chordal deviation and 0.1 rad angular tolerance, in print orientation. Printing guidelines are in <a href="#chap-4">How to 3D Print</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>File</th>
+<th>Print height</th>
+<th>File size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Body</td>
+<td><a href="../models/A2/parts/Body.stl">Body.stl</a></td>
+<td>171.9 mm</td>
+<td>6.2 MB</td>
+</tr>
+<tr>
+<td>Key 1 (octave key)</td>
+<td><a href="../models/A2/parts/Key_1.stl">Key_1.stl</a></td>
+<td>11.0 mm</td>
+<td>3.9 MB</td>
+</tr>
+</tbody>
+</table>
+<p>The foot joint and Keys 2 to 4 are identical to Model A1: print them from the <a href="#chap-9">Model A1 print files</a>. The fingering chart shared by both variants is in the <a href="fingering_viewer.html">fingering viewer</a>.</p>
 </section>
 <footer class="dates"><a href="https://creativecommons.org/licenses/by-nc/4.0/"><img src="cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a> Published 2026-09-27 &middot; Last updated 2026-09-27</footer>
 </main>
