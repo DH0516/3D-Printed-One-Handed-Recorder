@@ -11,9 +11,12 @@ Decimation is vertex clustering: vertices snap to a grid (default
 dropped. Surfaces stay closed; small features below the cell size
 merge away. Parts removed from the current design are dropped by name.
 
-Usage: python3 make_preview.py <viewdata.json> [cell_mm]
+Usage: python3 make_preview.py <viewdata.json> [cell_mm] [variant]
+       variant A1 (default) writes viewdata.*; A2 rotates the key-1
+       group by the design delta and writes viewdata-A2.*
 """
 import json
+import math
 import struct
 import sys
 from pathlib import Path
@@ -53,26 +56,52 @@ def decimate(tris, cell):
     return out
 
 
+# A2 is A1 with the key-1 group rigidly rotated about the bore axis
+# (the documented design delta: -213.6 deg, hole 1 from 110 to -103.6).
+A2_ROTATE = {
+    "Hole_1_Mount", "Hole_1_Bushing_Rim", "Hole_1_Vent_Plug",
+    "Key_Hole_1_Pad_Cup", "Key_Hole_1_Lever", "Key_Hole_1_Hole",
+    "Saddle_Hole_1", "Pin_Hole_1",
+}
+A2_ANGLE_DEG = -213.6
+
+
+def rotate_z(tris, deg):
+    a = math.radians(deg)
+    c, s = math.cos(a), math.sin(a)
+    out = list(tris)
+    for i in range(0, len(out), 3):
+        x, y = out[i], out[i + 1]
+        out[i] = x * c - y * s
+        out[i + 1] = x * s + y * c
+    return out
+
+
 def main():
     cell = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+    variant = sys.argv[3] if len(sys.argv) > 3 else "A1"
+    stem = "viewdata" if variant == "A1" else "viewdata-A2"
     src = json.load(open(sys.argv[1]))
     parts, chunks, total = [], [], 0
     for p in src["parts"]:
         if p["name"] in DROP:
             continue
-        kept = decimate(p["tris"], cell)
+        tris = p["tris"]
+        if variant == "A2" and p["name"] in A2_ROTATE:
+            tris = rotate_z(tris, A2_ANGLE_DEG)
+        kept = decimate(tris, cell)
         parts.append({"name": p["name"], "color": p["color"],
                       "tris": len(kept) // 9})
         chunks.append(kept)
         total += len(kept) // 9
-    with open(OUT / "viewdata.bin", "wb") as f:
+    with open(OUT / (stem + ".bin"), "wb") as f:
         for c in chunks:
             f.write(struct.pack("<%df" % len(c), *c))
-    (OUT / "viewdata-index.json").write_text(json.dumps(
+    (OUT / (stem + "-index.json")).write_text(json.dumps(
         {"totalTris": total, "parts": parts}, separators=(",", ":")) + "\n")
-    print("cell %.2f mm: parts %d, tris %d, bin %.2f MB"
-          % (cell, len(parts), total,
-             (OUT / "viewdata.bin").stat().st_size / 1048576))
+    print("%s cell %.2f mm: parts %d, tris %d, bin %.2f MB"
+          % (variant, cell, len(parts), total,
+             (OUT / (stem + ".bin")).stat().st_size / 1048576))
 
 
 if __name__ == "__main__":

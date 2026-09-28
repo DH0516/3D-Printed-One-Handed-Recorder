@@ -30,3 +30,25 @@ Binary STL, meshed at 0.005 mm chordal deviation and 0.1 rad angular tolerance, 
 | Key 4              | [Key_4.stl](../models/A2/parts/A2-Key_4.stl) | 26.6 mm      | 6.1 MB    |
 
 The foot joint and Keys 2 to 4 are identical to Model A1. The fingering chart shared by both variants is in the [fingering viewer](fingering_viewer.html).
+
+## 3D Preview
+
+*Be aware that the 3D previewer is purely experimental and cannot accurately render the instrument*
+
+Assembled body, foot, and keys with Key 1 at the back as the thumb key (the commercial head joint is not part of the model). Drag to rotate, scroll to zoom, right-drag or two-finger drag to pan. Loads about 3 MB of mesh data on first click.
+
+<div>
+<button id="previewBtnA2" type="button" style="padding:10px 16px;border-radius:8px;border:1px solid #0e6f66;background:#0e6f66;color:#fff;font-weight:600;cursor:pointer;">3D preview viewer</button>
+<span id="previewStatusA2" style="margin-left:10px;color:#68747d;"></span>
+</div>
+<div id="previewBoxA2" style="display:none;margin-top:12px;border:1px solid #d8d2c2;border-radius:10px;height:440px;overflow:hidden;"></div>
+<script type="module">
+import { mountPreview } from './preview/viewer.mjs';
+mountPreview({
+  button: document.getElementById('previewBtnA2'),
+  status: document.getElementById('previewStatusA2'),
+  box: document.getElementById('previewBoxA2'),
+  binUrl: 'preview/viewdata-A2.bin?v=1',
+  indexUrl: 'preview/viewdata-A2-index.json?v=1',
+});
+</script>
