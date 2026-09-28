@@ -22,12 +22,12 @@ Binary STL, meshed at 0.005 mm chordal deviation and 0.1 rad angular tolerance, 
 
 | Part               | File                                      | Print height | File size |
 | ------------------ | ----------------------------------------- | ------------ | --------- |
-| Body               | [Body.stl](../models/A2/parts/A2-Body.stl)   | 171.9 mm     | 6.2 MB    |
-| Foot joint         | [Foot.stl](../models/A2/parts/A2-Foot.stl)   | 63.6 mm      | 7.9 MB    |
-| Key 1 (octave key) | [Key_1.stl](../models/A2/parts/A2-Key_1.stl) | 11.0 mm      | 3.9 MB    |
-| Key 2              | [Key_2.stl](../models/A2/parts/A2-Key_2.stl) | 25.6 mm      | 2.0 MB    |
-| Key 3              | [Key_3.stl](../models/A2/parts/A2-Key_3.stl) | 17.7 mm      | 2.3 MB    |
-| Key 4              | [Key_4.stl](../models/A2/parts/A2-Key_4.stl) | 26.6 mm      | 6.1 MB    |
+| Body               | [A2-Body.stl](../models/A2/parts/A2-Body.stl)   | 171.9 mm     | 6.2 MB    |
+| Foot joint         | [A2-Foot.stl](../models/A2/parts/A2-Foot.stl)   | 63.6 mm      | 7.9 MB    |
+| Key 1 (octave key) | [A2-Key_1.stl](../models/A2/parts/A2-Key_1.stl) | 11.0 mm      | 3.9 MB    |
+| Key 2              | [A2-Key_2.stl](../models/A2/parts/A2-Key_2.stl) | 25.6 mm      | 2.0 MB    |
+| Key 3              | [A2-Key_3.stl](../models/A2/parts/A2-Key_3.stl) | 17.7 mm      | 2.3 MB    |
+| Key 4              | [A2-Key_4.stl](../models/A2/parts/A2-Key_4.stl) | 26.6 mm      | 6.1 MB    |
 
 The foot joint and Keys 2 to 4 are identical to Model A1. The fingering chart shared by both variants is in the [fingering viewer](fingering_viewer.html).
 
