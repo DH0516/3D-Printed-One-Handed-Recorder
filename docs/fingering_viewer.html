@@ -64,7 +64,29 @@
       .app {
         min-height: 100vh;
         display: grid;
-        grid-template-columns: 300px minmax(0, 1fr);
+        grid-template-columns: var(--sidebar-w, 300px) 6px minmax(0, 1fr);
+      }
+
+      .resizer {
+        cursor: col-resize;
+        position: relative;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .resizer::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 2px;
+        width: 2px;
+        background: var(--line);
+      }
+
+      .resizer:hover::after,
+      .resizer.active::after {
+        background: var(--accent);
       }
 
       /* ---------- sidebar rail ---------- */
@@ -543,6 +565,15 @@
         </div>
         <nav class="note-list" id="noteList"></nav>
       </aside>
+      <div
+        class="resizer print-hide"
+        id="sidebarResizer"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize sidebar"
+        tabindex="0"
+        title="Drag or use arrow keys"
+      ></div>
       <main>
         <section class="detail" id="detail">
           <article class="panel detail-panel">
@@ -959,6 +990,61 @@
               "Error: " + err.message;
           }
         });
+
+      // Resizable sidebar: drag the divider, or focus it and use arrow
+      // keys. Width persists in localStorage and clamps to 240..520 px.
+      const SIDEBAR_MIN = 240;
+      const SIDEBAR_MAX = 520;
+
+      function applySidebarWidth(px) {
+        const w = Math.round(
+          Math.max(SIDEBAR_MIN, Math.min(SIDEBAR_MAX, px)));
+        document.documentElement.style.setProperty("--sidebar-w", w + "px");
+        try {
+          localStorage.setItem("sidebarW", String(w));
+        } catch (e) {
+          /* storage unavailable; width still applies for this session */
+        }
+        return w;
+      }
+
+      const resizer = document.getElementById("sidebarResizer");
+      resizer.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        resizer.setPointerCapture(e.pointerId);
+        resizer.classList.add("active");
+        const startX = e.clientX;
+        const startW = document
+          .querySelector(".sidebar")
+          .getBoundingClientRect().width;
+        const move = (ev) => applySidebarWidth(startW + ev.clientX - startX);
+        const up = (ev) => {
+          resizer.releasePointerCapture(ev.pointerId);
+          resizer.classList.remove("active");
+          resizer.removeEventListener("pointermove", move);
+          resizer.removeEventListener("pointerup", up);
+        };
+        resizer.addEventListener("pointermove", move);
+        resizer.addEventListener("pointerup", up);
+      });
+      resizer.addEventListener("keydown", (e) => {
+        if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+        const current =
+          parseFloat(
+            getComputedStyle(document.documentElement)
+              .getPropertyValue("--sidebar-w")) || 300;
+        applySidebarWidth(current + (e.key === "ArrowRight" ? 16 : -16));
+        e.preventDefault();
+      });
+
+      try {
+        const saved = parseFloat(localStorage.getItem("sidebarW"));
+        if (saved >= SIDEBAR_MIN && saved <= SIDEBAR_MAX) {
+          document.documentElement.style.setProperty("--sidebar-w", saved + "px");
+        }
+      } catch (e) {
+        /* no stored width; default 300px stands */
+      }
 
       loadModel(MODELS[0].id);
     </script>
