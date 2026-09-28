@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference Tools & Resources | 3D-Printed-One-Handed-Recorder</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }
+header { background: #16302b; color: #f2f6f4; padding: 14px 20px; }
+header nav { display: flex; gap: 18px; flex-wrap: wrap; max-width: 50rem; margin: 0 auto; align-items: baseline; }
+header .site { font-weight: 700; margin-right: auto; }
+header a { color: #bfe3d9; text-decoration: none; }
+header a:hover { color: #ffffff; }
+main { max-width: 50rem; margin: 0 auto; padding: 28px 20px 48px; }
+h1, h2, h3 { line-height: 1.25; }
+a { color: #0e6f66; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #d8d2c2; padding: 7px 10px; text-align: left; }
+th { background: #efece3; }
+blockquote { border-left: 4px solid #0e6f66; margin: 1rem 0; padding: 2px 14px; background: #f0f5f2; }
+code { background: #efece3; padding: 1px 5px; border-radius: 4px; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+<header><nav>
+<span class="site">3D-Printed-One-Handed-Recorder</span>
+<a href="1-index.html">Docs</a>
+<a href="fingering_viewer.html">Fingering viewer</a>
+</nav></header>
+<main>
+<h1>8. Reference Tools &amp; Resources</h1>
+<ul>
+<li><strong><a href="fingering_viewer.html">Interactive Fingering Chart Viewer</a>:</strong> A dedicated web application to view and practice the fingerings, laid out for the one-handed mechanism. The chart itself is the standard baroque chart, since the keys change which finger works a hole rather than which holes are open.</li>
+<li><strong>Features:</strong> Three note-naming modes (Simple, Solfège, Standard); Simple and Solfège number the instrument's own octaves (<code>C1</code> to <code>C#3</code>, <code>Do 1</code> to <code>Di 3</code>), Standard keeps scientific names (<code>C5</code> to <code>C#7</code>). Staff notes are drawn one octave lower to match the instrument's register. Plus search filtering and print/PDF of the current view.</li>
+<li><strong>Standalone Use:</strong> Fully static; it reads the model list and each <code>model.json</code> from the <code>models/</code> directory, so serve the folder on any static host (GitHub Pages included) and open it from there.</li>
+<li><strong><a href="10-soprano-440-v1.html">Soprano 440 Build Guide (Chapter 10)</a>:</strong> Model-specific details for the standard soprano build; printing, assembly, and troubleshooting are in chapters 4 to 6.</li>
+<li><strong>Acoustic Modeling:</strong> Inria Openwind, the open-source wind instrument design toolbox used to calculate and optimize the bore and toneholes.</li>
+<li><strong>Design Compliance and History:</strong> Historical background on one-handed woodwinds (including expired patents) can be found in <a href="3-background-and-inspiration.html">Background &amp; Inspiration</a>. Open-source licensing and IP compliance details are listed in <a href="4-project-and-instrument-details-and-contexts.html">Project and Instrument Details and Contexts</a>.</li>
+<li><strong>Community Support:</strong> In these early stages of release, we welcome educators, makers, and families reaching out to us for assembly advice, troubleshooting, and collaborative feedback.</li>
+</ul>
+</main>
+</body>
+</html>

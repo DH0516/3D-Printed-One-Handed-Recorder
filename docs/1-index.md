@@ -23,4 +23,4 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 
 ### Interactive Tools
 
-- **[Interactive Fingering Chart Viewer](fingering_viewer.html)** - See [Reference Tools & Resources](9-reference-tools-and-resources.md) for details.
+- **[Interactive Fingering Chart Viewer](fingering_viewer.html)** - Interactive per-note diagrams, staff notation, and a printable one-page chart. Details in [Reference Tools & Resources](9-reference-tools-and-resources.md).

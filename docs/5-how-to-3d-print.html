@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to 3D Print | 3D-Printed-One-Handed-Recorder</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }
+header { background: #16302b; color: #f2f6f4; padding: 14px 20px; }
+header nav { display: flex; gap: 18px; flex-wrap: wrap; max-width: 50rem; margin: 0 auto; align-items: baseline; }
+header .site { font-weight: 700; margin-right: auto; }
+header a { color: #bfe3d9; text-decoration: none; }
+header a:hover { color: #ffffff; }
+main { max-width: 50rem; margin: 0 auto; padding: 28px 20px 48px; }
+h1, h2, h3 { line-height: 1.25; }
+a { color: #0e6f66; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #d8d2c2; padding: 7px 10px; text-align: left; }
+th { background: #efece3; }
+blockquote { border-left: 4px solid #0e6f66; margin: 1rem 0; padding: 2px 14px; background: #f0f5f2; }
+code { background: #efece3; padding: 1px 5px; border-radius: 4px; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+<header><nav>
+<span class="site">3D-Printed-One-Handed-Recorder</span>
+<a href="1-index.html">Docs</a>
+<a href="fingering_viewer.html">Fingering viewer</a>
+</nav></header>
+<main>
+<h1>4. How to 3D Print</h1>
+<h3>4.1 What is Needed (Tools &amp; Materials)</h3>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><strong>Filament:</strong> Standard 1.75 mm PLA or PETG. Avoid warping materials like ABS and ASA, and never use photopolymer resin for any mouth-contact part; see <a href="4-project-and-instrument-details-and-contexts.html">Project and Instrument Details and Contexts</a> for the resin safety analysis.</li>
+<li><strong>Commercial Recorder Head Joint:</strong> A standard 440-442 Hz plastic soprano recorder head joint is required for the <strong>soprano-440-v1</strong> model, as the head joint is not printed in this project. (See <a href="4-project-and-instrument-details-and-contexts.md#36-fipple-mechanics--head-joint-exclusion">Fipple Mechanics &amp; Head Joint Exclusion</a> for details).</li>
+<li><strong>1.75 mm Filament Snippets:</strong> A few short pieces of ordinary printer filament. One acts as the pivot pin for Key 1; the others are the bending pin springs that close Keys 2 to 4.</li>
+<li><strong>Sealing Pads:</strong> Discs of 1.0-1.5 mm closed-cell neoprene, natural cork, craft foam, or soft leather, cut to the key cup diameters.</li>
+<li><strong>Adhesive:</strong> A drop of gel cyanoacrylate (super glue) to seat the pads in the key cups.</li>
+<li><strong>Tenon Seal:</strong> Paper tape, thread, O-ring, or cork for the friction joints.</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><strong>3D Printer:</strong> Any consumer FDM printer with at least 160 mm of Z height. The middle joint is the tallest part at roughly 15 to 16 cm.</li>
+<li><strong>Finishing Tools:</strong> 400 to 1200 grit wet/dry sandpaper, miniature needle files, and deburring tools to clean up tone holes and clear away print hair if you experience stringing issues.</li>
+<li><strong>Pliers &amp; Tweezers:</strong> Needle-nose pliers, fine tweezers, flush cutters, and a small craft knife.</li>
+</ul>
+<h3>4.2 What Settings to Use (Suggested Recommendations)</h3>
+<blockquote>
+<p>[!NOTE]
+Most generic or general slicing settings should be okay for a standard print. The fine settings detailed below are recommended from a troubleshooting perspective to optimize print quality, airtightness, and acoustic performance.</p>
+</blockquote>
+<ul>
+<li><strong>Calibration &amp; Tolerances:</strong> Ensure your printer is properly calibrated for dimensional precision before printing. The instrument design is optimized so that standard tolerances of ~0.5 mm are generally okay.</li>
+<li><strong>Orientation:</strong> Print the body and foot joint vertically along the bore axis with the tenon on the build plate. Never print the acoustic body horizontally: horizontal layer lines cause bore distortion and air leakage. Print the keys with standard slicer supports.</li>
+<li><strong>Layer Height:</strong> 0.12 mm is recommended for better acoustic seal and detail on tone hole bevels; 0.16 mm is acceptable.</li>
+<li><strong>Wall Perimeters:</strong> Use at least 4 to 6 wall loops (minimum 2.0 mm total wall thickness) to ensure complete airtightness through layer lines and provide structural rigidity.</li>
+<li><strong>Infill:</strong> Printing as a full solid (100% infill) is ideal, but if printing with sparse infill, keep the infill density high (60%+). The sparse infill pattern itself does not matter; choose a simple pattern (such as grid or rectilinear) to save print time.</li>
+<li><strong>Bridges:</strong> Disable "thick internal bridges" in your slicer settings to prevent internal bore distortions.</li>
+<li><strong>Supports:</strong> Try to not add supports on the tone holes, as supported holes can come out dirtier and rougher than expected. If supports are needed, they can be added on the middle joint tenon.</li>
+<li><strong>Seams:</strong> Place aligned seams on the exterior back or side of the instrument. Do not use scarf seams or random seams inside the bore, which prevent a smooth internal bore surface.</li>
+<li><strong>Brim:</strong> Use an outer brim of at least 5 mm to ensure solid bed adhesion when printing tall joint sections vertically.</li>
+</ul>
+<h3>4.3 Pitch Precision &amp; Tone Hole Resizing</h3>
+<p>Because 3D printing involves material shrinkage, slicing variations, and internal bore surface textures, the printed instrument's acoustic pitches might not be perfectly precise out of the box.</p>
+<ul>
+<li><strong>Tone Hole Adjustment:</strong> Depending on your specific printing context (filament type, printer calibration, and slicing tolerances), you may need to resize the tone holes on the side plane of the recorder.</li>
+<li><strong>Tuning Guidelines:</strong> If a note plays too flat, carefully enlarge the corresponding tone hole using a sand paper or similar tools. If a note plays too sharp, the hole size can be slightly reduced by rubbing to add some beeswax around the tone hole.</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><strong>ISMA 2026 Paper:</strong> [Author/Team's research paper on 3D-printed one-handed recorders, International Symposium on Musical Acoustics (ISMA 2026)].</li>
+</ol>
+</main>
+</body>
+</html>

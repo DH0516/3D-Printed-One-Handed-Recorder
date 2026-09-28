@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting | 3D-Printed-One-Handed-Recorder</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }
+header { background: #16302b; color: #f2f6f4; padding: 14px 20px; }
+header nav { display: flex; gap: 18px; flex-wrap: wrap; max-width: 50rem; margin: 0 auto; align-items: baseline; }
+header .site { font-weight: 700; margin-right: auto; }
+header a { color: #bfe3d9; text-decoration: none; }
+header a:hover { color: #ffffff; }
+main { max-width: 50rem; margin: 0 auto; padding: 28px 20px 48px; }
+h1, h2, h3 { line-height: 1.25; }
+a { color: #0e6f66; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #d8d2c2; padding: 7px 10px; text-align: left; }
+th { background: #efece3; }
+blockquote { border-left: 4px solid #0e6f66; margin: 1rem 0; padding: 2px 14px; background: #f0f5f2; }
+code { background: #efece3; padding: 1px 5px; border-radius: 4px; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+<header><nav>
+<span class="site">3D-Printed-One-Handed-Recorder</span>
+<a href="1-index.html">Docs</a>
+<a href="fingering_viewer.html">Fingering viewer</a>
+</nav></header>
+<main>
+<h1>6. Troubleshooting</h1>
+<h3>6.1 Sound &amp; Acoustic Issues</h3>
+<ul>
+<li>
+<p><strong>Issue: The recorder sounds "airy", weak, or fails to speak on low notes (Low C, C#, D).</strong></p>
+</li>
+<li>
+<p><strong>Cause 1: Inadequate Key Pad Seal.</strong> Inspect each key pad using a flashlight placed inside the bore in a darkened room or test with a narrow paper feeler gauge. If light leaks around the pad rim, re-seat or sand the tone hole chimney flat.</p>
+</li>
+<li><strong>Cause 2: Tenon Joint Leakage.</strong> Air escaping at the head-to-body or body-to-foot joint weakens acoustic pressure. Add extra layers of thread, PTFE tape, or cork wrapping to achieve an airtight seal.</li>
+<li>
+<p><strong>Cause 3: Leaky Print Walls.</strong> If improperly printed, air can bleed through micro-gaps between layer lines, usually happens around toneholes. Ensure at least 4 perimeter walls were used, or seal the interior bore with a thin coat of mineral oil or paraffin wax. Sparse Infill patterns likely will not change the acoustic outcome.</p>
+</li>
+<li>
+<p><strong>Issue: Lower register sounds weak compared to upper, or constantly overblows.</strong></p>
+</li>
+<li>
+<p><strong>Cause 1: Octave Thumb Hole or Key Leak.</strong> The thumb hole key (Key 1) or other keyed hole must seal completely when fully closed and provide a clean aperture when vented.</p>
+</li>
+<li><strong>Cause 2: Leaky Print Walls.</strong></li>
+</ul>
+<h3>6.2 Mechanical &amp; Keywork Issues</h3>
+<ul>
+<li>
+<p><strong>Issue: Keys stick, bind, or are sluggish to return.</strong></p>
+</li>
+<li>
+<p><strong>Cause 1: Pivot Friction.</strong> The pivot hole in the key hinge may be too tight. Gently sand or ream the hole until the key turns freely.</p>
+</li>
+<li><strong>Cause 2: Insufficient Spring Tension.</strong> Increase the bending preload on the filament pin spring, or replace the snippet with a fresh one.</li>
+<li>
+<p><strong>Cause 3: Key Arm Clearance.</strong> Check that key arms do not rub against adjacent pillar posts or the outer curvature of the body.</p>
+</li>
+<li>
+<p><strong>Issue: Key pads fall off or shift out of alignment.</strong></p>
+</li>
+<li>
+<p><strong>Solution:</strong> Clean the key cup thoroughly with isopropyl alcohol before gluing. Use gel cyanoacrylate or contact cement, ensuring full surface contact and allowing adequate cure time under clamping pressure.</p>
+</li>
+</ul>
+<h3>6.3 Joint Fit &amp; Physical Tolerances</h3>
+<ul>
+<li>
+<p><strong>Issue: Joints are too tight to assemble or bind during insertion.</strong></p>
+</li>
+<li>
+<p><strong>Solution:</strong> Do not force printed joints together. Apply less thread/cork wrapping. If the bare printed tenon is oversized, wet-sand the outer diameter with 400-grit sandpaper until it inserts smoothly. Then apply cork grease or wax.</p>
+</li>
+<li>
+<p><strong>Issue: Joints are loose or wobble during play.</strong></p>
+</li>
+<li>
+<p><strong>Solution:</strong> Add more tenon wrap until the connection is snug, rigid, and airtight.</p>
+</li>
+</ul>
+</main>
+</body>
+</html>

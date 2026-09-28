@@ -4,7 +4,7 @@ An open-source, fully acoustic **one-handed soprano recorder** for players who u
 
 ## Documentation
 
-The [`docs/`](docs/1-index.md) folder is the documentation site (GitHub Pages + Jekyll): project overview, background, printing guidelines, assembly instructions, troubleshooting, and the soprano build guide.
+The [`docs/`](docs/1-index.html) folder is the documentation site, served by GitHub Pages as plain static HTML (`.nojekyll`): project overview, background, printing guidelines, assembly instructions, troubleshooting, and the soprano build guide. Edit the `.md` chapters, then run `python3 docs/render.py` to regenerate the `.html` pages.
 
 ## Interactive fingering chart
 
