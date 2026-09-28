@@ -3,10 +3,12 @@
 Each model directory holds `model.json`, the machine-readable backend for the
 interactive fingering viewer: the complete tonehole map plus the full chromatic
 fingering chart. These files are generated from the project's CAD model; if a
-number looks wrong, please open an issue rather than editing the JSON. The
-viewer embeds a generated minimal projection of the same data (station ids,
-types, key names, layout, fingerings), so the page works with no server at
-all.
+number looks wrong, please open an issue rather than editing the JSON.
+
+`manifest.json` lists the models; the fingering viewer reads it at startup
+and then loads each model's `model.json`. A recorder with a different key or
+hole layout needs a `model.json` (with its own `layout` order) plus one
+manifest entry, and no viewer changes.
 
 ## Schema `ohr-model/1`
 
