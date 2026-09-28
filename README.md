@@ -16,10 +16,11 @@ instructions, troubleshooting, and the soprano build guide.
 ## Interactive fingering chart
 
 [`docs/fingering_viewer.html`](docs/fingering_viewer.html) is a standalone,
-client-side fingering chart with a model selector. It reads the per-model
-`model.json` files in [`models/`](models/README.md) (tonehole map plus the
-full fingering chart), so models with different key or hole configurations
-need no viewer changes.
+client-side fingering chart with a model selector, showing a simplified
+instrument diagram per note. It is fully static: the model data is embedded
+in the page, so it works from any static host or opened directly from disk.
+The same data lives in [`models/`](models/README.md) as reusable `model.json`
+files.
 
 ## Models
 

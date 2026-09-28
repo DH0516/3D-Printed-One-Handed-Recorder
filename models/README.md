@@ -3,13 +3,18 @@
 Each model directory holds `model.json`, the machine-readable backend for the
 interactive fingering viewer: the complete tonehole map plus the full chromatic
 fingering chart. These files are generated from the project's CAD model; if a
-number looks wrong, please open an issue rather than editing the JSON.
+number looks wrong, please open an issue rather than editing the JSON. The
+viewer embeds a generated copy of the same data, so the page works with no
+server at all.
 
 ## Schema `ohr-model/1`
 
 Top level:
 
 - `id`, `name`, `description`: model identity.
+- `layout`: optional. Station ids in top-to-bottom diagram order (a double
+  hole is its base id). This is physical placement only; the fingering chart
+  itself maps each hole id the same way regardless of layout.
 - `pitch`: `reference` (tuning standard), `lowest`, `highest`.
 - `holes`: one entry per tonehole.
 - `fingerings`: one entry per chromatic note.
