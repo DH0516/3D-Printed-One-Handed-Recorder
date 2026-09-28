@@ -23,6 +23,8 @@ TEMPLATE = """<!doctype html>
 <title>{title} | 3D-Printed-One-Handed-Recorder</title>
 <style>
 :root {{ color-scheme: light; }}
+.toc {{ display: grid; gap: 6px; margin: 1rem 0 2rem; }}
+section {{ border-top: 1px solid #d8d2c2; padding-top: 1rem; }}
 * {{ box-sizing: border-box; }}
 body {{ margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }}
 header {{ background: #16302b; color: #f2f6f4; padding: 14px 20px; }}
@@ -72,9 +74,48 @@ def render_file(md_path):
     return out
 
 
+def render_single():
+    """Render every chapter into one self-contained DOCUMENTATION.html
+    with internal anchors, so it works opened from anywhere, including
+    a file manager's transient copy."""
+    chapters = [p for p in sorted(HERE.glob("*.md"))
+                if p.name != "1-index.md"]
+    nav, sections = [], []
+    ids = {p.name: "chap-%d" % (i + 1) for i, p in enumerate(chapters)}
+    for i, md_path in enumerate(chapters):
+        text = md_path.read_text()
+        title = md_path.stem
+        m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
+        if m:
+            fm = m.group(1)
+            text = text[m.end():]
+            t = re.search(r"^title:\s*(.+)$", fm, re.M)
+            if t:
+                title = t.group(1).strip()
+        body = markdown.markdown(text, extensions=["tables", "fenced_code"])
+        body = re.sub(
+            r'href="([^"#]+)\.md"',
+            lambda mm: 'href="#%s"' % ids.get(mm.group(1) + ".md", ""),
+            body)
+        nav.append('<a href="#%s">%d. %s</a>' % (ids[md_path.name], i + 1, title))
+        sections.append('<section id="%s">\n%s\n</section>'
+                        % (ids[md_path.name], body))
+    doc = TEMPLATE.format(
+        title="Documentation",
+        body=('<h1>3D-Printed-One-Handed-Recorder</h1>'
+              '<p>All chapters in one page; the links below stay inside '
+              'this file.</p>'
+              '<nav class="toc">%s</nav>%s'
+              % ("".join(nav), "\n".join(sections))))
+    out = HERE / "DOCUMENTATION.html"
+    out.write_text(doc)
+    return out
+
+
 def main():
     for md_path in sorted(HERE.glob("*.md")):
         print("rendered", render_file(md_path).name)
+    print("rendered", render_single().name)
 
 
 if __name__ == "__main__":

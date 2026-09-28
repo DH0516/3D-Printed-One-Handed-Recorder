@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation | 3D-Printed-One-Handed-Recorder</title>
+<style>
+:root { color-scheme: light; }
+.toc { display: grid; gap: 6px; margin: 1rem 0 2rem; }
+section { border-top: 1px solid #d8d2c2; padding-top: 1rem; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; color: #1b2227; background: #fdfcf8; line-height: 1.6; }
+header { background: #16302b; color: #f2f6f4; padding: 14px 20px; }
+header nav { display: flex; gap: 18px; flex-wrap: wrap; max-width: 50rem; margin: 0 auto; align-items: baseline; }
+header .site { font-weight: 700; margin-right: auto; }
+header a { color: #bfe3d9; text-decoration: none; }
+header a:hover { color: #ffffff; }
+main { max-width: 50rem; margin: 0 auto; padding: 28px 20px 48px; }
+h1, h2, h3 { line-height: 1.25; }
+a { color: #0e6f66; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #d8d2c2; padding: 7px 10px; text-align: left; }
+th { background: #efece3; }
+blockquote { border-left: 4px solid #0e6f66; margin: 1rem 0; padding: 2px 14px; background: #f0f5f2; }
+code { background: #efece3; padding: 1px 5px; border-radius: 4px; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+<header><nav>
+<span class="site">3D-Printed-One-Handed-Recorder</span>
+<a href="1-index.html">Docs</a>
+<a href="fingering_viewer.html">Fingering viewer</a>
+</nav></header>
+<main>
+<h1>3D-Printed-One-Handed-Recorder</h1><p>All chapters in one page; the links below stay inside this file.</p><nav class="toc"><a href="#chap-1">1. One-Handed Recorders: soprano-440-v1 Build Guide</a><a href="#chap-2">2. Overview</a><a href="#chap-3">3. Background & Inspiration</a><a href="#chap-4">4. Project and Instrument Details and Contexts</a><a href="#chap-5">5. How to 3D Print</a><a href="#chap-6">6. How to Assemble</a><a href="#chap-7">7. Troubleshooting</a><a href="#chap-8">8. Model Information</a><a href="#chap-9">9. Reference Tools & Resources</a></nav><section id="chap-1">
+<h1>One-Handed Recorders - soprano-440-v1</h1>
+<p><strong>soprano-440-v1</strong> is the build of model <strong>A1</strong> (OHR-Soprano-v0.1), the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).</p>
+<p>The baseline files are designed for a right-handed player. To make a left-handed version, mirror all design files horizontally (along the bore axis) in your CAD or slicing software. Left-hand and right-hand models use mirrored variants of the same fingering chart.</p>
+<p>Printing, assembly, and troubleshooting are shared by all variants:</p>
+<ul>
+<li><a href="#chap-5">How to 3D Print</a>: tools, materials, and slicer settings.</li>
+<li><a href="#chap-6">How to Assemble</a>: step-by-step assembly.</li>
+<li><a href="#chap-7">Troubleshooting</a>: common print, assembly, and acoustic issues.</li>
+<li><a href="#chap-8">Model Information</a>: all variants, including A2 with the octave key at the back.</li>
+</ul>
+<p><em>Note for organology specialists:</em> We can likely produce custom model designs based on different historical models upon request.</p>
+</section>
+<section id="chap-2">
+<h1>1. Overview</h1>
+<p>The 3D Printed (FDM) One-Handed Recorder is an open-source project aimed at creating an accessible, fully functional musical instrument. It is inspired by the Dolmetsch one-handed recorder series, which was developed to accommodate musicians with accessibility issues in coordination of their arms, fingers, or hand. It is not a completely hands-free solution, but it provides a starting base for a fully acoustic instrument that can be adapted to fit a player's hands while maintaining playing quality. This is a purely acoustic instrument that does not involve electrical components.</p>
+<p>This project focuses on creating a reproducible, open-source design optimized for consumer-grade FDM 3D printing. We utilize standard FDM printing and readily accessible off-the-shelf parts to reproduce the specialized key system required for one-handed play. While the core concepts and design ideas remain the intellectual property of the author/team (distributed under an open-source non-commercial license such as the Creative Commons Attribution-NonCommercial CC BY-NC, which requires that this project is cited when used), users have the freedom to print, modify, and customize the designs for their personal physical needs. Selling the design files or physical instruments for commercial profit is strictly prohibited.</p>
+</section>
+<section id="chap-3">
+<h1>2. Background &amp; Inspiration</h1>
+<p>Although recorders are unfortunately often misconceptualized as "simple" instruments, they are acoustically sophisticated wind instruments. This misconception largely stems from the mid-20th century, when child music educators (including Zoltán Kodály and others) introduced the recorder into elementary school classrooms as an accessible starter instrument, after being forgotten for a long time after the late Baroque period. In reality, the fipple (jet oscillator) relies on complex nonlinear fluid dynamics to split air and produce sound, requiring high design precision. This historical and modern background highlights the engineering challenges and inspirations behind the development of one-handed woodwinds.</p>
+<h3>2.1 Tracking back on the Fipple: An Early One-Handed Woodwind</h3>
+<p>Historically, playing a woodwind instrument with a single hand has precedent in the <strong>tabor pipe</strong>, a three-holed fipple flute dating back to the Middle Ages and Renaissance. Designed to be played with only one hand, it allowed the musician to simultaneously play a small drum (the tabor) with their free hand. By using three holes (two on the front, one on the back) and utilizing overblowing techniques to access higher overtones, players could cover a wide playing notes range. This project continues in spirit of these tabor pipes in introducing single-handed fipple woodwind in the performer's arsenal.</p>
+<h3>2.2 The Dolmetsch recorder &amp; Expired Mechanics</h3>
+<p>Since the 1930s, the Dolmetsch family has crafted custom recorders for individuals with hand accessibility needs.</p>
+<p>The Dolmetsch design allows a player to use only one hand (with left- or right-handed variants) by replacing the finger holes of the missing hand with a specialized 4-key mechanism. This system incorporates a two-position thumbkey (closed/open) operated by the little finger of the player's active hand, mapping the notes normally played by the other hand onto keys.</p>
+<p>The technical mechanics of the original Dolmetsch recorder-keywork are documented in historical patent records dating from the <strong>1950s</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Patent</th>
+<th>Subject</th>
+<th>Grant Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GB852164</strong></td>
+<td>Side-mounted closed key operated by the little finger</td>
+<td>8 June 1959</td>
+</tr>
+<tr>
+<td><strong>GB852165</strong></td>
+<td>Bell key</td>
+<td>8 June 1959</td>
+</tr>
+<tr>
+<td><strong>GB852135</strong></td>
+<td>Echo / "piano" key</td>
+<td>1958</td>
+</tr>
+<tr>
+<td><strong>GB666602</strong></td>
+<td>"Tone-projector"</td>
+<td>1950s</td>
+</tr>
+</tbody>
+</table>
+<p>Based on standard term limits, these patents expired in the late 20th century. Public database searches of Espacenet, Google Patents, and the USPTO for any later custom designs (including the ~1997 volume model) did not reveal active patent protection on the basic one-handed key layout. Because all patents covering these historical mechanical keywork designs have expired, reproducing, modifying, or using these mechanics does not violate any patent rights, placing the mechanics in the public domain.</p>
+<p>Out of these historical patents, the One-Handed Recorder project only utilizes the side-mounted key operated by the little finger (GB852164). Other wind instruments commonly utilize a pinky key mechanism as well, making the specific novelty of this historical recorder patent unclear; regardless, all of these patents have since expired. The project's first models (A1 and A2) provide a thumb-operated version of the octave key to enable a stronger, more reliable seal of the octave hole, as the pinky-operated key can sometimes be prone to seal leakage. However, an alternative design that maps one-to-one mapping of the keys and also avoiding the thumb usage went back to making this design to be considered again. Without an actual precise knowledge of what this Dolmetsch system is, if this potentially becomes a dispute of "this is my proprietary design", it will be pulled out. Otherwise, all the designs of this project are going to be FREE and OPEN-SOURCED, near FOSS, except commercial reselling of the design for profit, or claiming the intellectual property ownership AFTER this project has become available. The colleagues that are working on this project are actively working to make sure there is a publication to prevent such potential foul play. </p>
+<p>Additionally, the key mechanisms used in this recorder are mechanically no different from the standard keywork used in common Boehm-system woodwinds (such as modern flutes, clarinets, and oboes). They rely on the same fundamental mechanical principles (including pivot hinge tubes, spring returns, and padded cups to seal tone holes) which have been standard, open-domain woodwind engineering concepts for almost two centuries.</p>
+<h3>2.3 The Rise of 3D Printed Musical Instruments</h3>
+<p>3D printing musical instruments has gained interest in the maker community, supported by resources from organizations like <strong>Prusa Research</strong> (such as their YouTube video <a href="https://www.youtube.com/watch?v=tMuK4TjFtgI">"3D print a Recorder, an Ocarina or a Kazoo"</a> and accompanying <a href="https://blog.prusa3d.com/3d-print-a-recorder-an-ocarina-or-a-kazoo-3d-pritned-musical-instruments_49390/">blog guide</a>). These developments highlight how consumer-grade FDM printers can be configured to produce the acoustic geometries of a recorder. To differentiate from closed or proprietary designs, this project provides a free and open-source (FOSS/FOSH), customizable, FDM 3D-printable framework for one-handed recorders.</p>
+<h3>2.4 The "Flow" Project</h3>
+<p>In recent years, the intersection of music education and assistive technology has led to projects like <strong>Flow</strong>. Developed as an inclusive, low-cost, 3D-printed one-handed recorder, Flow aimed to provide school students with physical disabilities a way to participate in music education. The Flow project demonstrated the application of additive manufacturing to create functional assistive musical instruments.</p>
+<h3>2.5 Historical Prior Art &amp; Other Makers</h3>
+<p>The concept of one-handed recorders has been independently explored and implemented, reinforcing that the general approach is well-established prior art:</p>
+<ul>
+<li><strong>Tsukamoto &amp; Fujikoka (1980):</strong> Developed one-handed soprano and alto recorders by adapting Zen-On plastic recorders, documented in the article <em>"A One-Handed Recorder"</em> in <em>Recorder and Music Magazine</em>.</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><strong>Tabor Pipe History:</strong> Thoinot Arbeau. (1588). <em>Orchésographie</em>. Jean Tabourot's seminal dance manual detailing the history, mechanics, and playing technique of the three-holed tabor pipe.</li>
+<li><strong>Dolmetsch Online:</strong> <em>Gold Series Recorders</em>. <a href="https://www.dolmetsch.com/goldseriesrecorders.htm">https://www.dolmetsch.com/goldseriesrecorders.htm</a>. Details the origins and design of the Dolmetsch 4-key one-handed recorder mechanism.</li>
+<li><strong>Prusa Research:</strong> <em>3D print a Recorder, an Ocarina or a Kazoo</em>. YouTube Video (<a href="https://www.youtube.com/watch?v=tMuK4TjFtgI">watch</a>) &amp; Blog Post (<a href="https://blog.prusa3d.com/3d-print-a-recorder-an-ocarina-or-a-kazoo-3d-pritned-musical-instruments_49390/">read</a>) (2021) demonstrating the viability and considerations of 3D printing functional recorders on consumer FDM printers.</li>
+<li><strong>The "Flow" Project:</strong> MDPI. (2021). <em>Flow: An Inclusive 3D-Printed One-Handed Recorder for Students with Physical Disabilities</em>. A study on using 3D-printed instruments to promote inclusive music education.</li>
+<li><strong>Tsukamoto, T. (1980):</strong> <em>"A One-Handed Recorder."</em> <em>Recorder and Music Magazine</em>, 5(9).</li>
+<li><strong>Dolmetsch Keywork Patents:</strong> C. Dolmetsch. GB852164 &amp; GB852165 (granted 1959), GB852135 (granted 1958), GB666602 (1950s). Historical patent documents retrieved from Espacenet.</li>
+</ol>
+</section>
+<section id="chap-4">
+<h1>3. Project and Instrument Details and Contexts</h1>
+<h3>3.1 Target Audience</h3>
+<ul>
+<li>Individuals with accessibility needs of upper-limbs with some limitations (one hand, or two hands with partial limitations).</li>
+<li>Organizations working with such accessibility-need individuals wanting to provide a starting point of a solution.</li>
+<li>Performers looking for a double-soprano-recorder solution.</li>
+<li>Researchers and educators interested in assistive musical technology.</li>
+</ul>
+<h3>3.2 Instrument Details</h3>
+<ul>
+<li><strong>Type:</strong> Currently scoped for only Descant (Soprano) variant. Descant is typically recommended for children, while treble (alto) may be equally considered in professional or ensemble settings.</li>
+<li><strong>Key System:</strong> Four keys replace the missing hand's fingers and thumb.</li>
+<li><strong>Fingering:</strong> Requires specialized fingering chart, which is an inversion of the holes to keys where keys are replacing the holes. Left-hand and right-hand models use mirrored variants of the fingering system.</li>
+<li><strong>Handedness:</strong> The primary instrument design (v1) is right-handed. A left-handed instrument can be made by mirroring everything horizontally along the axis of the bore.</li>
+</ul>
+<h3>3.3 Development Realities</h3>
+<ul>
+<li><strong>Prototyping vs. Mass Production:</strong> For this project, the advantage of 3D printing is rapid prototyping and customizability rather than high-speed mass production.</li>
+<li><strong>Development Process:</strong> Creating a functional acoustic instrument with 3D printing involves significant calibration, testing, and fine-tuning of acoustic tolerances.</li>
+<li><strong>Iterative Adjustment:</strong> Print calibration and trial-and-error are expected parts of the process, and designs may need adjustments to fit individual printer tolerances.</li>
+<li><strong>The Key Challenge:</strong> Mechanical keys have been a major focus in our initial research. Because keys require airtight padding and precise pivots, we invited a professional instrument repairer for direct consultation.</li>
+<li><strong>Iterative Redesign:</strong> We went through numerous redesign cycles to achieve reliable key seals and responsive movement.</li>
+<li><strong>Our Goal:</strong> Our goal is to empower users and local makers to fabricate and iterate on these designs themselves using accessible consumer tools.</li>
+<li><strong>Core Purpose is "Accessibility":</strong> The project is designed to serve upper-limb accessibility, utilizing consumer-grade FDM printers and common, safe FDM thermoplastics (including PLA, PETG, and other safe filaments).</li>
+<li><strong>Access and Upgrade Barriers:</strong> While mass-produced plastic soprano recorders are widely available and affordable, upgrading to wooden instruments or obtaining customized parts is costly and difficult. The inherent sophistication of the recorder makes it challenging to customize, particularly due to the complexity of the fipple, but also extending to key layouts and custom sizing.</li>
+<li><strong>No Proprietary Hardware:</strong> Any non-printed hardware additions (e.g., rubber bands, springs, pads, pins) must be readily purchasable by the general public at standard hardware stores or online retailers. No proprietary or custom-engineered hardware is required. If a specific part is not available, we will suggest alternative items, and users are welcome to contact us for suggestions.</li>
+<li><strong>Freedom to Print &amp; Modify:</strong> Users are encouraged to print, replicate, test, and modify the files to fit their personal anatomical requirements.</li>
+<li><strong>Academic Licensing &amp; IP Attribution:</strong> While users have freedom to print and modify the designs, the core design ideas and research development belong to the original author/team, protected under an open-source non-commercial license (such as Creative Commons Attribution-NonCommercial CC BY-NC). This allows anyone to print, share, and modify the designs for personal or educational use, but strictly prohibits commercial sale or exploitation of the design files or finished instruments for money, and requires that the original project and author/team are cited when the design is used or shared.</li>
+</ul>
+<h3>3.4 Materials Selection &amp; UV Resin Safety Hazards</h3>
+<ul>
+<li><strong>We know many materials out there:</strong> When designing a 3D-printable instrument, there are numerous options available, ranging from liquid photopolymers to various meltable thermoplastics.</li>
+<li><strong>Toxicity of Consumer-Grade UV Resin:</strong> Standard consumer-grade photopolymer UV resins used in stereolithography (SLA/DLP) printers present severe health and safety risks, making them unsuitable for mouth-contact instruments like recorders. In their liquid state, these resins contain reactive monomers, oligomers, and photoinitiators that are known skin and respiratory irritants. Direct contact can cause severe allergic contact dermatitis and chemical sensitization over time (Macdonald et al., 2016; Alifui-Segbaya et al., 2017). Furthermore, standard UV resins are not approved for oral contact, as uncured monomer residues can leach into saliva.</li>
+<li><strong>Incomplete Curing in Opaque Resins:</strong> If non-translucent (opaque) UV resin is used, it is highly likely that the inside of the printed parts was not cured properly because UV light cannot reach there. Opaque pigments (like Titanium Dioxide or Carbon Black) absorb and scatter UV light, reducing the cure depth (Tomec et al., 2022). This leaves toxic, uncured liquid resin trapped within the internal structures of the instrument, posing severe contact health hazards.</li>
+<li><strong>FDM with PLA Selection:</strong> Due to these safety concerns, we had to choose FDM (Fused Deposition Modeling) with PLA (Polylactic Acid) in the end as our main baseline (though other FDM materials like PETG should work fine too). Unless using certified biocompatible medical/dental-grade resins subjected to strict medical curing procedures, SLA resins must be avoided for mouth-contact instruments.</li>
+</ul>
+<h3>3.5 Design Integrity &amp; Intellectual Property Compliance</h3>
+<p>To ensure respect for intellectual property while keeping our work completely open-source, the project operates under a set of design integrity and compliance guidelines:
+- <strong>Independent Expressive Creation:</strong> All CAD models (such as <code>body default/</code>), photographs, instructions, and text in this repository are created independently by the team.
+- <strong>Factual Data Re-derivation:</strong> The fingering layout and acoustic measurements are independently compiled and re-tabulated, rather than copying the graphic layout or arrangement of existing third-party fingering charts.
+- <strong>Trademark Boundaries:</strong> We market this project under its descriptive name, <strong>3D-Printed-One-Handed-Recorder</strong>. Historical names (such as "Dolmetsch") are referenced purely descriptively and historically to identify the design inspiration, never as a product logo or trademark.
+- <strong>Academic Licensing &amp; IP Attribution:</strong> As described in Section 3.3, the project utilizes the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This permits free non-commercial recreation, customization, and study of the design files, provided that the original project and author/team are cited when shared or used.</p>
+<h3>3.6 Fipple Mechanics &amp; Head Joint Exclusion</h3>
+<p>At this stage, this project does not include design files for printing the head joint (mouthpiece) of the recorder. This decision is based on two primary considerations:
+- <strong>Design and Acoustic Complexity:</strong> The fipple and jet mechanisms of the recorder are highly complex and are subjects of popular acoustics studies. In particular, the labium is a very complicated construct, requiring precise sizing of all four sides and the internals. A poorly designed or printed labium causes severe sound defects, commonly observed in low-quality recorders. To avoid providing a low-quality instrument, we recommend using a generic, easily available commercial head joint that plays well.
+- <strong>Safety and Liability:</strong> We are hesitant to instruct users to place home-printed objects directly into their mouths. Even if the materials used are certified as safe, the project team cannot assume responsibility or liability for any health concerns that may arise from using home-fabricated mouthpieces.</p>
+<p>The <strong>soprano-440-v1</strong> model is designed to pair with any standard 440-442Hz plastic soprano recorder head.</p>
+<h2>References</h2>
+<ol>
+<li><strong>Photopolymer Biocompatibility &amp; Toxicity:</strong> Macdonald, N. P., et al. (2016). <em>Assessment of biocompatibility of 3D printed photopolymers</em>. PLoS ONE, 11(8), e0160741. This study documents the high cytotoxicity of standard 3D printed photopolymers on living cells and warns of leachable toxic compounds.</li>
+<li><strong>Dental Resin Toxicity:</strong> Alifui-Segbaya, F., et al. (2017). <em>Biocompatibility of 3D-printed dental resins</em>. Dental Materials, 33(11), 1251-1258. Discusses toxic monomer leaching and sensitization risks in oral mucosal contact.</li>
+<li><strong>Curing Depth of Pigmented Resins:</strong> Tomec, M., et al. (2022). <em>Influence of Pigment Concentration on the Cure Depth and Degree of Conversion of Dental Resins</em>. Journal of Photopolymer Science and Technology, 35(3), 241-248. This study explains how pigments absorb and scatter UV light, exponentially reducing light penetration depth (cure depth) and leaving liquid uncured resin trapped inside the model.</li>
+<li><strong>Factual Data &amp; Copyright:</strong> <em>Feist Publications, Inc. v. Rural Telephone Service Co.</em>, 499 U.S. 340 (1991). Landmark legal case establishing that factual data and information are not protected by copyright.</li>
+<li><strong>Useful Articles Doctrine:</strong> U.S. Copyright Act, 17 U.S.C. §§101, 102(b). Details the exclusion of functional aspects and procedures of useful physical articles from copyright protection.</li>
+</ol>
+</section>
+<section id="chap-5">
+<h1>4. How to 3D Print</h1>
+<h3>4.1 What is Needed (Tools &amp; Materials)</h3>
+<p><strong>Materials:</strong></p>
+<ul>
+<li><strong>Filament:</strong> Standard 1.75 mm PLA or PETG. Avoid warping materials like ABS and ASA, and never use photopolymer resin for any mouth-contact part; see <a href="#chap-4">Project and Instrument Details and Contexts</a> for the resin safety analysis.</li>
+<li><strong>Commercial Recorder Head Joint:</strong> A standard 440-442 Hz plastic soprano recorder head joint is required for the <strong>soprano-440-v1</strong> model, as the head joint is not printed in this project. (See <a href="4-project-and-instrument-details-and-contexts.md#36-fipple-mechanics--head-joint-exclusion">Fipple Mechanics &amp; Head Joint Exclusion</a> for details).</li>
+<li><strong>1.75 mm Filament Snippets:</strong> A few short pieces of ordinary printer filament. One acts as the pivot pin for Key 1; the others are the bending pin springs that close Keys 2 to 4.</li>
+<li><strong>Sealing Pads:</strong> Discs of 1.0-1.5 mm closed-cell neoprene, natural cork, craft foam, or soft leather, cut to the key cup diameters.</li>
+<li><strong>Adhesive:</strong> A drop of gel cyanoacrylate (super glue) to seat the pads in the key cups.</li>
+<li><strong>Tenon Seal:</strong> Paper tape, thread, O-ring, or cork for the friction joints.</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li><strong>3D Printer:</strong> Any consumer FDM printer with at least 160 mm of Z height. The middle joint is the tallest part at roughly 15 to 16 cm.</li>
+<li><strong>Finishing Tools:</strong> 400 to 1200 grit wet/dry sandpaper, miniature needle files, and deburring tools to clean up tone holes and clear away print hair if you experience stringing issues.</li>
+<li><strong>Pliers &amp; Tweezers:</strong> Needle-nose pliers, fine tweezers, flush cutters, and a small craft knife.</li>
+</ul>
+<h3>4.2 What Settings to Use (Suggested Recommendations)</h3>
+<blockquote>
+<p>[!NOTE]
+Most generic or general slicing settings should be okay for a standard print. The fine settings detailed below are recommended from a troubleshooting perspective to optimize print quality, airtightness, and acoustic performance.</p>
+</blockquote>
+<ul>
+<li><strong>Calibration &amp; Tolerances:</strong> Ensure your printer is properly calibrated for dimensional precision before printing. The instrument design is optimized so that standard tolerances of ~0.5 mm are generally okay.</li>
+<li><strong>Orientation:</strong> Print the body and foot joint vertically along the bore axis with the tenon on the build plate. Never print the acoustic body horizontally: horizontal layer lines cause bore distortion and air leakage. Print the keys with standard slicer supports.</li>
+<li><strong>Layer Height:</strong> 0.12 mm is recommended for better acoustic seal and detail on tone hole bevels; 0.16 mm is acceptable.</li>
+<li><strong>Wall Perimeters:</strong> Use at least 4 to 6 wall loops (minimum 2.0 mm total wall thickness) to ensure complete airtightness through layer lines and provide structural rigidity.</li>
+<li><strong>Infill:</strong> Printing as a full solid (100% infill) is ideal, but if printing with sparse infill, keep the infill density high (60%+). The sparse infill pattern itself does not matter; choose a simple pattern (such as grid or rectilinear) to save print time.</li>
+<li><strong>Bridges:</strong> Disable "thick internal bridges" in your slicer settings to prevent internal bore distortions.</li>
+<li><strong>Supports:</strong> Try to not add supports on the tone holes, as supported holes can come out dirtier and rougher than expected. If supports are needed, they can be added on the middle joint tenon.</li>
+<li><strong>Seams:</strong> Place aligned seams on the exterior back or side of the instrument. Do not use scarf seams or random seams inside the bore, which prevent a smooth internal bore surface.</li>
+<li><strong>Brim:</strong> Use an outer brim of at least 5 mm to ensure solid bed adhesion when printing tall joint sections vertically.</li>
+</ul>
+<h3>4.3 Pitch Precision &amp; Tone Hole Resizing</h3>
+<p>Because 3D printing involves material shrinkage, slicing variations, and internal bore surface textures, the printed instrument's acoustic pitches might not be perfectly precise out of the box.</p>
+<ul>
+<li><strong>Tone Hole Adjustment:</strong> Depending on your specific printing context (filament type, printer calibration, and slicing tolerances), you may need to resize the tone holes on the side plane of the recorder.</li>
+<li><strong>Tuning Guidelines:</strong> If a note plays too flat, carefully enlarge the corresponding tone hole using a sand paper or similar tools. If a note plays too sharp, the hole size can be slightly reduced by rubbing to add some beeswax around the tone hole.</li>
+</ul>
+<h2>References</h2>
+<ol>
+<li><strong>ISMA 2026 Paper:</strong> [Author/Team's research paper on 3D-printed one-handed recorders, International Symposium on Musical Acoustics (ISMA 2026)].</li>
+</ol>
+</section>
+<section id="chap-6">
+<h1>5. How to Assemble</h1>
+<p>The design requires <strong>zero screws</strong> and <strong>no bought metal springs</strong>. Key brackets snap directly into integrated pillar slots on the body, and standard 1.75 mm printer filament serves both as the pivot pin for Key 1 and as the pin springs for Keys 2 to 4. Follow the steps in order.</p>
+<h3>Step 1: Clean and Inspect Printed Parts</h3>
+<ul>
+<li>Remove all slicer support material from the keys.</li>
+<li>Check the internal bore of the body and foot joint. Clear away any strings, burrs, or loose filament bits so the air column is unobstructed.</li>
+<li>Inspect each tone hole rim. Ensure the rims are clean, flat, and free of burrs; lightly touch them with fine sandpaper if needed so the key pads seat completely flat.</li>
+<li>Lightly sand the male tenons and female sockets with 400-grit sandpaper until parts test-fit smoothly without binding.</li>
+<li>Optionally apply a thin coat of food-grade oil (flax, or similar used in woodwind oiling) to the internal bore for improved sealing.</li>
+</ul>
+<h3>Step 2: Prepare and Glue Sealing Pads</h3>
+<ul>
+<li>Punch or cut circular pad discs (1.0-1.5 mm closed-cell neoprene, natural cork, or similar) matching the key cup diameter.</li>
+<li>Place a small drop of gel cyanoacrylate or craft adhesive into each pad cup, then press the pad disc firmly into place, making sure it sits flat and level without tilting.</li>
+<li>Let the glue cure fully before mounting the keys.</li>
+</ul>
+<h3>Step 3: Mount Keys 2 to 4</h3>
+<ul>
+<li>Test-fit each printed key arm into its corresponding pivot pillar on the recorder body.</li>
+<li>Align the key bracket with the open slots in the body pillars and gently press it down until it snaps securely into place.</li>
+<li>Test each key: it should turn smoothly on its pivot without binding or excessive wobble.</li>
+</ul>
+<h3>Step 4: Install the Filament Pin Springs (Keys 2 to 4)</h3>
+<ul>
+<li>Cut a short, straight snippet of standard 1.75 mm filament for each key.</li>
+<li>Insert a standard 1.75 mm 3D printing FDM filament (or applicable pins) through the pillar posts and pin holes; it acts as a pin spring.</li>
+<li>Rotate the filament pin in the direction that applies its appropriate sealing force.</li>
+<li>Snap off the filament at the notch so the pin spring stays in one rotational position.</li>
+<li>Press each touchpiece with your finger: the pad should lift smoothly, and when you release, the pin spring should snap the pad shut instantly over the tone hole rim.</li>
+</ul>
+<h3>Step 5: Mount Key 1 (Octave Lever)</h3>
+<ul>
+<li>Position Key 1 into its pin slot on the body.</li>
+<li>Cut a straight snippet of 1.75 mm filament to the width of the pin slot and slide it through the pin slot holes and Key 1, creating a clean pivot pin. Trim any excess flush with the pin slot walls.</li>
+<li>Key 1's return spring is the flexible printed sheet spring, printed as part of the key itself; it keeps the octave hole closed at rest until the touchpiece is pressed.</li>
+</ul>
+<h3>Step 6: Attach the Foot Joint</h3>
+<ul>
+<li>Wrap the body's lower tenon with paper tape, thread, an O-ring, or cork (all work fine) to establish an airtight friction fit.</li>
+<li>Align the foot joint with the body and press it on firmly.</li>
+</ul>
+<h3>Step 7: Mate with the Head Joint</h3>
+<ul>
+<li>Wrap the body's upper tenon with paper tape, thread, an O-ring, or cork until a firm, airtight friction fit is achieved. Apply a light touch of cork grease if needed.</li>
+<li>Push the body firmly into the commercial soprano head joint.</li>
+<li>Visually align the front tone holes with the labium window on the head joint so the instrument is straight.</li>
+</ul>
+<h3>Step 8: Perform Airtightness and Playability Checks</h3>
+<ul>
+<li>Gently blow warm air through the recorder while keeping all tone holes closed.</li>
+<li>Listen and feel for air leaks around the pad cups. If a pad is not sealing completely, check that the pad sits flat in its cup and that the pin spring provides enough closing force.</li>
+<li>Test finger action: press each touchpiece to ensure full, unobstructed travel and snappy spring return.</li>
+<li>Play a chromatic scale following the fingering chart.</li>
+</ul>
+<h3>Design Customizations for Tenons</h3>
+<ul>
+<li><strong>Grooves for Threads:</strong> If enough users request it, the author will add versions of the model files with pre-cut grooves designed specifically for thread wrapping. Note that this is not a standard design for recorders.</li>
+<li><strong>O-Ring Grooves:</strong> Some have suggested O-ring seals. If there is sufficient interest, there will be a version featuring O-ring groove joints.</li>
+<li><strong>Modifying &amp; Sharing:</strong> You are welcome to download the design files and edit them to fit your specific needs. If you make modifications and wish to share them with the community for this instrument, send your designs to the author to be posted on the project site.</li>
+</ul>
+</section>
+<section id="chap-7">
+<h1>6. Troubleshooting</h1>
+<h3>6.1 Sound &amp; Acoustic Issues</h3>
+<ul>
+<li>
+<p><strong>Issue: The recorder sounds "airy", weak, or fails to speak on low notes (Low C, C#, D).</strong></p>
+</li>
+<li>
+<p><strong>Cause 1: Inadequate Key Pad Seal.</strong> Inspect each key pad using a flashlight placed inside the bore in a darkened room or test with a narrow paper feeler gauge. If light leaks around the pad rim, re-seat or sand the tone hole chimney flat.</p>
+</li>
+<li><strong>Cause 2: Tenon Joint Leakage.</strong> Air escaping at the head-to-body or body-to-foot joint weakens acoustic pressure. Add extra layers of thread, PTFE tape, or cork wrapping to achieve an airtight seal.</li>
+<li>
+<p><strong>Cause 3: Leaky Print Walls.</strong> If improperly printed, air can bleed through micro-gaps between layer lines, usually happens around toneholes. Ensure at least 4 perimeter walls were used, or seal the interior bore with a thin coat of mineral oil or paraffin wax. Sparse Infill patterns likely will not change the acoustic outcome.</p>
+</li>
+<li>
+<p><strong>Issue: Lower register sounds weak compared to upper, or constantly overblows.</strong></p>
+</li>
+<li>
+<p><strong>Cause 1: Octave Thumb Hole or Key Leak.</strong> The thumb hole key (Key 1) or other keyed hole must seal completely when fully closed and provide a clean aperture when vented.</p>
+</li>
+<li><strong>Cause 2: Leaky Print Walls.</strong></li>
+</ul>
+<h3>6.2 Mechanical &amp; Keywork Issues</h3>
+<ul>
+<li>
+<p><strong>Issue: Keys stick, bind, or are sluggish to return.</strong></p>
+</li>
+<li>
+<p><strong>Cause 1: Pivot Friction.</strong> The pivot hole in the key hinge may be too tight. Gently sand or ream the hole until the key turns freely.</p>
+</li>
+<li><strong>Cause 2: Insufficient Spring Tension.</strong> Increase the bending preload on the filament pin spring, or replace the snippet with a fresh one.</li>
+<li>
+<p><strong>Cause 3: Key Arm Clearance.</strong> Check that key arms do not rub against adjacent pillar posts or the outer curvature of the body.</p>
+</li>
+<li>
+<p><strong>Issue: Key pads fall off or shift out of alignment.</strong></p>
+</li>
+<li>
+<p><strong>Solution:</strong> Clean the key cup thoroughly with isopropyl alcohol before gluing. Use gel cyanoacrylate or contact cement, ensuring full surface contact and allowing adequate cure time under clamping pressure.</p>
+</li>
+</ul>
+<h3>6.3 Joint Fit &amp; Physical Tolerances</h3>
+<ul>
+<li>
+<p><strong>Issue: Joints are too tight to assemble or bind during insertion.</strong></p>
+</li>
+<li>
+<p><strong>Solution:</strong> Do not force printed joints together. Apply less thread/cork wrapping. If the bare printed tenon is oversized, wet-sand the outer diameter with 400-grit sandpaper until it inserts smoothly. Then apply cork grease or wax.</p>
+</li>
+<li>
+<p><strong>Issue: Joints are loose or wobble during play.</strong></p>
+</li>
+<li>
+<p><strong>Solution:</strong> Add more tenon wrap until the connection is snug, rigid, and airtight.</p>
+</li>
+</ul>
+</section>
+<section id="chap-8">
+<h1>7. Model Information</h1>
+<p>The project supports multiple variants of the same one-handed soprano recorder. All variants share one fingering chart (see the <a href="fingering_viewer.html">fingering viewer</a> and the machine-readable model data in <a href="https://github.com/DH0516/3D-Printed-One-Handed-Recorder/tree/main/models"><code>models/</code></a>).</p>
+<ul>
+<li><strong>A1, Soprano (OHR-Soprano-v0.1)</strong>: the standard model, described by the <a href="#chap-1">soprano build guide</a>. The thumb key operates similar to the "A" key, to be pushed with the joint of the index finger, sideways. This particular design involves avoiding the usage of the thumb completely. Right-handed by default; the design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For left-handed play, the design must be flipped horizontally (mirrored along the bore axis). * <em>Note for organology specialists:</em> We can likely produce custom model
+    designs based on different historical models upon request.</li>
+<li><strong>A2</strong>: A1 with key 1, the octave key, moved to the back of the body as a thumb key.</li>
+</ul>
+</section>
+<section id="chap-9">
+<h1>8. Reference Tools &amp; Resources</h1>
+<ul>
+<li><strong><a href="fingering_viewer.html">Interactive Fingering Chart Viewer</a>:</strong> A dedicated web application to view and practice the fingerings, laid out for the one-handed mechanism. The chart itself is the standard baroque chart, since the keys change which finger works a hole rather than which holes are open.</li>
+<li><strong>Features:</strong> Three note-naming modes (Simple, Solfège, Standard); Simple and Solfège number the instrument's own octaves (<code>C1</code> to <code>C#3</code>, <code>Do 1</code> to <code>Di 3</code>), Standard keeps scientific names (<code>C5</code> to <code>C#7</code>). Staff notes are drawn one octave lower to match the instrument's register. Plus search filtering and print/PDF of the current view.</li>
+<li><strong>Standalone Use:</strong> Fully static; it reads the model list and each <code>model.json</code> from the <code>models/</code> directory, so serve the folder on any static host (GitHub Pages included) and open it from there.</li>
+<li><strong><a href="#chap-1">Soprano 440 Build Guide (Chapter 10)</a>:</strong> Model-specific details for the standard soprano build; printing, assembly, and troubleshooting are in chapters 4 to 6.</li>
+<li><strong>Acoustic Modeling:</strong> Inria Openwind, the open-source wind instrument design toolbox used to calculate and optimize the bore and toneholes.</li>
+<li><strong>Design Compliance and History:</strong> Historical background on one-handed woodwinds (including expired patents) can be found in <a href="#chap-3">Background &amp; Inspiration</a>. Open-source licensing and IP compliance details are listed in <a href="#chap-4">Project and Instrument Details and Contexts</a>.</li>
+<li><strong>Community Support:</strong> In these early stages of release, we welcome educators, makers, and families reaching out to us for assembly advice, troubleshooting, and collaborative feedback.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>
