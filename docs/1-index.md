@@ -21,7 +21,7 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 ### Models Available for Download
 
 - **[Model A1](model-A1.md)** (Soprano, A = 440, no thumb key)
-- **[Model A2](model-A2.md)** (Soprano, A = 440, thumb-operated octave key; foot and Keys 2 to 4 shared with A1)
+- **[Model A2](model-A2.md)** (Soprano, A = 440, thumb-operated octave key)
 
 ---
 
