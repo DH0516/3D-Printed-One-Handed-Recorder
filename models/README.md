@@ -1,23 +1,15 @@
 # Model data
 
-Each model directory holds `model.json`, the machine-readable backend for the
-interactive fingering viewer: the complete tonehole map plus the full chromatic
-fingering chart. These files are generated from the project's CAD model; if a
-number looks wrong, please open an issue rather than editing the JSON.
+Each model directory holds `model.json`, the machine-readable backend for the interactive fingering viewer: the complete tonehole map plus the full chromatic fingering chart. These files are generated from the project's CAD model; if a number looks wrong, please open an issue rather than editing the JSON.
 
-`manifest.json` lists the models; the fingering viewer reads it at startup
-and then loads each model's `model.json`. A recorder with a different key or
-hole layout needs a `model.json` (with its own `layout` order) plus one
-manifest entry, and no viewer changes.
+`manifest.json` lists the models; the fingering viewer reads it at startup and then loads each model's `model.json`. A recorder with a different key or hole layout needs a `model.json` (with its own `layout` order) plus one manifest entry, and no viewer changes.
 
 ## Schema `ohr-model/1`
 
 Top level:
 
 - `id`, `name`, `description`: model identity.
-- `layout`: optional. Station ids in top-to-bottom diagram order (a double
-  hole is its base id). This is physical placement only; the fingering chart
-  itself maps each hole id the same way regardless of layout.
+- `layout`: optional. Station ids in top-to-bottom diagram order (a double hole is its base id). This is physical placement only; the fingering chart itself maps each hole id the same way regardless of layout.
 - `pitch`: `reference` (tuning standard), `lowest`, `highest`.
 - `holes`: one entry per tonehole.
 - `fingerings`: one entry per chromatic note.
@@ -40,14 +32,8 @@ Fingering entry fields:
 
 ## Units and bearings
 
-All lengths are millimeters. `z` runs from the head-joint tenon end of the
-body toward the bell. Bearings are taken verbatim from the CAD tables: the
-finger holes under the operating hand sit at +90, the keyed holes for the
-missing hand's fingers sit near 0 to -60 at the front, and the back of the
-instrument is near 180 (the A2 thumb key's hole 1 sits at -103.6).
+All lengths are millimeters. `z` runs from the head-joint tenon end of the body toward the bell. Bearings are taken verbatim from the CAD tables: the finger holes under the operating hand sit at +90, the keyed holes for the missing hand's fingers sit near 0 to -60 at the front, and the back of the instrument is near 180 (the A2 thumb key's hole 1 sits at -103.6).
 
 ## Models
 
-- [`A1-2/`](A1-2/): the soprano model in two physical variants, A1 (Key 1 in
-  the key cluster) and A2 (Key 1 at the back as a thumb key). One shared
-  fingering chart.
+- [`A1-2/`](A1-2/): the soprano model in two physical variants, A1 (Key 1 in the key cluster) and A2 (Key 1 at the back as a thumb key). One shared fingering chart.

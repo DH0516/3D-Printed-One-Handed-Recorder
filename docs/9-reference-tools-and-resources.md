@@ -12,4 +12,3 @@ layout: default
 - **Acoustic Modeling:** Inria Openwind, the open-source wind instrument design toolbox used to calculate and optimize the bore and toneholes.
 - **Design Compliance and History:** Historical background on one-handed woodwinds (including expired patents) can be found in [Background & Inspiration](3-background-and-inspiration.md). Open-source licensing and IP compliance details are listed in [Project and Instrument Details and Contexts](4-project-and-instrument-details-and-contexts.md).
 - **Community Support:** In these early stages of release, we welcome educators, makers, and families reaching out to us for assembly advice, troubleshooting, and collaborative feedback.
-
