@@ -46,4 +46,4 @@ Because 3D printing involves material shrinkage, slicing variations, and interna
 
 ## References
 
-1. **ISMA 2026 Paper:** [Author/Team's research paper on 3D-printed one-handed recorders, International Symposium on Musical Acoustics (ISMA 2026)].
+1. **Related Acoustic Research:** Ha, D. and Scavone, G. (2026). "Acoustic Impedance and Viscothermal Losses in FDM-Printed Cylindrical Waveguides: Influence of Surface Conditions and Infill Structures." *Proceedings of Meetings on Acoustics*, International Symposium on Musical Acoustics (ISMA 2026), Helsinki, Finland, 15-17 June 2026. DOI: TBD.
