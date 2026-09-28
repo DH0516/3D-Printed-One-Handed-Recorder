@@ -123,6 +123,8 @@ def render_single():
         body=('<h1>3D-Printed-One-Handed-Recorder</h1>'
               '<p>All chapters in one page; the links below stay inside '
               'this file.</p>'
+              '<p>Questions, inquiries, or update requests: '
+              '<a href="mailto:irem25qc@gmail.com">irem25qc@gmail.com</a></p>'
               '<nav class="toc">%s</nav>%s'
               % ("".join(nav), "\n".join(sections))))
     out = HERE / "DOCUMENTATION.html"
