@@ -18,7 +18,7 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 7. **[Model Information](8-model-information.md)** - Supported physical recorder variants.
 8. **[Reference Tools & Resources](9-reference-tools-and-resources.md)** - Project references, resources, and compliance info.
 
-### Model Documentation
+### Models Available for Download
 
 - **[Model A1](model-A1.md)** - Specifications and print files (STL) for the standard variant, the former build guide.
 
@@ -27,3 +27,7 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 ### Interactive Tools
 
 - **[Interactive Fingering Chart Viewer](fingering_viewer.html)** - Interactive per-note diagrams, staff notation, and a printable one-page chart. Details in [Reference Tools & Resources](9-reference-tools-and-resources.md).
+
+### Contact
+
+For any questions, inquiries, or update requests: [irem25qc@gmail.com](mailto:irem25qc@gmail.com)

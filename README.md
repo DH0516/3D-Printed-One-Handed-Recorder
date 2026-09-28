@@ -20,6 +20,10 @@ The [`docs/`](docs/1-index.html) folder is the documentation site, served by Git
 - Design, CAD, printing, acoustics, and documentations: **Daniel Ha** (Master's researcher in music technology, CAML, McGill University).
 - Funding and publication: **Alberto Acquilino**(Western University).
 
+## Contact
+
+For any questions, inquiries, or update requests: [irem25qc@gmail.com](mailto:irem25qc@gmail.com)
+
 ## License
 
 <a href="LICENSE"><img src="docs/cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a>
