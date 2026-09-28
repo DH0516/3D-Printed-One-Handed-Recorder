@@ -24,12 +24,12 @@ files.
 
 ## Models
 
-- **A1**, the standard model (OHR-Soprano-v0.1): four printed keys close
-  toneholes 1 to 4.
-- **A2**: A1 with key 1, the octave lever, moved to the back as a thumb key.
+- **A1/2**: the soprano model in two physical variants. A1: Key 1 sits in the
+  key cluster with Keys 2 to 4. A2: Key 1, the octave key, moves to the back
+  of the body as a thumb key. Both variants share the same keys, finger
+  holes, and fingering chart.
 
-Both models share one fingering chart. Print files are published at first
-release.
+Print files are published at first release.
 
 ## Authors
 

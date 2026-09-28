@@ -46,5 +46,6 @@ instrument is near 180 (the A2 thumb key's hole 1 sits at -103.6).
 
 ## Models
 
-- [`A1/`](A1/): the standard model, keys 1 to 4 in the key cluster on the body.
-- [`A2/`](A2/): A1 with key 1, the octave lever, moved to the back as a thumb key.
+- [`A1-2/`](A1-2/): the soprano model in two physical variants, A1 (Key 1 in
+  the key cluster) and A2 (Key 1 at the back as a thumb key). One shared
+  fingering chart.

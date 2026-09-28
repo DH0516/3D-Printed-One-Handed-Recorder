@@ -1,8 +1,8 @@
 {
   "schema": "ohr-model/1",
-  "id": "A1",
-  "name": "One-Handed Recorder Soprano A1 (OHR-Soprano-v0.1)",
-  "description": "Standard model. One-handed soprano recorder in C, right-handed by default, mating with any standard plastic soprano head joint. Four printed keys (Key 1, the octave lever, plus turning Keys 2 to 4) close toneholes 1 to 4; holes 5 to 8 are finger holes.",
+  "id": "A1-2",
+  "name": "One-Handed Recorder Soprano A1/2",
+  "description": "Soprano model in two physical variants: A1, with Key 1 in the key cluster, and A2, with Key 1 moved to the back of the body as a thumb key. The variants share the same keys, finger holes, and fingering chart; only the position of Key 1 differs. Right-handed by default, mating with any standard plastic soprano head joint. Four printed keys close toneholes 1 to 4; holes 5 to 8 are finger holes.",
   "pitch": {
     "reference": "A=440",
     "lowest": "C5",
