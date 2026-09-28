@@ -327,7 +327,7 @@ Most generic or general slicing settings should be okay for a standard print. Th
 <h1>7. Model Information</h1>
 <p>The project supports multiple variants of the same one-handed soprano recorder. All variants share one fingering chart (see the <a href="fingering_viewer.html">fingering viewer</a> and the machine-readable model data in <a href="https://github.com/DH0516/3D-Printed-One-Handed-Recorder/tree/main/models"><code>models/</code></a>).</p>
 <ul>
-<li><strong>A1, Soprano (OHR-Soprano-v0.1)</strong>: the standard model, described by the <a href="#chap-9">soprano build guide</a>. The thumb key operates similar to the "A" key, to be pushed with the joint of the index finger, sideways. This particular design involves avoiding the usage of the thumb completely. Right-handed by default; the design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For left-handed play, the design must be flipped horizontally (mirrored along the bore axis). * <em>Note for organology specialists:</em> We can likely produce custom model
+<li><strong>A1, Soprano</strong>: the standard model, described by the <a href="#chap-9">soprano build guide</a>. The thumb key operates similar to the "A" key, to be pushed with the joint of the index finger, sideways. This particular design involves avoiding the usage of the thumb completely. Right-handed by default; the design is based on a resizing of a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz). For left-handed play, the design must be flipped horizontally (mirrored along the bore axis). * <em>Note for organology specialists:</em> We can likely produce custom model
     designs based on different historical models upon request.</li>
 <li><strong>A2</strong>: A1 with key 1, the octave key, moved to the back of the body as a thumb key.</li>
 </ul>
@@ -346,7 +346,7 @@ Most generic or general slicing settings should be okay for a standard print. Th
 </section>
 <section id="chap-9">
 <h1>One-Handed Recorders - soprano-440-v1</h1>
-<p><strong>soprano-440-v1</strong> is the build of model <strong>A1</strong> (OHR-Soprano-v0.1), the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).</p>
+<p><strong>soprano-440-v1</strong> is the build of model <strong>A1</strong>, the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).</p>
 <p>The baseline files are designed for a right-handed player. To make a left-handed version, mirror all design files horizontally (along the bore axis) in your CAD or slicing software. Left-hand and right-hand models use mirrored variants of the same fingering chart.</p>
 <p>Printing, assembly, and troubleshooting are shared by all variants:</p>
 <ul>
@@ -364,59 +364,58 @@ Most generic or general slicing settings should be okay for a standard print. Th
 <ul>
 <li>Type: Soprano (Descant) recorder in C</li>
 <li>Pitch reference: A = 440</li>
-<li>Compass: chromatic, C5 to C#7 (26 fingerings)</li>
 <li>Keys: 4 printed keys (Key 1 octave key, Keys 2 to 4 tone keys)</li>
 <li>Pin diameter: 2.00 mm bores (pinned with 1.75 mm printer filament, which also forms the key springs)</li>
 <li>Head joint: any standard plastic soprano recorder head joint (not printed)</li>
 <li>Assembly: snap joints, no screws; see <a href="#chap-5">How to Assemble</a></li>
 </ul>
 <h2>Print Files</h2>
-<p>Binary STL, meshed at 0.01 mm chordal deviation. Printing guidelines are in <a href="#chap-4">How to 3D Print</a>.</p>
+<p>Binary STL, meshed at 0.01 mm chordal deviation, in print orientation. Printing guidelines are in <a href="#chap-4">How to 3D Print</a>.</p>
 <table>
 <thead>
 <tr>
 <th>Part</th>
 <th>File</th>
-<th>Triangles</th>
-<th>Volume (mm3)</th>
+<th>Print height</th>
+<th>File size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Body</td>
 <td><a href="../models/A1/parts/Body.stl">Body.stl</a></td>
-<td>33,227</td>
-<td>26,580.16</td>
+<td>171.9 mm</td>
+<td>1.6 MB</td>
 </tr>
 <tr>
 <td>Foot joint</td>
 <td><a href="../models/A1/parts/Foot.stl">Foot.stl</a></td>
-<td>46,326</td>
-<td>18,169.34</td>
+<td>63.6 mm</td>
+<td>2.2 MB</td>
 </tr>
 <tr>
 <td>Key 1 (octave key)</td>
 <td><a href="../models/A1/parts/Key_1.stl">Key_1.stl</a></td>
-<td>15,308</td>
-<td>1,076.54</td>
+<td>10.9 mm</td>
+<td>0.7 MB</td>
 </tr>
 <tr>
 <td>Key 2</td>
 <td><a href="../models/A1/parts/Key_2.stl">Key_2.stl</a></td>
-<td>8,874</td>
-<td>3,715.47</td>
+<td>25.6 mm</td>
+<td>0.4 MB</td>
 </tr>
 <tr>
 <td>Key 3</td>
 <td><a href="../models/A1/parts/Key_3.stl">Key_3.stl</a></td>
-<td>10,666</td>
-<td>3,621.56</td>
+<td>17.7 mm</td>
+<td>0.5 MB</td>
 </tr>
 <tr>
 <td>Key 4</td>
 <td><a href="../models/A1/parts/Key_4.stl">Key_4.stl</a></td>
-<td>18,772</td>
-<td>3,839.29</td>
+<td>26.6 mm</td>
+<td>0.9 MB</td>
 </tr>
 </tbody>
 </table>

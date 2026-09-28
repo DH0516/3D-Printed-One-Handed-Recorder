@@ -5,7 +5,7 @@ layout: default
 
 # One-Handed Recorders - soprano-440-v1
 
-**soprano-440-v1** is the build of model **A1** (OHR-Soprano-v0.1), the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).
+**soprano-440-v1** is the build of model **A1**, the standard variant. The design resizes a historical instrument by J.H. Rottenburgh (originally estimated to be pitched at A = 405 to 415 Hz) to modern pitch (A = 440 Hz).
 
 The baseline files are designed for a right-handed player. To make a left-handed version, mirror all design files horizontally (along the bore axis) in your CAD or slicing software. Left-hand and right-hand models use mirrored variants of the same fingering chart.
 
