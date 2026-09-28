@@ -632,13 +632,23 @@
         return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
       }
 
+      // Display label only: finger holes 5 to 8 are labeled 1 to 4 in the
+      // viewer. The data ids never change.
+      function holeDisplay(id) {
+        const m = id.match(/^(\d+)([LR]?)$/);
+        if (m && parseInt(m[1], 10) >= 5) {
+          return "Hole " + (parseInt(m[1], 10) - 4) + m[2];
+        }
+        return "Hole " + id;
+      }
+
       function applyModel(json, sourceLabel) {
         if (json.schema !== "ohr-model/1") {
           throw new Error("unrecognized model data");
         }
         state.holes = json.holes.map((h, i) => ({
           id: h.id,
-          name: h.key || "Hole " + h.id,
+          name: h.key || holeDisplay(h.id),
           isKey: h.type === "key",
           index: i,
         }));
@@ -695,7 +705,7 @@
             );
             if (partner !== -1) {
               stations.push({
-                label: "Hole " + base,
+                label: holeDisplay(base),
                 type: "pair",
                 holes: [h, state.holes[partner]],
               });
