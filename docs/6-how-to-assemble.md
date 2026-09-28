@@ -18,7 +18,7 @@ The design requires **zero screws** and **no bought metal springs**. Key bracket
 ### Step 2: Prepare and Glue Sealing Pads
 
 - Punch or cut circular pad discs (1.0-1.5 mm closed-cell neoprene, natural cork, or similar) matching the key cup diameter.
-- Place a small drop of gel cyanoacrylate or craft adhesive into each pad cup, then press the pad disc firmly into place, making sure it sits flat and level without tilting.
+- craft adhesive into each pad cup, then press the pad disc firmly into place, making sure it sits flat and level without tilting.
 - Let the glue cure fully before mounting the keys.
 
 ### Step 3: Mount Keys 2 to 4
