@@ -12,7 +12,7 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 1. **[Overview](2-overview.md)** - Project introduction, goals, and licensing.
 2. **[Background & Inspiration](3-background-and-inspiration.md)** - History of one-handed woodwinds, including the tabor pipe, the Dolmetsch legacy, the Flow project, and 3D printing trends.
 3. **[Project and Instrument Details and Contexts](4-project-and-instrument-details-and-contexts.md)** - User demographics, instrument details, development realities, and accessibility tenets.
-4. **[How to 3D Print](5-how-to-3d-print.md)** - Required tools, filaments/material selection, and safety warning on UV resin toxicity.
+4. **[How to 3D Print](5-how-to-3d-print.md)** - Required tools, filaments/material selection, and safety warning.
 5. **[How to Assemble](6-how-to-assemble.md)** - Step-by-step physical assembly guide.
 6. **[Troubleshooting](7-troubleshooting.md)** - Common print/assembly issues and acoustic solutions.
 7. **[Model Information](8-model-information.md)** - Supported physical recorder variants.
