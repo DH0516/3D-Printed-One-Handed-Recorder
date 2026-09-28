@@ -475,14 +475,22 @@
 
       /* ---------- print ---------- */
 
+      .print-only {
+        display: none;
+      }
+
       @media print {
         body {
           background: white;
           color: black;
         }
         .sidebar,
+        .detail,
         .print-hide {
           display: none !important;
+        }
+        .print-only {
+          display: block;
         }
         .app {
           display: block;
@@ -491,20 +499,35 @@
           padding: 0;
           max-width: none;
         }
-        .panel {
-          border: none;
-          box-shadow: none;
+        .chart-title {
+          font-family: var(--serif);
+          font-size: 14pt;
+          margin: 0 0 4pt;
         }
-        .detail-panel,
-        .table-panel {
-          padding: 0;
+        .chart-sub {
+          font-size: 9pt;
+          color: #444;
+          margin: 0 0 8pt;
         }
-        .diagram {
-          transform: scale(0.8);
-          transform-origin: top center;
+        .chart-grid {
+          display: grid;
+          grid-template-columns: repeat(9, 1fr);
+          gap: 4pt 6pt;
+        }
+        .chart-cell {
+          text-align: center;
+          page-break-inside: avoid;
+        }
+        .chart-cell svg {
+          max-width: 78px;
+          height: auto;
+        }
+        .chart-name {
+          font-size: 8.5pt;
+          font-weight: 650;
         }
         @page {
-          margin: 1.5cm;
+          margin: 1.2cm;
         }
       }
     </style>
@@ -591,6 +614,7 @@
             </table>
           </article>
         </section>
+        <section class="print-only" id="printChart" aria-hidden="true"></section>
       </main>
     </div>
 
@@ -738,6 +762,22 @@
         return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
       }
 
+      // Print sheet: every fingering on one page, each cell showing the
+      // instrument diagram, the note name, and the staff drawing. Labels
+      // follow the active naming mode. No state table.
+      function buildPrintChart() {
+        if (!state.notes.length) return;
+        const cells = state.notes
+          .map((n) => `<div class="chart-cell">${buildInstrumentSVG(n)}<div class="chart-name">${getNoteDisplayName(n.main)}</div>${createStaffSVG(n.main, "mini")}</div>`)
+          .join("");
+        const first = getNoteDisplayName(state.notes[0].main);
+        const last = getNoteDisplayName(state.notes[state.notes.length - 1].main);
+        document.getElementById("printChart").innerHTML =
+          `<h2 class="chart-title">${state.modelName || ""}</h2>` +
+          `<p class="chart-sub">All fingerings, ${first} to ${last} (A = 440)</p>` +
+          `<div class="chart-grid">${cells}</div>`;
+      }
+
       // Display label only: finger holes 5 to 8 are labeled 1 to 4 in the
       // viewer. The data ids never change.
       function holeDisplay(id) {
@@ -764,10 +804,12 @@
           values: state.holes.map((h) => (f.holes[h.id] || "").trim()),
         }));
         state.layout = Array.isArray(json.layout) ? json.layout : null;
+        state.modelName = json.name;
         if (state.notes.length === 0) throw new Error("no fingerings in model");
         state.selectedId = 0;
         document.getElementById("modelLabel").textContent = sourceLabel;
         render();
+        buildPrintChart();
       }
 
       async function loadModel(id) {
@@ -953,6 +995,7 @@
         .addEventListener("change", (e) => {
           state.notation = e.target.value;
           render();
+          buildPrintChart();
         });
 
       document
