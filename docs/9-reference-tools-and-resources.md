@@ -6,7 +6,7 @@ layout: default
 # 8. Reference Tools & Resources
 
 - **[Interactive Fingering Chart Viewer](fingering_viewer.html):** A dedicated web application to view and practice the fingerings, laid out for the one-handed mechanism. The chart itself is the standard baroque chart, since the keys change which finger works a hole rather than which holes are open.
-  - **Features:** Three note-naming modes (Simple `C1` to `C#3` in relative octaves, Standard `C5` to `C#7`, and Solfège), treble-clef staff display, search filtering, and print/PDF of the current view.
+  - **Features:** Three note-naming modes (Simple, Solfège, Standard); Simple and Solfège number the instrument's own octaves (`C1` to `C#3`, `Do 1` to `Di 3`), Standard keeps scientific names (`C5` to `C#7`). Staff notes are drawn one octave lower to match the instrument's register. Plus search filtering and print/PDF of the current view.
   - **Standalone Use:** Fully static and self-contained; the model data is embedded in the page, so it works hosted or opened directly from disk with no server. The `models/` directory carries the same data as reusable `model.json` files.
 - **[Soprano 440 Build Guide (Chapter 10)](10-soprano-440-v1.md):** Model-specific details for the standard soprano build; printing, assembly, and troubleshooting are in chapters 4 to 6.
 - **Acoustic Modeling:** Inria Openwind, the open-source wind instrument design toolbox used to calculate and optimize the bore and toneholes.

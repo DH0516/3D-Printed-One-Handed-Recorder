@@ -529,8 +529,8 @@
             <span class="field-label">Note Naming</span>
             <select id="notationToggle">
               <option value="simple" selected>Simple</option>
-              <option value="standard">Standard</option>
               <option value="solfege">Solfège</option>
+              <option value="standard">Standard</option>
             </select>
           </label>
           <label class="field">
@@ -540,10 +540,6 @@
               <option value="staff">Staff Notation</option>
             </select>
           </label>
-          <input type="file" id="fileInput" accept=".json" hidden />
-          <button id="fileBtn" class="btn btn-accent">
-            Open Local Model File
-          </button>
           <button onclick="window.print()" class="btn btn-ghost">
             Print / Save PDF
           </button>
@@ -645,16 +641,16 @@
         }
         if (state.notation === "standard") return mainName;
 
-        const match = mainName.match(/^([A-G][#b]?)(.*)$/);
+        const match = mainName.match(/^([A-G][#b]?)(\d)$/);
         if (match) {
           const note = match[1];
-          const suffix = match[2] ? " " + match[2] : "";
+          const octave = parseInt(match[2], 10) - 4;
           let normalizedNote = note;
           if (note.length > 1) {
             normalizedNote = note[0] + note[1].toLowerCase();
           }
           const solfege = solfegeMap[normalizedNote] || note;
-          return `${solfege}${suffix}`;
+          return `${solfege} ${octave}`;
         }
         return mainName;
       }
@@ -687,9 +683,10 @@
         const n = parseNote(noteName);
         if (!n)
           return `<span class="note-main">${getNoteDisplayName(noteName)}</span>`;
-        // Simple naming reads relative octaves (C5 is C1), so the staff
-        // draws one octave lower to match: C5 sits at the C4 position.
-        if (state.notation === "simple") n.octave -= 1;
+        // All naming modes read the instrument's register, not absolute
+        // pitch, so every staff note draws one octave lower: C5 (the
+        // instrument's lowest C) sits at the C4 staff position.
+        n.octave -= 1;
 
         const stepMap = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
         const stepsFromC4 = (n.octave - 4) * 7 + stepMap[n.letter];
@@ -972,24 +969,6 @@
       modelSelect.addEventListener("change", (e) => {
         loadModel(e.target.value);
       });
-
-      document.getElementById("fileBtn").addEventListener("click", () => {
-        document.getElementById("fileInput").click();
-      });
-
-      document
-        .getElementById("fileInput")
-        .addEventListener("change", async (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-          try {
-            const json = JSON.parse(await file.text());
-            applyModel(json, file.name + " (local file)");
-          } catch (err) {
-            document.getElementById("selectedNote").textContent =
-              "Error: " + err.message;
-          }
-        });
 
       // Resizable sidebar: drag the divider, or focus it and use arrow
       // keys. Width persists in localStorage and clamps to 240..520 px.
