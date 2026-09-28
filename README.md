@@ -8,7 +8,7 @@ The [`docs/`](docs/1-index.html) folder is the documentation site, served by Git
 
 ## Interactive fingering chart
 
-[`docs/fingering_viewer.html`](docs/fingering_viewer.html) is a standalone, client-side fingering chart with a model selector, showing a simplified instrument diagram per note. It is fully static: the model data is embedded in the page, so it works from any static host or opened directly from disk. The same data lives in [`models/`](models/README.md) as reusable `model.json` files.
+[`docs/fingering_viewer.html`](docs/fingering_viewer.html) is a standalone, client-side fingering chart with a model selector, showing a simplified instrument diagram per note. It is fully static: the model list comes from `models/manifest.json` and each model's data from its `model.json`, so serve the folder on any static host.
 
 ## Models
 
