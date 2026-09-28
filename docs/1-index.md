@@ -19,6 +19,10 @@ Welcome to the documentation for the **3D-Printed-One-Handed-Recorder** project.
 8. **[Reference Tools & Resources](9-reference-tools-and-resources.md)** - Project references, resources, and compliance info.
 9. **[Build Guide: soprano-440-v1](10-soprano-440-v1.md)** - Model-specific details for the standard Soprano (Descant) 440 Hz build.
 
+### Model Documentation
+
+- **[Model A1](model-A1.md)** - Specifications and print files (STL) for the standard variant.
+
 ---
 
 ### Interactive Tools
