@@ -576,7 +576,7 @@
         </div>
 
         <div class="legend">
-          <span class="legend-item"><span class="hole closed"></span>Closed</span>
+          <span class="legend-item"><span class="hole closed"></span>Closed/Pressed</span>
           <span class="legend-item"
             ><span class="hole half"></span>Half/Partial Open</span
           >
@@ -975,7 +975,7 @@
             .map((h) => {
               const val = (note.values[h.index] || "").toUpperCase();
               const stateName =
-                val === "C" ? "Closed" : val === "H" ? "Half" : "Open";
+                val === "C" ? "Closed/Pressed" : val === "H" ? "Half" : "Open";
               return `<tr><td>${h.name}</td><td>${stateName}</td></tr>`;
             })
             .join("");
