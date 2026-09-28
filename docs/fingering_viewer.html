@@ -122,6 +122,21 @@
         line-height: 1.4;
       }
 
+      .doc-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--rail-text);
+        font-size: 0.85rem;
+        text-decoration: none;
+        border: 1px solid var(--rail-line);
+        border-radius: 6px;
+        padding: 5px 10px;
+      }
+
+      .doc-link:hover {
+        border-color: var(--accent);
+      }
+
       .controls {
         display: grid;
         gap: 10px;
@@ -537,6 +552,7 @@
         <div class="brand">
           <h1>One-Handed Recorder</h1>
           <p class="source" id="modelLabel">loading model data...</p>
+          <a class="doc-link print-hide" href="1-index.html">&larr; Documentation</a>
         </div>
 
         <div class="controls print-hide">
