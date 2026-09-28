@@ -49,6 +49,7 @@ btn.addEventListener('click', async () => {
   btn.disabled = true;
   try {
     status.textContent = 'loading...';
+    const { buildGroup, frameCamera } = await import('./preview/scene.mjs');
     const THREE = await import('./preview/vendor/three.module.min.js');
     const [bin, index] = await Promise.all([
       fetch('preview/viewdata.bin?v=2').then(r => { if (!r.ok) throw new Error('mesh data HTTP ' + r.status); return r.arrayBuffer(); }),
@@ -57,31 +58,13 @@ btn.addEventListener('click', async () => {
     status.textContent = 'building scene...';
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf4f1e8);
-    const group = new THREE.Group();
-    group.rotation.x = -Math.PI / 2;  // data is Z-up
-    let off = 0;
-    for (const p of index.parts) {
-      const n = p.tris * 9;
-      const f = new Float32Array(bin, off * 4, n);
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute('position', new THREE.BufferAttribute(f, 3));
-      geo.computeVertexNormals();
-      group.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({
-        color: new THREE.Color(p.color), roughness: 0.55, metalness: 0.1,
-      })));
-      off += n;
-    }
+    const group = buildGroup(bin, index);
     scene.add(group);
     scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8578, 1.0));
     const sun = new THREE.DirectionalLight(0xffffff, 1.6);
     sun.position.set(80, 120, 160);
     scene.add(sun);
-    const box3 = new THREE.Box3().setFromObject(group);
-    const center = box3.getCenter(new THREE.Vector3());
-    const size = box3.getSize(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const camera = new THREE.PerspectiveCamera(40, 1, maxDim / 100, maxDim * 20);
-    camera.position.copy(center).add(new THREE.Vector3(maxDim * 0.55, maxDim * 0.5, maxDim * 1.15));
+    const { camera, center, maxDim } = frameCamera(group);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     box.style.display = 'block';
