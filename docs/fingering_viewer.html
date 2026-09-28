@@ -739,15 +739,15 @@
           v === "C" ? "#11181c" : v === "H" ? "url(#halfGrad)" : "#ffffff";
 
         let marks = "";
-        // Cosmetic inversion for Keys 2 to 4: closed draws as open and open
-        // draws as closed. Key 1 and all finger holes keep the normal
+        // Cosmetic inversion for all four keys: closed draws as open, and
+        // open and half both draw as closed. Finger holes keep the normal
         // mapping. The fingering data itself never changes.
-        const INVERTED_KEYS = new Set(["2", "3", "4"]);
+        const INVERTED_KEYS = new Set(["1", "2", "3", "4"]);
         stations.forEach((st, i) => {
           const y = y0 + i * gap;
           let v1 = (note.values[st.holes[0].index] || "").toUpperCase();
           if (st.type === "key" && INVERTED_KEYS.has(st.holes[0].id)) {
-            v1 = v1 === "C" ? "O" : v1 === "O" ? "C" : v1;
+            v1 = v1 === "C" ? "O" : "C";
           }
           if (st.type === "key") {
             marks += `<rect x="${cx - 18}" y="${y - 6}" width="36" height="12" rx="5" fill="${fillFor(v1)}" stroke="#171f24" stroke-width="2"/>`;
