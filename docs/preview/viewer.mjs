@@ -35,8 +35,21 @@ export function mountPreview({ button, status, box, binUrl, indexUrl }) {
       let dragging = 0, lastX = 0, lastY = 0;
       dom.style.touchAction = 'none';
       dom.addEventListener('contextmenu', (e) => e.preventDefault());
-      dom.addEventListener('pointerdown', (e) => { dragging = e.button === 2 ? 2 : 1; lastX = e.clientX; lastY = e.clientY; dom.setPointerCapture(e.pointerId); });
-      dom.addEventListener('pointerup', (e) => { dragging = 0; dom.releasePointerCapture(e.pointerId); });
+      // Left-drag rotates. Pan: right-drag, middle-drag, Shift+left-drag,
+      // or a two-finger touch drag. Wheel zooms.
+      const panMode = (e) => e.button === 2 || e.button === 1 || e.shiftKey ||
+                             (e.pointerType === 'touch' && e.isPrimary === false);
+      dom.addEventListener('pointerdown', (e) => {
+        dragging = panMode(e) ? 2 : 1;
+        lastX = e.clientX; lastY = e.clientY;
+        try { dom.setPointerCapture(e.pointerId); } catch (err) { /* fine */ }
+        if (e.pointerType === 'touch') e.preventDefault();
+      }, { passive: false });
+      dom.addEventListener('pointerup', (e) => {
+        dragging = 0;
+        try { dom.releasePointerCapture(e.pointerId); } catch (err) { /* fine */ }
+      });
+      dom.addEventListener('pointercancel', () => { dragging = 0; });
       dom.addEventListener('pointermove', (e) => {
         if (!dragging) return;
         const dx = e.clientX - lastX, dy = e.clientY - lastY;
@@ -70,6 +83,12 @@ export function mountPreview({ button, status, box, binUrl, indexUrl }) {
       new ResizeObserver(fit).observe(box);
       const loop = () => { applyCamera(); renderer.render(scene, camera); requestAnimationFrame(loop); };
       loop();
+      // test handle: lets automation prove rotate/pan/zoom actually move
+      // the camera; harmless in normal use
+      window.__pv = {
+        target: () => target.toArray(),
+        radius: () => sph.radius,
+      };
       status.textContent = '';
       button.textContent = '3D preview loaded';
     } catch (e) {
