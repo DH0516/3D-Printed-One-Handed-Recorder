@@ -48,7 +48,7 @@ mountPreview({
   button: document.getElementById('previewBtnA1'),
   status: document.getElementById('previewStatusA1'),
   box: document.getElementById('previewBoxA1'),
-  binUrl: 'preview/viewdata.bin?v=2',
-  indexUrl: 'preview/viewdata-index.json?v=2',
+  binUrl: 'preview/viewdata.bin?v=3',
+  indexUrl: 'preview/viewdata-index.json?v=3',
 });
 </script>
