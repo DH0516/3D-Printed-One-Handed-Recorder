@@ -1,14 +1,16 @@
 // Shared click-to-load 3D preview: mounts into the given button,
 // status, and box elements, fetching the given mesh binary and index.
-// Left-drag rotate, wheel zoom, right-drag pan.
-import { buildGroup, frameCamera } from './scene.mjs';
-import * as THREE from './vendor/three.module.min.js';
-
+// Left-drag rotate, wheel zoom, right-drag pan. The button listener
+// attaches immediately; three.js and the mesh load only on click.
 export function mountPreview({ button, status, box, binUrl, indexUrl }) {
   button.addEventListener('click', async () => {
     button.disabled = true;
     try {
       status.textContent = 'loading...';
+      const [{ buildGroup, frameCamera }, THREE] = await Promise.all([
+        import('./scene.mjs'),
+        import('./vendor/three.module.min.js'),
+      ]);
       const [bin, index] = await Promise.all([
         fetch(binUrl).then(r => { if (!r.ok) throw new Error('mesh data HTTP ' + r.status); return r.arrayBuffer(); }),
         fetch(indexUrl).then(r => r.json()),
