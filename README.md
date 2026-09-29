@@ -28,7 +28,7 @@ For any questions, inquiries, or update requests: [irem25qc@gmail.com](mailto:ir
 
 <a href="LICENSE"><img src="docs/cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a>
 
-Released under the Creative Commons Attribution-NonCommercial 4.0 International License ([CC BY-NC 4.0](LICENSE)). Free for personal, academic, and non-commercial educational use. Resale, commercial manufacture, or commercial reproduction requires prior written permission from Daniel Ha.
+Website content is owned by IREM. The 3D designs (STL files) are released under the Creative Commons Attribution-NonCommercial 4.0 International License ([CC BY-NC 4.0](LICENSE)): free to download, print, and share for personal, academic, and non-commercial use. Resale, commercial manufacture, or commercial reproduction requires prior written permission from IREM.
 
 Generative AI tools assisted with documentation drafting and software scripting; all CAD models, acoustic designs, and physical prototypes were created, verified, and directed by the human authors.
 
