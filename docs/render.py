@@ -9,6 +9,7 @@ this directory). Links between chapters are rewritten from .md to .html.
 Usage: python3 render.py  (requires the python-markdown package)
 """
 import re
+import sys
 from pathlib import Path
 
 import markdown
@@ -97,7 +98,7 @@ def render_single():
     with internal anchors, so it works opened from anywhere, including
     a file manager's transient copy."""
     chapters = [p for p in sorted(HERE.glob("*.md"), key=page_key)
-                if p.name != "1-index.md"]
+                if p.name != "1-index.md" and p.name not in LOCAL_ONLY]
     nav, sections = [], []
     ids = {p.name: "chap-%d" % (i + 1) for i, p in enumerate(chapters)}
     for i, md_path in enumerate(chapters):
@@ -137,14 +138,25 @@ def page_key(md_path):
     return int(m.group(1)) if m else 999
 
 
+# Pages kept local-only (gitignored); rendered standalone with --with-a2
+# and never linked, paged, or folded into the published site.
+LOCAL_ONLY = {"model-A2.md"}
+
+
 def main():
-    pages = sorted(HERE.glob("*.md"), key=page_key)
+    with_local = "--with-a2" in sys.argv
+    pages = [p for p in sorted(HERE.glob("*.md"), key=page_key)
+             if p.name not in LOCAL_ONLY]
     for i, md_path in enumerate(pages):
         prev = (pages[i - 1], load_chapter(pages[i - 1])[0]) if i > 0 else None
         nxt = (pages[i + 1], load_chapter(pages[i + 1])[0]) \
             if i + 1 < len(pages) else None
         print("rendered", render_file(md_path, prev, nxt).name)
     print("rendered", render_single().name)
+    for name in sorted(LOCAL_ONLY):
+        p = HERE / name
+        if with_local and p.exists():
+            print("rendered", render_file(p).name)
 
 
 if __name__ == "__main__":
