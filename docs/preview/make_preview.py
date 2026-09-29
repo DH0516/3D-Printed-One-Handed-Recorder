@@ -77,7 +77,59 @@ def rotate_z(tris, deg):
     return out
 
 
+
+def load_stl(path):
+    data = path.read_bytes()
+    n = struct.unpack('<I', data[80:84])[0]
+    assert len(data) == 84 + n * 50, path
+    tris = []
+    for i in range(n):
+        off = 84 + i * 50 + 12
+        for v in range(3):
+            tris.extend(struct.unpack('<3f', data[off + v * 12:off + v * 12 + 12]))
+    return tris
+
+
+def build_stl_set(model, cell=0.35):
+    """Preview built from the shipped print-set STLs themselves, laid out
+    in a row on the print bed (part orientation exactly as printed)."""
+    parts_dir = OUT.parent.parent / 'models' / model / 'parts'
+    order = ['Body', 'Foot', 'Key_1', 'Key_2', 'Key_3', 'Key_4']
+    color = {'Body': '#C9BFA8', 'Foot': '#C9BFA8', 'Key_1': '#4169E1',
+             'Key_2': '#8B0000', 'Key_3': '#8B0000', 'Key_4': '#8B0000'}
+    parts, chunks, total = [], [], 0
+    xslot = 0.0
+    for name in order:
+        f = parts_dir / ('%s-%s.stl' % (model, name))
+        tris = decimate(load_stl(f), cell)
+        xs = tris[0::3]; zs = tris[2::3]
+        w = max(xs) - min(xs)
+        # sit the part on the bed (y=0) and space slots along x
+        ymin = min(tris[1::3]); xmin = min(xs)
+        for i in range(0, len(tris), 3):
+            tris[i] += xslot - xmin
+            tris[i + 1] -= ymin
+        parts.append({'name': '%s-%s' % (model, name), 'color': color[name],
+                      'tris': len(tris) // 9})
+        chunks.append(tris)
+        total += len(tris) // 9
+        xslot += w + 25.0
+    stem = 'viewdata-stlset-%s' % model
+    with open(OUT / (stem + '.bin'), 'wb') as fh:
+        for c in chunks:
+            fh.write(struct.pack('<%df' % len(c), *c))
+    (OUT / (stem + '-index.json')).write_text(json.dumps(
+        {'totalTris': total, 'parts': parts}, separators=(',', ':')) + '\n')
+    print('%s stlset: parts %d, tris %d, bin %.2f MB'
+          % (model, len(parts), total,
+             (OUT / (stem + '.bin')).stat().st_size / 1048576))
+
+
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == '--stlset':
+        build_stl_set(sys.argv[2] if len(sys.argv) > 2 else 'A2',
+                      float(sys.argv[3]) if len(sys.argv) > 3 else 0.35)
+        return
     cell = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
     variant = sys.argv[3] if len(sys.argv) > 3 else "A1"
     stem = "viewdata" if variant == "A1" else "viewdata-A2"
