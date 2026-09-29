@@ -18,9 +18,11 @@ if (totalTris < 50000) fail('mesh too thin: ' + totalTris + ' triangles');
 const floats = totalTris * 9;
 if (bin.byteLength !== floats * 4) fail('bin size ' + bin.byteLength + ' != ' + floats * 4);
 
+// one view over the whole bin; constructing a Float32Array per sample
+// copies the entire buffer in Node and takes hours at this size
+const all = new Float32Array(bin.buffer, bin.byteOffset, floats);
 for (let i = 0; i < floats; i += 97) {  // strided NaN / infinity scan
-  const v = new Float32Array(bin, i * 4, 1)[0];
-  if (!Number.isFinite(v)) fail('non-finite coordinate at float ' + i);
+  if (!Number.isFinite(all[i])) fail('non-finite coordinate at float ' + i);
 }
 
 const group = buildGroup(bin.buffer, index);

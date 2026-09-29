@@ -35,7 +35,7 @@ Keys 2 to 4 print as one piece each in this set. The fingering chart shared by b
 
 *Be aware that the 3D previewer is purely experimental and cannot accurately render the instrument*
 
-Assembled body, foot, and keys (the commercial head joint is not part of the model). Drag to rotate, scroll to zoom, and pan with right-drag, middle-drag, Shift-drag, or a two-finger touch drag. Loads about 4 MB of mesh data on first click.
+Assembled body, foot, and keys (the commercial head joint is not part of the model). Drag to rotate, scroll to zoom, and pan with right-drag, middle-drag, Shift-drag, or a two-finger touch drag. Loads about 5 MB of mesh data on first click on first click.
 
 <div>
 <button id="previewBtnA1" type="button" style="padding:10px 16px;border-radius:8px;border:1px solid #0e6f66;background:#0e6f66;color:#fff;font-weight:600;cursor:pointer;">3D preview viewer</button>
@@ -48,7 +48,7 @@ mountPreview({
   button: document.getElementById('previewBtnA1'),
   status: document.getElementById('previewStatusA1'),
   box: document.getElementById('previewBoxA1'),
-  binUrl: 'preview/viewdata.bin?v=4',
-  indexUrl: 'preview/viewdata-index.json?v=4',
+  binUrl: 'preview/viewdata.bin?v=5',
+  indexUrl: 'preview/viewdata-index.json?v=5',
 });
 </script>
