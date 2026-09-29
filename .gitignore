@@ -1,6 +1,5 @@
 # local-only until A2 release approval
 docs/model-A2.md
-docs/model-A2.html
 models/A2/
 docs/preview/viewdata-A2.bin
 docs/preview/viewdata-A2-index.json

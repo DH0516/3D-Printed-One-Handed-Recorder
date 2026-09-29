@@ -157,6 +157,14 @@ def main():
         p = HERE / name
         if with_local and p.exists():
             print("rendered", render_file(p).name)
+        elif not with_local and p.exists():
+            # published stand-in so the URL answers instead of 404
+            out = p.with_suffix(".html")
+            out.write_text(TEMPLATE.format(
+                title=load_chapter(p)[0],
+                body="<h1>%s</h1>\n<p>Coming soon.</p>"
+                     % load_chapter(p)[0]))
+            print("rendered", out.name, "(placeholder)")
 
 
 if __name__ == "__main__":
