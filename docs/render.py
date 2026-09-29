@@ -57,7 +57,7 @@ img {{ max-width: 100%; }}
 </nav></header>
 <main>
 {body}
-<footer class="dates"><img class="irem-mark" src="IREM_Logo.png" alt="IREM" height="31"><a href="https://creativecommons.org/licenses/by-nc/4.0/"><img src="cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a> Published 2026-09-27 &middot; Last updated 2026-09-27<br>Website content &copy; IREM. The 3D designs (STL files) are free to download, print, modify, and share; commercial use requires permission.</footer>
+<footer class="dates"><img class="irem-mark" src="IREM_Logo.png" alt="IREM" height="31"><a href="https://creativecommons.org/licenses/by-nc/4.0/"><img src="cc-by-nc-88x31.png" alt="CC BY-NC 4.0" width="88" height="31"></a> Published 2026-09-27 &middot; Last updated 2026-09-27<br>The 3D designs (STL files) are free to download, print, modify, and share; commercial use requires permission.</footer>
 </main>
 </body>
 </html>
